@@ -1,7 +1,12 @@
 import React from 'react';
 import headingImage from '../../assets/images/login-heading.png';
 import { Overlay, Figure, Image, Form, FormRow } from './LoginStyle';
-import { Input, Label, ErrorLabel } from '../../lib/styles/generalStyles';
+import {
+  Input,
+  Label,
+  ErrorLabel,
+  PrimaryButton,
+} from '../../lib/styles/generalStyles';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -51,7 +56,9 @@ const Login = () => {
               <ErrorLabel>{formik.errors.password}</ErrorLabel>
             ) : null}
           </FormRow>
-          <FormRow>{/* Add submit button */}</FormRow>
+          <FormRow>
+            <PrimaryButton text="Prijava" />
+          </FormRow>
         </Form>
       </Overlay>
     </>

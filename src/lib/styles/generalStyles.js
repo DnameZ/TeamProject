@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors, boxShadowFocus, breakpoints  } from './theme';
+import { colors, boxShadowFocus, breakpoints } from './theme';
 
 //Main
 export const Main = styled.div``;
@@ -36,6 +36,7 @@ export const TextArea = styled.textarea`
   height: 112px;
 `;
 
+//Labels
 export const Label = styled.label`
   font-size: 16px;
   margin-bottom: 10px;
@@ -53,8 +54,7 @@ export const ErrorLabel = styled.p`
   padding-top: 8px;
 `;
 
-export const Main = styled.div``;
-
+//Button components
 export const ButtonDefault = css`
   display: block;
   width: 288px;
@@ -131,7 +131,7 @@ export const SectionButtonStyle = styled.button`
   border-width: 3px;
   border-style: solid;
   border-color: {
-    props.type==='inactive' ? ${colors.silver} : ${colors.blue};
+    props.type==='inactive'? ${colors.silver} : ${colors.blue};
   }
   background-color: ${colors.white};
   color: ${colors.blue};

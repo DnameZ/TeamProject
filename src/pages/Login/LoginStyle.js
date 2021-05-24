@@ -14,7 +14,7 @@ export const Overlay = styled.div`
 `;
 
 export const Figure = styled.figure`
-  padding: 25px 20px 21px;
+  padding: 25px 16px 21px;
   width: 320px;
   height: 106px;
 
@@ -35,7 +35,7 @@ export const Image = styled.img`
 `;
 
 export const Form = styled.form`
-  padding: 0 20px;
+  padding: 0 16px;
   width: 320px;
   margin-top: 20px;
 
