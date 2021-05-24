@@ -8,11 +8,13 @@ import Records from './pages/Records/Records';
 import Statistics from './pages/Statistics/Statistics';
 // components
 import { Main } from './lib/styles/generalStyles';
+import Header from './componentes/Header/Header';
 function App() {
   useEffect(() => window.scrollTo(0, 0), []);
   return (
     <>
       <Main>
+        <Header />
         <Route path="/login" component={Login} />
         <Route path="/events" component={Events} />
         <Route path="/records" component={Records} />
