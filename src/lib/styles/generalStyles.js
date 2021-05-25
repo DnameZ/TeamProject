@@ -9,6 +9,7 @@ export const InputGeneral = css`
   height: 56px;
   border-radius: 4px;
   border: solid 1px ${colors.lightGrey};
+  background-color: ${colors.white};
   font-size: 16px;
   padding: 8px 5px;
 
@@ -131,7 +132,7 @@ export const SectionButtonStyle = styled.button`
   border-width: 3px;
   border-style: solid;
   border-color: {
-    props.type==='inactive'? ${colors.silver} : ${colors.blue};
+    props.type==='inactive'?${colors.silver} : ${colors.blue};
   }
   background-color: ${colors.white};
   color: ${colors.blue};
