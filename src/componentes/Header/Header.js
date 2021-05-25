@@ -36,7 +36,7 @@ const Header = () => {
             <CPSRK>Centar za podršku studentima i razvoj karijera</CPSRK>
           </CPSRKcontainer>
           <Hammburger>
-            {isOpen === true ? (
+            {isOpen === false ? (
               <HammburgerLogo type={'Hamb'} src={HamIcon} Func={ToggleHamb} />
             ) : (
               <HammburgerLogo type={'xButton'} src={XIcon} Func={ToggleHamb} />
@@ -46,7 +46,7 @@ const Header = () => {
             <PrimaryButton type={'active'} text={'Odjava'} />
           </Nav>
         </Inner>
-        {isOpen === false ? <HamburegerMenu /> : ''}
+        {isOpen === false ? '' : <HamburegerMenu />}
       </HeaderInner>
     </>
   );
