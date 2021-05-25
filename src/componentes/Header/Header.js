@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Header as HeaderInner,
   Inner,
-  Logo,
+  FinalLogo,
   Hammburger,
   HamLogo,
   Nav,
@@ -30,7 +30,7 @@ const Header = () => {
       <HeaderInner>
         <Inner>
           <LogoContainer>
-            <Logo src={Icon} />
+            <FinalLogo type={'NavLogo'} src={Icon} />
           </LogoContainer>
           <CPSRKcontainer>
             <CPSRK>Centar za podršku studentima i razvoj karijera</CPSRK>
@@ -58,6 +58,7 @@ const HamburegerMenu = () => {
       <HambMenu>
         <HambMenuButtonWrapper>
           <PrimaryButton type={'active'} text={'Odjava'} />
+          <FinalLogo type={'BackLogo'} src={Icon} />
         </HambMenuButtonWrapper>
       </HambMenu>
     </>

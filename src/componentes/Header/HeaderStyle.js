@@ -42,10 +42,24 @@ export const LogoContainer = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 34px;
-  height: 38px;
-  object-fit: contain;
+  ${(props) =>
+    props.type === 'NavLogo' &&
+    `width: 34px; height: 38px; object-fit: contain;`}
+  ${(props) =>
+    props.type === 'BackLogo' &&
+    `
+  position:fixed;
+  top:50%;
+  left:80%;
+  width: 105px; 
+  height: 100px; 
+  object-fit: contain; 
+  opacity: 0.2`}
 `;
+
+export const FinalLogo = ({ type, src }) => {
+  return <Logo src={src} type={type} />;
+};
 
 export const Hammburger = styled.div`
   @media screen and (${breakpoints.mobileLarge}) {
