@@ -16,6 +16,8 @@ import {
   ButtonWrapper,
 } from './EventCardStyle';
 
+import { PrimaryButton } from '../../lib/styles/generalStyles';
+
 const EventCard = ({
   title,
   location,
@@ -24,6 +26,7 @@ const EventCard = ({
   freeSpots,
   company,
   shortDescription,
+  buttonText,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
 
@@ -83,7 +86,9 @@ const EventCard = ({
             </ContentRowShow>
           )}
         </EventCardContent>
-        <ButtonWrapper></ButtonWrapper>
+        <ButtonWrapper>
+          <PrimaryButton type="modal/card" text={buttonText} />
+        </ButtonWrapper>
       </EventCardWrapper>
     </>
   );

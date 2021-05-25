@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, breakpoints } from '../../style/theme';
+import { colors, breakpoints, boxShadowHover } from '../../lib/styles/theme';
 
 export const EventCard = styled.div`
   width: 288px;
@@ -11,7 +11,7 @@ export const EventCard = styled.div`
   background-color: ${colors.white};
 
   &:hover {
-    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: ${boxShadowHover};
     border: solid 2px ${colors.blue};
   }
 
@@ -129,5 +129,6 @@ export const RowValue = styled.p`
 `;
 
 export const ButtonWrapper = styled.div`
+  margin-top: 25px;
   text-align: center;
 `;
