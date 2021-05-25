@@ -15,8 +15,8 @@ function App() {
   return (
     <>
       <Main>
-        <Modal title="asdasdas">
-          <p>asdasdasd</p>
+        <Modal title="Asdasdas">
+          <p>Asdasdasd</p>
         </Modal>
         <Route path="/login" component={Login} />
         <Route path="/events" component={Events} />
