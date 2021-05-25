@@ -24,6 +24,7 @@ export const InputGeneral = css`
 
 export const Input = styled.input`
   ${InputGeneral};
+  padding: ${(props) => (props.forSearch ? '0 48px' : '0')};
 `;
 
 export const Select = styled.select`
@@ -132,7 +133,7 @@ export const SectionButtonStyle = styled.button`
   border-width: 3px;
   border-style: solid;
   border-color: {
-    props.type==='inactive'?${colors.silver} : ${colors.blue};
+    props.type==='inactive'?${colors.silver}: ${colors.blue};
   }
   background-color: ${colors.white};
   color: ${colors.blue};
