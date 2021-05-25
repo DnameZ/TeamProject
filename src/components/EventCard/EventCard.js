@@ -18,7 +18,7 @@ import {
 
 import { PrimaryButton } from '../../lib/styles/generalStyles';
 
-const EventCard = ({
+export const EventCard = ({
   title,
   location,
   date,
@@ -93,5 +93,3 @@ const EventCard = ({
     </>
   );
 };
-
-export default EventCard;

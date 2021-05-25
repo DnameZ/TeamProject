@@ -37,13 +37,9 @@ export const EventCardTitle = styled.h2`
   width: 230px;
   height: 54px;
   margin: 0 16px 16px 14px;
-  font-family: Helvetica;
   font-size: 18px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.5;
-  letter-spacing: normal;
   color: ${colors.blue};
 
   @media screen and (${breakpoints.tablet}) {
@@ -76,10 +72,8 @@ export const ContentRow = styled.div``;
 
 export const ContentRowShow = styled.div`
   @media screen and (${breakpoints.tablet}) {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 4;
+    grid-column: 1/5;
+    grid-row: 2/4;
     margin-right: 14px;
   }
 
@@ -92,23 +86,17 @@ export const ContentRowShowDesktop = styled.div`
   display: none;
   @media screen and (${breakpoints.desktop}) {
     display: grid;
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 4;
+    grid-column: 1/5;
+    grid-row: 2/4;
     margin-right: 14px;
   }
 `;
 
 export const RowTitle = styled.h3`
   margin: 16px 0 4px 14px;
-  font-family: Helvetica;
   font-size: 16px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.63;
-  letter-spacing: normal;
   color: ${colors.darkGrey};
 
   @media screen and (${breakpoints.tablet}) {
@@ -118,13 +106,9 @@ export const RowTitle = styled.h3`
 
 export const RowValue = styled.p`
   margin: 4px 0px 4px 14px;
-  font-family: Helvetica;
   font-size: 16px;
   font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.5;
-  letter-spacing: normal;
   color: ${colors.darkGrey};
 `;
 
