@@ -9,12 +9,16 @@ import {
   CPSRK,
   LogoContainer,
   CPSRKcontainer,
+  HambMenu,
+  HambMenuButtonWrapper,
+  HammburgerLogo,
 } from './HeaderStyle';
 
-import { LogOutButton } from '../../lib/styles/generalStyles';
+import { PrimaryButton } from '../../lib/styles/generalStyles';
 
 import Icon from '../../assets/images/CPSRK.png';
 import HamIcon from '../../assets/images/Hamb.png';
+import XIcon from '../../assets/images/xButton.png';
 
 const Header = () => {
   const [isOpen, setisOpen] = useState(false);
@@ -32,14 +36,30 @@ const Header = () => {
             <CPSRK>Centar za podršku studentima i razvoj karijera</CPSRK>
           </CPSRKcontainer>
           <Hammburger>
-            <HamLogo onClick={() => ToggleHamb()} src={HamIcon} />
+            {isOpen === true ? (
+              <HammburgerLogo type={'Hamb'} src={HamIcon} Func={ToggleHamb} />
+            ) : (
+              <HammburgerLogo type={'xButton'} src={XIcon} Func={ToggleHamb} />
+            )}
           </Hammburger>
           <Nav>
-            <LogOutButton>Odjava</LogOutButton>
+            <PrimaryButton type={'active'} text={'Odjava'} />
           </Nav>
         </Inner>
-        {isOpen === false ? <p>isClosed</p> : <p>isOpen</p>}
+        {isOpen === false ? <HamburegerMenu /> : ''}
       </HeaderInner>
+    </>
+  );
+};
+
+const HamburegerMenu = () => {
+  return (
+    <>
+      <HambMenu>
+        <HambMenuButtonWrapper>
+          <PrimaryButton type={'active'} text={'Odjava'} />
+        </HambMenuButtonWrapper>
+      </HambMenu>
     </>
   );
 };

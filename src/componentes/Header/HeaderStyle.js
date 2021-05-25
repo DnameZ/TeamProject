@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { breakpoints, colors, boxShadow } from '../../lib/styles/theme';
+import LogoCPSRK from '../../assets/images/CPSRK.png';
 
 export const Header = styled.header`
   background-color: ${colors.white};
@@ -31,12 +32,12 @@ export const CPSRKcontainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  margin: 0 100px 20px 0;
+  margin: 0 100px 1px 0;
   @media screen and (${breakpoints.desktopLarge}) {
-    margin: 0 100px 30px 120px;
+    margin-left: 50px;
   }
   @media screen and (${breakpoints.desktop}) {
-    margin: 0 100px 30px 120px;
+    margin-left: 50px;
   }
 `;
 
@@ -61,10 +62,16 @@ export const Hammburger = styled.div`
   } ;
 `;
 
+export const HammburgerLogo = ({ type, src, Func }) => {
+  return <HamLogo onClick={() => Func()} type={type} src={src} />;
+};
+
 export const HamLogo = styled.img`
-  width: 24px;
-  height: 24px;
-  margin: 0 10px 20px 0;
+  ${(props) =>
+    props.type === 'Hamb' && `width: 24px; height: 24px; margin: 0 10px 2px 0;`}
+  ${(props) =>
+    props.type === 'xButton' &&
+    `width: 15px; height: 15px; margin: 0 10px 2px 0;`}
 `;
 
 export const Nav = styled.nav`
@@ -82,8 +89,8 @@ export const Nav = styled.nav`
 
 export const CPSRK = styled.h2`
   position: fixed;
-  left: 180px;
-  top: 5px;
+  left: 120px;
+  top: 20px;
   width: 397px;
   height: 26px;
   font-size: 18px;
@@ -93,4 +100,21 @@ export const CPSRK = styled.h2`
   line-height: 1.44;
   letter-spacing: normal;
   color: ${colors.black};
+`;
+
+export const HambMenu = styled.section`
+  display: flex;
+  justify-content: center;
+  background-color: ${colors.backgroundGrey};
+  margin-top: 3.3px;
+  width: 100%;
+  position: fixed;
+  top: 1;
+  left: 0;
+  z-index: 10;
+  height: 85%;
+`;
+
+export const HambMenuButtonWrapper = styled.div`
+  align-self: flex-end; ;
 `;
