@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../lib/styles/theme';
+import { breakpoints, colors } from '../../lib/styles/theme';
 
 export const ModalBackground = styled.div`
   width: 100%;
@@ -23,6 +23,14 @@ export const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 688px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    width: 648px;
+  }
 `;
 
 export const ModalHeader = styled.div`
@@ -34,6 +42,10 @@ export const ModalHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (${breakpoints.tablet}) {
+    height: 84px;
+  }
 `;
 
 export const ModalContent = styled.div`
@@ -42,14 +54,14 @@ export const ModalContent = styled.div`
 
 export const ModalTitle = styled.h2`
   margin: 0 auto;
-  font-family: Helvetica;
   font-size: 18px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.5;
-  letter-spacing: normal;
   color: ${colors.white};
+
+  @media screen and (${breakpoints.tablet}) {
+    font-size: 24px;
+  }
 `;
 
 export const IconWrapper = styled.div`
