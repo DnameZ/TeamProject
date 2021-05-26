@@ -36,7 +36,7 @@ export const ModalWrapper = styled.div`
 export const ModalHeader = styled.div`
   width: 100%;
   height: 74px;
-  padding: 0 16px;
+  padding: 24px 16px;
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: ${colors.blue};
   display: flex;
@@ -45,11 +45,16 @@ export const ModalHeader = styled.div`
 
   @media screen and (${breakpoints.tablet}) {
     height: 84px;
+    padding: 0 30px;
   }
 `;
 
 export const ModalContent = styled.div`
   padding: 16px;
+
+  @media screen and (${breakpoints.tablet}) {
+    padding: 32px 48px;
+  }
 `;
 
 export const ModalTitle = styled.h2`
