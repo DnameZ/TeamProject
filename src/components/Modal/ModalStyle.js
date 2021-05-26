@@ -71,6 +71,7 @@ export const ModalTitle = styled.h2`
 
 export const IconWrapper = styled.div`
   color: ${colors.white};
+  height: 24px;
 `;
 
 export const Icon = styled.img`

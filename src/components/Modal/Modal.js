@@ -14,7 +14,7 @@ import {
 // assets
 import CloseIcon from '../../assets/images/closeIcon.svg';
 
-export const Modal = (props) => {
+const Modal = (props) => {
   return (
     <>
       <ModalBackground />
@@ -22,7 +22,7 @@ export const Modal = (props) => {
         <ModalHeader>
           <ModalTitle>{props.title}</ModalTitle>
           <IconWrapper>
-            <Icon src={CloseIcon} />
+            <Icon src={CloseIcon} onClick={props.handleModalClose} />
           </IconWrapper>
         </ModalHeader>
         <ModalContent>{props.children}</ModalContent>
@@ -30,3 +30,5 @@ export const Modal = (props) => {
     </>
   );
 };
+
+export default Modal;
