@@ -2,7 +2,11 @@ import styled, { css } from 'styled-components';
 import { colors, boxShadowFocus, breakpoints } from './theme';
 
 //Main
-export const Main = styled.div``;
+export const Main = styled.div`
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+`;
 
 //Input components
 export const InputGeneral = css`
@@ -11,7 +15,8 @@ export const InputGeneral = css`
   border: solid 1px ${colors.lightGrey};
   background-color: ${colors.white};
   font-size: 16px;
-  padding: 8px 5px;
+  padding: 0 16px;
+  line-height: 1.5;
 
   &:focus {
     border-color: ${colors.blue};
@@ -24,7 +29,7 @@ export const InputGeneral = css`
 
 export const Input = styled.input`
   ${InputGeneral};
-  padding: ${(props) => (props.forSearch ? '0 48px' : '0')};
+  padding: ${(props) => (props.forSearch ? '0 48px' : 'initial')};
 `;
 
 export const Select = styled.select`
@@ -38,10 +43,15 @@ export const TextArea = styled.textarea`
   height: 112px;
 `;
 
+export const InputCheckbox = styled.input`
+  height: 24px;
+  width: 24px;
+`;
+
 //Labels
 export const Label = styled.label`
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   display: inline-block;
   background-color: ${colors.white};
   font-weight: bold;
@@ -56,12 +66,19 @@ export const ErrorLabel = styled.p`
   padding-top: 8px;
 `;
 
+export const CheckboxOptionLabel = styled.label`
+  font-size: 16px;
+  line-height: 24px;
+  margin-left: 5px;
+  position: relative;
+  bottom: 7px;
+`;
+
 //Button components
 export const ButtonDefault = css`
   display: block;
   width: 288px;
   height: 56px;
-  margin: auto;
   border-radius: 4px;
   text-decoration: none;
   background-color: ${colors.blue};
@@ -86,8 +103,12 @@ export const ButtonDefault = css`
   }
 `;
 
-export const PrimaryButton = ({ text, type }) => {
-  return <PrimaryButtonStyle type={type}>{text}</PrimaryButtonStyle>;
+export const PrimaryButton = ({ text, type, onClick }) => {
+  return (
+    <PrimaryButtonStyle type={type} onClick={onClick}>
+      {text}
+    </PrimaryButtonStyle>
+  );
 };
 
 export const PrimaryButtonStyle = styled.button`
@@ -100,8 +121,12 @@ export const PrimaryButtonStyle = styled.button`
   }
 `;
 
-export const SecondaryButton = ({ text, type }) => {
-  return <SecondaryButtonStyle type={type}>{text}</SecondaryButtonStyle>;
+export const SecondaryButton = ({ text, type, onClick }) => {
+  return (
+    <SecondaryButtonStyle type={type} onClick={onClick}>
+      {text}
+    </SecondaryButtonStyle>
+  );
 };
 
 export const SecondaryButtonStyle = styled.button`

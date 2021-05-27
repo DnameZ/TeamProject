@@ -1,7 +1,8 @@
 import React from 'react';
+import Filter from '../../components/Filter/Filter';
 
 const Events = () => {
-  return <div></div>;
+  return <Filter />;
 };
 
 export default Events;
