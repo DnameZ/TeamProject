@@ -22,7 +22,7 @@ const Modal = (props) => {
         <ModalHeader>
           <ModalTitle>{props.title}</ModalTitle>
           <IconWrapper>
-            <Icon src={CloseIcon} />
+            <Icon src={CloseIcon} onClick={props.handleModalClose} />
           </IconWrapper>
         </ModalHeader>
         <ModalContent>{props.children}</ModalContent>

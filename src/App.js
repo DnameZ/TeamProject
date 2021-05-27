@@ -8,16 +8,11 @@ import Records from './pages/Records/Records';
 import Statistics from './pages/Statistics/Statistics';
 // components
 import { Main } from './lib/styles/generalStyles';
-import Modal from './components/Modal/Modal';
-
 function App() {
   useEffect(() => window.scrollTo(0, 0), []);
   return (
     <>
       <Main>
-        <Modal title="Asdasdas">
-          <p>Asdasdasd</p>
-        </Modal>
         <Route path="/login" component={Login} />
         <Route path="/events" component={Events} />
         <Route path="/records" component={Records} />
