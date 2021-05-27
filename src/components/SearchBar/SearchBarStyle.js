@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 
+export const BarWrapper = styled.div`
+  position: relative;
+  ${'' /* display: flex; */}
+`;
+
 export const SearchIcon = styled.figure`
   position: absolute;
-  bottom: 14px;
-  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 16px;
+  height: 20px;
 `;
 
 export const ClearIcon = styled.figure`
   position: absolute;
-  bottom: 24px;
-  right: 20px;
-  zoom: 0.7;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 16px;
+  right: 16px;
   cursor: pointer;
-`;
-
-export const BarWrapper = styled.div`
-  position: relative;
 `;

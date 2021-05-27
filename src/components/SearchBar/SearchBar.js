@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { BarWrapper, SearchIcon, ClearIcon } from './SearchBarStyle';
 import { Input } from '../../lib/styles/generalStyles';
 import { GrClose } from 'react-icons/gr';
-import { FiSearch } from 'react-icons/fi';
+import { BiSearch } from 'react-icons/bi';
 
 const SearchBar = ({ onValueChanged }) => {
   const [inputEmpty, setInputEmpty] = useState(true);
@@ -14,7 +14,7 @@ const SearchBar = ({ onValueChanged }) => {
     } else {
       setInputEmpty(false);
     }
-    onValueChanged(event.target.value);
+    // onValueChanged(event.target.value);
   };
 
   const clearInput = () => {
@@ -25,7 +25,7 @@ const SearchBar = ({ onValueChanged }) => {
 
   return (
     <>
-      <BarWrapper>
+      <BarWrapper className="Wrapper">
         <Input
           type="text"
           placeholder="Pretraži"
@@ -34,11 +34,11 @@ const SearchBar = ({ onValueChanged }) => {
           ref={searchInput}
         />
         <SearchIcon>
-          <FiSearch />
+          <BiSearch size={20} />
         </SearchIcon>
         {!inputEmpty ? (
-          <ClearIcon onClick={clearInput}>
-            <GrClose />
+          <ClearIcon>
+            <GrClose size={16} onClick={clearInput} />
           </ClearIcon>
         ) : null}
       </BarWrapper>

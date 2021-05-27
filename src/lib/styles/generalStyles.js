@@ -30,7 +30,7 @@ export const InputGeneral = css`
 
 export const Input = styled.input`
   ${InputGeneral};
-  padding: ${(props) => (props.forSearch ? '0 48px' : 'initial')};
+  padding: ${(props) => (props.forSearch ? '0 44px' : 'initial')};
 `;
 
 export const Select = styled.select`
@@ -45,7 +45,6 @@ export const TextArea = styled.textarea`
 `;
 
 export const InputCheckbox = styled.input`
-  ${'' /* opacity: 0; */}
   display: none;
 `;
 
