@@ -60,6 +60,9 @@ const Filter = () => {
             <FilterOption>
               <Label>Dan događanja</Label>
               <Select>
+                <Option disabled selected value="" hidden>
+                  Odaberi...
+                </Option>
                 {eventDays.map((day, index) => (
                   <Option value={day} key={index}>
                     {day}
@@ -70,6 +73,9 @@ const Filter = () => {
             <FilterOption>
               <Label>Firma</Label>
               <Select>
+                <Option disabled selected value="" hidden>
+                  Odaberi...
+                </Option>
                 {companies.map((company, index) => (
                   <Option value={company} key={index}>
                     {company}

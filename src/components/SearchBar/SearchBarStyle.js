@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const BarWrapper = styled.div`
   position: relative;
-  ${'' /* display: flex; */}
 `;
 
 export const SearchIcon = styled.figure`

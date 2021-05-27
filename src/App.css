@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
   height: 100%;
   min-height: 100vh;
-  font-family: Helvetica;
+  font-family: 'HelveticaNeue', sans-serif;
 }
 #root {
   display: flex;

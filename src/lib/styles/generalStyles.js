@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { colors, boxShadowFocus, breakpoints } from './theme';
 import TickIcon from '../../assets/images/tick-icon.png';
+import DropdownIcon from '../../assets/images/dropdown-icon.png';
 
 //Main
 export const Main = styled.div`
@@ -35,9 +36,15 @@ export const Input = styled.input`
 
 export const Select = styled.select`
   ${InputGeneral};
+  appearance: none;
+  background: url(${DropdownIcon}) calc(100% - 19px) / 14px no-repeat
+    ${colors.white};
 `;
 
-export const Option = styled.option``;
+export const Option = styled.option`
+  background-color: ${colors.white};
+  color: ${colors.darkGrey};
+`;
 
 export const TextArea = styled.textarea`
   ${InputGeneral};
@@ -108,13 +115,9 @@ export const ButtonDefault = css`
   border-radius: 4px;
   text-decoration: none;
   background-color: ${colors.blue};
-  font-family: 'HelveticaNeue', sans-serif;
   font-size: 18px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.4;
-  letter-spacing: normal;
   color: ${colors.white};
   border: none;
 

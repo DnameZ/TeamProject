@@ -14,7 +14,7 @@ const SearchBar = ({ onValueChanged }) => {
     } else {
       setInputEmpty(false);
     }
-    // onValueChanged(event.target.value);
+    onValueChanged(event.target.value);
   };
 
   const clearInput = () => {
