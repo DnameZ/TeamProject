@@ -1,8 +1,8 @@
 import React from 'react';
-import Filter from '../../components/Filter/Filter';
+import FilterDesktop from '../../components/FilterDesktop/FilterDesktop';
 
 const Events = () => {
-  return <Filter />;
+  return <FilterDesktop />;
 };
 
 export default Events;
