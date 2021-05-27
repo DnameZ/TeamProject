@@ -45,7 +45,7 @@ const FilterDesktop = () => {
         <Label>Dan događanja</Label>
         <Select>
           {eventDays.map((day, index) => (
-            <Option value={day} id={index}>
+            <Option value={day} key={index}>
               {day}
             </Option>
           ))}
@@ -55,7 +55,7 @@ const FilterDesktop = () => {
         <Label>Firma</Label>
         <Select>
           {companies.map((company, index) => (
-            <Option value={company} id={index}>
+            <Option value={company} key={index}>
               {company}
             </Option>
           ))}

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { colors, boxShadowFocus, breakpoints } from './theme';
+import TickIcon from '../../assets/images/tick-icon.png';
 
 //Main
 export const Main = styled.div`
@@ -44,8 +45,8 @@ export const TextArea = styled.textarea`
 `;
 
 export const InputCheckbox = styled.input`
-  height: 24px;
-  width: 24px;
+  ${'' /* opacity: 0; */}
+  display: none;
 `;
 
 //Labels
@@ -56,6 +57,7 @@ export const Label = styled.label`
   background-color: ${colors.white};
   font-weight: bold;
   color: ${colors.blue};
+  background-color: transparent;
 `;
 
 export const ErrorLabel = styled.p`
@@ -68,10 +70,35 @@ export const ErrorLabel = styled.p`
 
 export const CheckboxOptionLabel = styled.label`
   font-size: 16px;
-  line-height: 24px;
-  margin-left: 5px;
+  line-height: 1.5;
+  padding-bottom: 17px;
+  padding-left: 35px;
   position: relative;
-  bottom: 7px;
+  display: inline-block;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid ${colors.darkGrey};
+    border-radius: 4px;
+  }
+
+  [type='checkbox']:checked + &::after {
+    content: '';
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 6px;
+    left: 4px;
+    background-image: url(${TickIcon});
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 `;
 
 //Button components
