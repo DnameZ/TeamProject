@@ -15,7 +15,7 @@ export const Header = styled.header`
 
 export const Inner = styled.div`
   height: 100%;
-  padding: 15px;
+  padding: 0 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,21 +23,17 @@ export const Inner = styled.div`
 
 export const CPSRKcontainer = styled.div`
   display: none;
-  @media screen and (${breakpoints.desktopLarge}) {
-    display: inline-block;
-  }
   @media screen and (${breakpoints.desktop}) {
     display: inline-block;
   }
 `;
 
 export const LogoContainer = styled.div`
-  margin: 0 100px 1px 0;
-  @media screen and (${breakpoints.desktopLarge}) {
-    margin-left: 50px;
+  @media screen and (${breakpoints.tablet}) {
+    margin-left: 40px;
   }
   @media screen and (${breakpoints.desktop}) {
-    margin-left: 50px;
+    margin-left: 108px;
   }
 `;
 
@@ -48,41 +44,38 @@ export const Logo = styled.img`
   ${(props) =>
     props.type === 'BackLogo' &&
     `
-  position:fixed;
-  top:50%;
-  left:80%;
-  width: 105px; 
-  height: 100px; 
-  object-fit: contain; 
-  opacity: 0.2`}
+    position:fixed;
+    top:50%;
+    left:80%;
+    width: 105px; 
+    height: 100px; 
+    object-fit: contain; 
+    opacity: 0.2; `}
 `;
 
 export const FinalLogo = ({ type, src }) => {
   return <Logo src={src} type={type} />;
 };
 
-export const Hammburger = styled.div`
+export const Hamburger = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media screen and (${breakpoints.mobileLarge}) {
     cursor: pointer;
   }
-  @media screen and (${breakpoints.desktop}) {
-    display: none;
-  }
+
   @media screen and (${breakpoints.tablet}) {
     display: none;
   }
-  @media screen and (${breakpoints.desktopLarge}) {
-    display: none;
-  } ;
 `;
 
-export const HammburgerLogo = ({ type, src, Func }) => {
+export const HamburgerLogo = ({ type, src, Func }) => {
   return <HamLogo onClick={() => Func()} type={type} src={src} />;
 };
 
 export const HamLogo = styled.img`
-  ${(props) =>
-    props.type === 'Hamb' && `width: 24px; height: 24px; margin: 0 10px 2px 0;`}
+  ${(props) => props.type === 'Hamb' && `width: 24px; height: 24px;`}
   ${(props) =>
     props.type === 'xButton' &&
     `width: 15px; height: 15px; margin: 0 10px 2px 0;`}
@@ -90,18 +83,17 @@ export const HamLogo = styled.img`
 
 export const Nav = styled.nav`
   display: none;
-  @media screen and (${breakpoints.desktop}) {
-    display: block;
-  }
-  @media screen and (${breakpoints.desktopLarge}) {
-    display: block;
-  }
+
   @media screen and (${breakpoints.tablet}) {
+    margin-right: 40px;
     display: block;
+  }
+  @media screen and (${breakpoints.desktop}) {
+    margin-right: 108px;
   }
 `;
 
-export const CPSRK = styled.h2`
+export const Cpsrk = styled.h2`
   position: fixed;
   left: 120px;
   top: 20px;
@@ -109,26 +101,43 @@ export const CPSRK = styled.h2`
   height: 26px;
   font-size: 18px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.44;
-  letter-spacing: normal;
   color: ${colors.black};
+
+  @media screen and (${breakpoints.desktop}) {
+    margin-left: 50px;
+  }
 `;
 
-export const HambMenu = styled.section`
+export const HamMenu = styled.section`
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: start;
   background-color: ${colors.backgroundGrey};
-  margin-top: 3.3px;
+  margin-top: 1.4px;
   width: 100%;
-  position: fixed;
-  top: 1;
-  left: 0;
-  z-index: 10;
-  height: 85%;
+  height: 100%;
 `;
 
-export const HambMenuButtonWrapper = styled.div`
-  align-self: flex-end; ;
+export const HamMenuButton = styled.div`
+  position: fixed;
+  padding: 0 0 16px;
+  align-self: flex-end;
+`;
+
+export const HamOptions = styled.div`
+  align-self: flex-start;
+  margin-top: 82px;
+`;
+
+export const Options = styled.h2`
+  padding-right: 159px;
+  line-height: 2.6;
+  font-size: 24px;
+  font-weight: bold;
+  color: ${colors.black};
+  &:hover {
+    color: ${colors.blue};
+  }
 `;

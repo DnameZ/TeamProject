@@ -2,7 +2,10 @@ import styled, { css } from 'styled-components';
 import { colors, boxShadowFocus, breakpoints } from './theme';
 
 //Main
-export const Main = styled.div``;
+export const Main = styled.div`
+  height: 100%;
+  width: 100%;
+`;
 
 //Input components
 export const InputGeneral = css`

@@ -8,7 +8,7 @@ import Records from './pages/Records/Records';
 import Statistics from './pages/Statistics/Statistics';
 // components
 import { Main } from './lib/styles/generalStyles';
-import Header from './componentes/Header/Header';
+import Header from './components/Header/Header';
 function App() {
   useEffect(() => window.scrollTo(0, 0), []);
   return (

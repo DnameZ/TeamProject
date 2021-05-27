@@ -3,15 +3,16 @@ import {
   Header as HeaderInner,
   Inner,
   FinalLogo,
-  Hammburger,
-  HamLogo,
+  Hamburger,
   Nav,
-  CPSRK,
+  Cpsrk,
   LogoContainer,
   CPSRKcontainer,
-  HambMenu,
-  HambMenuButtonWrapper,
-  HammburgerLogo,
+  HamMenu,
+  HamburgerLogo,
+  HamMenuButton,
+  HamOptions,
+  Options,
 } from './HeaderStyle';
 
 import { PrimaryButton } from '../../lib/styles/generalStyles';
@@ -33,21 +34,21 @@ const Header = () => {
             <FinalLogo type={'NavLogo'} src={Icon} />
           </LogoContainer>
           <CPSRKcontainer>
-            <CPSRK>Centar za podršku studentima i razvoj karijera</CPSRK>
+            <Cpsrk>Centar za podršku studentima i razvoj karijera</Cpsrk>
           </CPSRKcontainer>
-          <Hammburger>
+          <Hamburger>
             {isOpen === false ? (
-              <HammburgerLogo type={'Hamb'} src={HamIcon} Func={ToggleHamb} />
+              <HamburgerLogo type={'Hamb'} src={HamIcon} Func={ToggleHamb} />
             ) : (
-              <HammburgerLogo type={'xButton'} src={XIcon} Func={ToggleHamb} />
+              <HamburgerLogo type={'xButton'} src={XIcon} Func={ToggleHamb} />
             )}
-          </Hammburger>
+          </Hamburger>
           <Nav>
-            <PrimaryButton type={'active'} text={'Odjava'} />
+            <PrimaryButton type={'small'} text={'Odjava'} />
           </Nav>
         </Inner>
-        {isOpen === false ? '' : <HamburegerMenu />}
       </HeaderInner>
+      {isOpen === false ? '' : <HamburegerMenu />}
     </>
   );
 };
@@ -55,12 +56,17 @@ const Header = () => {
 const HamburegerMenu = () => {
   return (
     <>
-      <HambMenu>
-        <HambMenuButtonWrapper>
-          <PrimaryButton type={'active'} text={'Odjava'} />
-          <FinalLogo type={'BackLogo'} src={Icon} />
-        </HambMenuButtonWrapper>
-      </HambMenu>
+      <HamMenu>
+        <HamOptions>
+          <Options>Događaji</Options>
+          <Options>Evidencija</Options>
+          <Options>Statistika</Options>
+        </HamOptions>
+        <HamMenuButton>
+          <PrimaryButton type={'large'} text={'Odjava'} />
+        </HamMenuButton>
+        <FinalLogo type={'BackLogo'} src={Icon} />
+      </HamMenu>
     </>
   );
 };
