@@ -28,6 +28,7 @@ export const MobileText = styled.p`
   color: ${colors.darkGrey};
   margin: 4px 0 16px;
 `;
+
 export const MobileTextCommentar = styled.p`
   font-size: 14px;
   line-height: 1.5;
@@ -41,6 +42,7 @@ export const MobileTextCommentar = styled.p`
 `;
 
 export const TableWrapper = styled.table`
+  border-collapse: collapse;
   @media screen and (max-width: 767px) {
     display: none;
   }
@@ -57,18 +59,16 @@ export const TableWrapper = styled.table`
 
 export const TableHead = styled.thead``;
 
-export const Tr = styled.tr`
-  height: 72px;
-`;
+export const Tr = styled.tr``;
 
 export const Th = styled.th`
   @media screen and (${breakpoints.tablet}) {
     color: ${colors.white};
     font-size: 16px;
+    padding: 20px 22px;
     font-weight: bold;
     line-height: 1.5;
     border: 2px solid ${colors.lightGrey};
-    padding: 15px 22px;
     background-color: ${colors.blue};
     border-radius: 2px;
     &:nth-child(1) {
@@ -95,17 +95,20 @@ export const Th = styled.th`
   }
 `;
 
-export const TableBody = styled.tbody``;
+export const TableBody = styled.tbody`
+  border: 2px solid ${colors.lightGrey};
+`;
 
 export const Td = styled.td`
   @media screen and (${breakpoints.tablet}) {
-    padding: 24px 22px;
+    padding: 20px 22px;
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;
-    border-width: 0 0 2px 2px;
+    border-width: 0 2px 2px 2px;
     border-style: solid;
     border-color: ${colors.lightGrey};
+
     color: ${colors.darkGrey};
     &:nth-child(2) {
       text-align: right;
@@ -122,7 +125,7 @@ export const Td = styled.td`
 export const TdComments = styled.td`
   @media screen and (${breakpoints.tablet}) {
     color: ${colors.black};
-    padding: 24px 22px;
+    padding: 20px 22px;
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;

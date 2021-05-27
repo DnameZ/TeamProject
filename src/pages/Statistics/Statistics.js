@@ -1,7 +1,11 @@
 import React from 'react';
-
+import StatisticsEvents from '../../components/StatisticsEvents/StatisticsEvents';
 const Statistics = () => {
-  return <div></div>;
+  return (
+    <div>
+      <StatisticsEvents></StatisticsEvents>
+    </div>
+  );
 };
 
 export default Statistics;
