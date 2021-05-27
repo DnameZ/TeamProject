@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BsArrowUpDown } from 'react-icons/bs';
 import {
   TableWrapper,
   TableHead,
@@ -7,21 +7,30 @@ import {
   Th,
   TableBody,
   Td,
+  Hr,
   MobileWrapper,
   MobileTitle,
   MobileText,
 } from './StatisticsStudentsStyle';
 
-const StatisticsStudents = ({ NameSurname, EmailAdress, Participations }) => {
+const StatisticsStudents = ({ nameSurname, emailAdress, participations }) => {
   return (
     <>
       <MobileWrapper>
         <MobileTitle>Ime i prezime:</MobileTitle>
-        <MobileText>Pero Perić</MobileText>
+        <MobileText>dasdsa</MobileText>
         <MobileTitle>Email adresa:</MobileTitle>
-        <MobileText>Pero@gmail.com</MobileText>
+        <MobileText>sadsa</MobileText>
         <MobileTitle>Broj sudjelovanja:</MobileTitle>
-        <MobileText>47</MobileText>
+        <MobileText>dsadsa</MobileText>
+      </MobileWrapper>
+      <MobileWrapper>
+        <MobileTitle>Ime i prezime:</MobileTitle>
+        <MobileText>dasdsa</MobileText>
+        <MobileTitle>Email adresa:</MobileTitle>
+        <MobileText>sadsa</MobileText>
+        <MobileTitle>Broj sudjelovanja:</MobileTitle>
+        <MobileText>dsadsa</MobileText>
       </MobileWrapper>
 
       <TableWrapper>
@@ -34,9 +43,15 @@ const StatisticsStudents = ({ NameSurname, EmailAdress, Participations }) => {
         </TableHead>
         <TableBody>
           <Tr>
-            <Td>Pero Perić</Td>
-            <Td>Pero@gmail.com</Td>
-            <Td>47</Td>
+            <Td>dasdsa</Td>
+            <Td>sadsa</Td>
+            <Td>dsadsa</Td>
+          </Tr>
+          <Hr />
+          <Tr>
+            <Td>dasdsa</Td>
+            <Td>sadsa</Td>
+            <Td>dsadsa</Td>
           </Tr>
         </TableBody>
       </TableWrapper>

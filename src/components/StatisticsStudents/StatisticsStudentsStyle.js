@@ -7,7 +7,7 @@ export const MobileWrapper = styled.div`
   height: 222px;
   border-radius: 4px;
   border: 2px solid ${colors.lightGrey};
-  padding: 16px 24px 16px 16px;
+  padding: 20px 24px 16px 16px;
   background-color: ${colors.white};
   margin: 10px auto 16px;
   @media screen and (${breakpoints.tablet}) {
@@ -30,10 +30,10 @@ export const MobileText = styled.p`
 `;
 
 export const TableWrapper = styled.table`
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
+  display: none;
+  border-collapse: collapse;
   @media screen and (${breakpoints.tablet}) {
+    display: block;
     width: 684px;
     margin: 0 auto;
     text-align: left;
@@ -82,11 +82,13 @@ export const Th = styled.th`
   }
 `;
 
-export const TableBody = styled.tbody``;
+export const TableBody = styled.tbody`
+  border: 2px solid ${colors.lightGrey};
+`;
 
 export const Td = styled.td`
   @media screen and (${breakpoints.tablet}) {
-    padding: 24px 22px;
+    padding: 20px 22px;
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;
@@ -94,8 +96,9 @@ export const Td = styled.td`
     border-style: solid;
     border-color: ${colors.lightGrey};
     color: ${colors.darkGrey};
-    &:nth-child(2) {
-      text-align: right;
+
+    &:nth-child(3) {
+      border-width: 0 2px 2px 2px;
     }
   }
 
@@ -103,8 +106,7 @@ export const Td = styled.td`
     &:nth-child(2) {
       text-align: left;
     }
-    &:nth-child(3) {
-      border-width: 0 2px 2px 2px;
-    }
   }
 `;
+
+export const Hr = styled.tr``;
