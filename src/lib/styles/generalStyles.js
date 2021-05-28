@@ -76,8 +76,8 @@ export const ErrorLabel = styled.p`
 
 export const CheckboxOptionLabel = styled.label`
   font-size: 16px;
-  line-height: 1.5;
-  padding-bottom: 17px;
+  line-height: 1.7;
+  margin-bottom: 16px;
   padding-left: 35px;
   position: relative;
   display: inline-block;

@@ -15,12 +15,12 @@ export const FilterWrapper = styled.div`
   justify-content: space-between;
   width: 320px;
   margin: 0 auto;
+  height: 100%;
+  min-height: calc(100vh - 70px);
 
   @media screen and (${breakpoints.tablet}) {
     padding: 56px 40px 16px;
     width: 100%;
-    height: 100%;
-    min-height: calc(100vh - 70px);
     max-width: 900px;
   }
 `;
