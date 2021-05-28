@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // components
 import Modal from '../Modal/Modal';
+import { PrimaryButton } from '../../lib/styles/generalStyles';
 
 // style
 import {
@@ -13,7 +14,11 @@ import {
   Grade,
 } from './RateEventModalStyle';
 
+import { TextArea } from '../../lib/styles/generalStyles';
+
 const RateEventModal = (props) => {
+  const [selectedGrade, setSelectedGrade] = useState(0);
+
   return (
     <Modal title="Ocijeni događaj">
       <ContentWrapper>
@@ -24,18 +29,40 @@ const RateEventModal = (props) => {
 
         <ContentRow>
           <RowTitle>Komentar:</RowTitle>
+          <TextArea></TextArea>
         </ContentRow>
 
         <ContentRow>
           <RowTitle>Ocijeni događaj:</RowTitle>
           <RowGrades>
-            <Grade>1</Grade>
-            <Grade>2</Grade>
-            <Grade>3</Grade>
-            <Grade>4</Grade>
-            <Grade>5</Grade>
+            <Grade
+              selectedGrade={selectedGrade === 1}
+              onClick={() => setSelectedGrade(1)}>
+              1
+            </Grade>
+            <Grade
+              selectedGrade={selectedGrade === 2}
+              onClick={() => setSelectedGrade(2)}>
+              2
+            </Grade>
+            <Grade
+              selectedGrade={selectedGrade === 3}
+              onClick={() => setSelectedGrade(3)}>
+              3
+            </Grade>
+            <Grade
+              selectedGrade={selectedGrade === 4}
+              onClick={() => setSelectedGrade(4)}>
+              4
+            </Grade>
+            <Grade
+              selectedGrade={selectedGrade === 5}
+              onClick={() => setSelectedGrade(5)}>
+              5
+            </Grade>
           </RowGrades>
         </ContentRow>
+        <PrimaryButton type="modal/card" text="Pošalji ocjenu" />
       </ContentWrapper>
     </Modal>
   );
