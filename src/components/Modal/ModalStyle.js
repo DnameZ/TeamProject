@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints, colors } from '../../lib/styles/theme';
+import { breakpoints, colors, boxShadowFocus } from '../../lib/styles/theme';
 
 export const ModalBackground = styled.div`
   width: 100%;
@@ -13,22 +13,23 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
+  margin: 160px 0 80px;
   width: 288px;
   border-radius: 10px;
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: ${colors.white};
-  position: fixed;
+  position: relative;
   z-index: 1;
   overflow: hidden;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
 
   @media screen and (${breakpoints.tablet}) {
     width: 688px;
   }
 
   @media screen and (${breakpoints.desktop}) {
+    margin-top: 80px;
     width: 648px;
   }
 `;
@@ -77,4 +78,17 @@ export const IconWrapper = styled.div`
 export const Icon = styled.img`
   height: 24px;
   width: 24px;
+`;
+
+export const ModalFooter = styled.div`
+  padding: 16px;
+  font-size: 16px;
+  width: 100%;
+  line-height: 24px;
+  background-color: ${colors.footerGray};
+  box-shadow: ${boxShadowFocus};
+
+  @media screen and (${breakpoints.tablet}) {
+    padding: 16px 48px;
+  }
 `;

@@ -53,5 +53,7 @@ export const FormRow = styled.div`
 
   &:last-child {
     margin-bottom: 0;
+    display: flex;
+    justify-content: center;
   }
 `;
