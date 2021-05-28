@@ -57,6 +57,7 @@ export const StudentHead = styled.thead`
 
 export const StudentInput = styled.td`
   margin: 13px 16px 17px;
+  height: 56px;
   padding: 16px;
 `;
 
