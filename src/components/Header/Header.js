@@ -45,6 +45,8 @@ const Header = () => {
           </Hamburger>
           <Nav>
             <PrimaryButton type={'small'} text={'Odjava'} />
+            <p>Prijava</p>
+            <p>Prijava</p>
           </Nav>
         </Inner>
       </HeaderInner>

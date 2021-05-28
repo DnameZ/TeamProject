@@ -89,6 +89,8 @@ export const Nav = styled.nav`
     display: block;
   }
   @media screen and (${breakpoints.desktop}) {
+    display: flex;
+    flex-direction: row-reverse;
     margin-right: 108px;
   }
 `;
