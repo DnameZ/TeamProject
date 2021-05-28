@@ -20,7 +20,7 @@ const Modal = (props) => {
   return (
     <>
       <ModalBackground />
-      <ModalWrapper className="JelMeJebes">
+      <ModalWrapper>
         <ModalHeader>
           <ModalTitle>{props.title}</ModalTitle>
           <IconWrapper>
