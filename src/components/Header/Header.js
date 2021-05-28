@@ -13,6 +13,7 @@ import {
   HamMenuButton,
   HamOptions,
   Options,
+  NavLink,
 } from './HeaderStyle';
 
 import { PrimaryButton } from '../../lib/styles/generalStyles';
@@ -45,8 +46,8 @@ const Header = () => {
           </Hamburger>
           <Nav>
             <PrimaryButton type={'small'} text={'Odjava'} />
-            <p>Prijava</p>
-            <p>Prijava</p>
+            <NavLink>Evidencija</NavLink>
+            <NavLink>Statistika</NavLink>
           </Nav>
         </Inner>
       </HeaderInner>

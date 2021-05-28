@@ -90,6 +90,8 @@ export const Nav = styled.nav`
   }
   @media screen and (${breakpoints.desktop}) {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row-reverse;
     margin-right: 108px;
   }
@@ -142,4 +144,10 @@ export const Options = styled.h2`
   &:hover {
     color: ${colors.blue};
   }
+`;
+
+export const NavLink = styled.a`
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 32px;
 `;
