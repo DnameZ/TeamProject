@@ -187,15 +187,7 @@ export const SectionButtonStyle = styled.button`
   border-width: 3px;
   border-style: solid;
   border-color: {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    props.type==='inactive'? ${colors.silver} : ${colors.blue};
-=======
-    props.type==='inactive'?${colors.silver} : ${colors.blue};
->>>>>>> develop
-=======
     props.type==='inactive'?${colors.silver}: ${colors.blue};
->>>>>>> develop
   }
   background-color: ${colors.white};
   color: ${colors.blue};

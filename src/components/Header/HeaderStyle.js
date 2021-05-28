@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { breakpoints, colors, boxShadow } from '../../lib/styles/theme';
-import LogoCPSRK from '../../assets/images/CPSRK.png';
 
 export const Header = styled.header`
   background-color: ${colors.white};
