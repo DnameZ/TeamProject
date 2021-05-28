@@ -24,6 +24,7 @@ import XIcon from '../../assets/images/xButton.png';
 
 const Header = () => {
   const [isOpen, setisOpen] = useState(false);
+  const [isActive, setisActive] = useState('');
   const ToggleHamb = () => {
     setisOpen((isOpen) => !isOpen);
   };
@@ -46,8 +47,16 @@ const Header = () => {
           </Hamburger>
           <Nav>
             <PrimaryButton type={'small'} text={'Odjava'} />
-            <NavLink>Evidencija</NavLink>
-            <NavLink>Statistika</NavLink>
+            <NavLink
+              onClick={() => setisActive('evidencija')}
+              isActive={isActive === 'evidencija'}>
+              Evidencija
+            </NavLink>
+            <NavLink
+              onClick={() => setisActive('statistika')}
+              isActive={isActive === 'statistika'}>
+              Statistika
+            </NavLink>
           </Nav>
         </Inner>
       </HeaderInner>

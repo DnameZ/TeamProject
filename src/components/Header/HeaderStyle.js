@@ -33,6 +33,9 @@ export const LogoContainer = styled.div`
     margin-left: 40px;
   }
   @media screen and (${breakpoints.desktop}) {
+    margin-left: 60px;
+  }
+  @media screen and (${breakpoints.desktopLarge}) {
     margin-left: 108px;
   }
 `;
@@ -85,14 +88,20 @@ export const Nav = styled.nav`
   display: none;
 
   @media screen and (${breakpoints.tablet}) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
     margin-right: 40px;
-    display: block;
   }
   @media screen and (${breakpoints.desktop}) {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row-reverse;
+    margin-right: 48px;
+  }
+  @media screen and (${breakpoints.desktopLarge}) {
     margin-right: 108px;
   }
 `;
@@ -109,6 +118,9 @@ export const Cpsrk = styled.h2`
   color: ${colors.black};
 
   @media screen and (${breakpoints.desktop}) {
+    margin-left: 10px;
+  }
+  @media screen and (${breakpoints.desktopLarge}) {
     margin-left: 50px;
   }
 `;
@@ -147,7 +159,25 @@ export const Options = styled.h2`
 `;
 
 export const NavLink = styled.a`
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  height: 100%;
   font-size: 18px;
   font-weight: bold;
   margin-right: 32px;
+
+  ${(props) =>
+    props.isActive &&
+    `
+  &:after {
+    width: 100%;
+    height: 4px;
+    background-color: ${colors.blue};
+    content:"";
+    position:absolute;
+    top:41.5px;
+    left:0;
+  }`}
 `;
