@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import {
   EventInfo,
@@ -9,18 +11,35 @@ import {
   StudentRecord as StudentTable,
   StudentHead,
   StudentRow,
-  StudentHeading,
+  Heading,
   StudentBody,
   StudentData,
   InputCheckBox,
   StudentInput,
   StudentInfo,
   ButtonWrapper,
+  Form,
+  FormRow,
+  InputLabel,
 } from './StudentRecordStyle';
 
 import { Input, PrimaryButton } from '../../lib/styles/generalStyles';
 
 const StudentRecord = () => {
+  const Prijavljeni = 'Prijavljeni';
+  const Dodaj = 'Dodaj';
+  const [isRecord, setIsRecord] = useState('');
+
+  const ToggleRecord = (Record) => {
+    setIsRecord(Record);
+  };
+
+  const SetActiveOrInactive = (text) => {
+    const active = 'active';
+    const inactive = 'inactive';
+    return isRecord === text ? active : inactive;
+  };
+
   return (
     <Modal title={'Evidentiraj polaznike'}>
       <EventInfo>
@@ -31,30 +50,59 @@ const StudentRecord = () => {
       <StudentTable>
         <StudentHead>
           <StudentRow>
-            <StudentHeading>Prijavljeni</StudentHeading>
-            <StudentHeading>Dodaj</StudentHeading>
+            <Heading
+              Func={() => ToggleRecord(Prijavljeni)}
+              text={Prijavljeni}
+              type={SetActiveOrInactive(Prijavljeni)}
+            />
+            <Heading
+              Func={() => ToggleRecord(Dodaj)}
+              text={Dodaj}
+              type={SetActiveOrInactive(Dodaj)}
+            />
           </StudentRow>
         </StudentHead>
-        <StudentBody>
-          <StudentRow>
-            <StudentInput>
-              <Input />
-            </StudentInput>
-          </StudentRow>
-          <StudentRow>
-            <StudentData>
-              <InputCheckBox type="checkbox" />
-              <StudentInfo>Marko Mrkonjic</StudentInfo>
-            </StudentData>
-            <StudentData>
-              <InputCheckBox type="checkbox" />
-              <StudentInfo>Andrija Mrkonjic</StudentInfo>
-            </StudentData>
-          </StudentRow>
-        </StudentBody>
+        <Form>
+          <FormRow>
+            <InputLabel>Ime</InputLabel>
+            <Input />
+          </FormRow>
+          <FormRow>
+            <InputLabel>Prezime</InputLabel>
+            <Input />
+          </FormRow>
+          <FormRow>
+            <InputLabel>E-mail adresa</InputLabel>
+            <Input />
+          </FormRow>
+        </Form>
       </StudentTable>
       <PrimaryButton type={'modal/card'} text={'Spremi'} />
     </Modal>
+  );
+};
+
+const SignedIn = () => {
+  return (
+    <>
+      <StudentBody>
+        <StudentRow>
+          <StudentInput>
+            <Input />
+          </StudentInput>
+        </StudentRow>
+        <StudentRow>
+          <StudentData>
+            <InputCheckBox type="checkbox" />
+            <StudentInfo>Marko Mrkonjic</StudentInfo>
+          </StudentData>
+          <StudentData>
+            <InputCheckBox type="checkbox" />
+            <StudentInfo>Andrija Mrkonjic</StudentInfo>
+          </StudentData>
+        </StudentRow>
+      </StudentBody>
+    </>
   );
 };
 

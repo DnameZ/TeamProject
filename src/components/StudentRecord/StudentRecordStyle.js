@@ -75,7 +75,30 @@ export const StudentHeading = styled.th`
     padding-right: 42px;
   }
   font-size: 16px;
+  ${(props) =>
+    props.type === 'active' &&
+    `color:${colors.black}; font-weight:bold;
+  &:after {
+    width: 49%;
+    height: 4px;
+    background-color: ${colors.blue};
+    content:"";
+    position:absolute;
+    top:2;
+    bottom:468px;
+    margin-left:-100px;
+  }`}
+  ${(props) =>
+    props.type === 'inactive' && `color:${colors.lightGrey}; font-weight:bold;`}
 `;
+
+export const Heading = ({ type, text, Func, Record }) => {
+  return (
+    <StudentHeading onClick={() => Func(Record)} type={type}>
+      {text}
+    </StudentHeading>
+  );
+};
 
 export const StudentBody = styled.tbody`
   display: flex;
@@ -120,4 +143,43 @@ export const StudentInfo = styled.p`
 export const ButtonWrapper = styled.div`
   width: 10%;
   height: 40%;
+`;
+
+export const Form = styled.div` 
+  display:flex
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:flex-start;
+  border: ${tableBorderNormal};
+  border-top: none;
+  border-collapse: collapse;
+  border-radius: 0px 0px 6px 6px;
+  width:100%;
+  height:100%;
+  
+  `;
+
+export const FormRow = styled.tr`
+  display: block;
+  margin-left: 16px;
+  margin-right: 16px;
+  align-self: center;
+  &:last-child {
+    margin-bottom: 44px;
+  }
+`;
+
+export const InputLabel = styled.label`
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: ${colors.blue};
+`;
+
+export const InputErrors = styled.p`
+  margin-left: 25px;
+  font-size: 14px;
+  color: ${colors.red};
 `;
