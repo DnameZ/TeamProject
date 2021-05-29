@@ -23,7 +23,11 @@ import {
   InputLabel,
 } from './StudentRecordStyle';
 
-import { Input, PrimaryButton } from '../../lib/styles/generalStyles';
+import {
+  Input,
+  PrimaryButton,
+  SecondaryButton,
+} from '../../lib/styles/generalStyles';
 
 const StudentRecord = () => {
   const Prijavljeni = 'Prijavljeni';
@@ -62,23 +66,35 @@ const StudentRecord = () => {
             />
           </StudentRow>
         </StudentHead>
-        <Form>
-          <FormRow>
-            <InputLabel>Ime</InputLabel>
-            <Input />
-          </FormRow>
-          <FormRow>
-            <InputLabel>Prezime</InputLabel>
-            <Input />
-          </FormRow>
-          <FormRow>
-            <InputLabel>E-mail adresa</InputLabel>
-            <Input />
-          </FormRow>
-        </Form>
+        {isRecord === Prijavljeni ? <SignedIn /> : <AddStudent />}
       </StudentTable>
-      <PrimaryButton type={'modal/card'} text={'Spremi'} />
+      {isRecord === Prijavljeni ? (
+        <PrimaryButton type={'modal/card'} text={'Spremi'} />
+      ) : (
+        <SecondaryButton type={'modal/card'} text={'Dodaj'} />
+      )}
     </Modal>
+  );
+};
+
+const AddStudent = () => {
+  return (
+    <>
+      <Form>
+        <FormRow>
+          <InputLabel>Ime</InputLabel>
+          <Input />
+        </FormRow>
+        <FormRow>
+          <InputLabel>Prezime</InputLabel>
+          <Input />
+        </FormRow>
+        <FormRow>
+          <InputLabel>E-mail adresa</InputLabel>
+          <Input />
+        </FormRow>
+      </Form>
+    </>
   );
 };
 

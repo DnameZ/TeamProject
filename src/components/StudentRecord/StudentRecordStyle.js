@@ -56,9 +56,19 @@ export const StudentHead = styled.thead`
 `;
 
 export const StudentInput = styled.td`
-  margin: 13px 16px 17px;
+  margin-bottom: 24px;
   height: 56px;
   padding: 16px;
+  padding-bottom: 16px;
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 580px;
+    padding-bottom: 24px;
+  }
+  @media screen and (${breakpoints.desktop}) {
+    width: 560px;
+    padding-bottom: 24px;
+  }
 `;
 
 export const StudentRow = styled.tr`
@@ -84,12 +94,37 @@ export const StudentHeading = styled.th`
     background-color: ${colors.blue};
     content:"";
     position:absolute;
-    top:2;
+    top:274px;
     bottom:468px;
     margin-left:-100px;
   }`}
   ${(props) =>
     props.type === 'inactive' && `color:${colors.lightGrey}; font-weight:bold;`}
+
+    @media screen and (${breakpoints.tablet}) {
+    width: 546px;
+
+    ${(props) =>
+      props.type === 'active' &&
+      `color:${colors.black}; font-weight:bold;
+      &:after {
+        width: 45.3%;
+        position:absolute;
+        top:282px;
+        bottom:468px;
+        margin-left:-177px;
+      }`}
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    ${(props) =>
+      props.type === 'active' &&
+      `;
+      &:after {
+        width: 45.1%;
+        margin-left:-168px;
+      }`}
+  }
 `;
 
 export const Heading = ({ type, text, Func, Record }) => {
@@ -125,6 +160,16 @@ export const StudentData = styled.td`
   align-items: flex-start;
   margin-bottom: 16px;
   width: 200px;
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 526px;
+    margin-right: 16px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    width: 506px;
+    margin-right: 16px;
+  }
 `;
 
 export const InputCheckBox = styled.input`
@@ -166,6 +211,16 @@ export const FormRow = styled.tr`
   align-self: center;
   &:last-child {
     margin-bottom: 44px;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 368px;
+    margin-left: 112px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    width: 392px;
+    margin-left: 80px;
   }
 `;
 
