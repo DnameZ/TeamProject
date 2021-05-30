@@ -124,15 +124,18 @@ export const Cpsrk = styled.h2`
   }
 `;
 
-export const HamMenu = styled.section`
+export const HamMenu = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   background-color: ${colors.backgroundGrey};
-  margin-top: 1.4px;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+
+  @media screen and (${breakpoints.tablet}) {
+    display: none;
+  }
 `;
 
 export const HamMenuButton = styled.div`
