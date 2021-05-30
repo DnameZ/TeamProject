@@ -145,6 +145,9 @@ export const SortIconAZ = styled.img`
   width: 17px;
   height: 15px;
   object-fit: contain;
+  &:hover {
+    cursor: pointer;
+  }
 
   @media screen and (${breakpoints.tablet}) {
     margin-left: 54px;
@@ -158,8 +161,10 @@ export const SortIconAZ = styled.img`
 export const SortIcon = styled.img`
   width: 17px;
   height: 15px;
-
   object-fit: contain;
+  &:hover {
+    cursor: pointer;
+  }
 
   @media screen and (${breakpoints.tablet}) {
     margin-left: 24px;

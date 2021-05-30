@@ -22,9 +22,9 @@ const StatisticsEvents = ({ eventsTitle, averageRating }) => {
     <>
       <MobileWrapper>
         <MobileTitle>Naziv događaja:</MobileTitle>
-        <MobileText>Foi react, php, js, html, css</MobileText>
+        <MobileText>{eventsTitle}</MobileText>
         <MobileTitle>Prosječna ocjena:</MobileTitle>
-        <MobileText>4.7</MobileText>
+        <MobileText>{averageRating}</MobileText>
         <MobileTitle>Komentari:</MobileTitle>
         <MobileTextCommentar>Pogledaj komentare</MobileTextCommentar>
       </MobileWrapper>
@@ -45,8 +45,8 @@ const StatisticsEvents = ({ eventsTitle, averageRating }) => {
         </TableHead>
         <TableBody>
           <Tr>
-            <Td>Foi react, php, js, html, css</Td>
-            <Td>4.7</Td>
+            <Td>{eventsTitle}</Td>
+            <Td>{averageRating}</Td>
             <TdComments>Pogledaj komentare</TdComments>
           </Tr>
         </TableBody>
