@@ -34,6 +34,7 @@ export const Option = styled.option``;
 
 export const TextArea = styled.textarea`
   ${InputGeneral};
+  font-family: Helvetica;
   height: 112px;
 `;
 

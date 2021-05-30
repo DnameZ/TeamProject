@@ -6,7 +6,11 @@ export const ContentWrapper = styled.div`
   grid-template-columns: repeat (1, 1fr);
 `;
 
-export const ContentRow = styled.div``;
+export const ContentRow = styled.div`
+  &:nth-child(3) {
+    margin-top: 24px;
+  }
+`;
 
 export const RowTitle = styled.h3`
   font-size: 16px;
@@ -24,7 +28,12 @@ export const RowParagraph = styled.p`
 
 export const RowGrades = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 60%;
+    margin: 0 auto;
+  }
 `;
 
 export const Grade = styled.p`
@@ -39,6 +48,7 @@ export const Grade = styled.p`
   text-align: center;
   padding: 9px 0 11px 0;
   margin: 5px 0 32px 0;
+  cursor: pointer;
 
   ${(props) =>
     props.selectedGrade &&
@@ -47,9 +57,11 @@ export const Grade = styled.p`
         border-color: ${colors.blue};
     `};
 
-  &:hover {
+  ${
+    '' /* &:hover {
     color: ${colors.blue};
     border-color: ${colors.blue};
+  } */
   }
 
   @media screen and (${breakpoints.tablet}) {
