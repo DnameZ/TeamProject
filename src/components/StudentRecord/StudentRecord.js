@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+
+import SearchBar from '../SearchBar/SearchBar';
 
 import {
   EventInfo,
@@ -14,24 +14,23 @@ import {
   Heading,
   StudentBody,
   StudentData,
-  InputCheckBox,
-  StudentInput,
-  StudentInfo,
-  ButtonWrapper,
   Form,
   FormRow,
   InputLabel,
+  ButtonWrapper,
 } from './StudentRecordStyle';
 
 import {
   Input,
+  CheckboxOptionLabel,
+  InputCheckbox,
   PrimaryButton,
   SecondaryButton,
 } from '../../lib/styles/generalStyles';
 
 const StudentRecord = () => {
-  const Prijavljeni = 'Prijavljeni polaznici';
-  const Dodaj = 'Dodaj polaznike';
+  const Prijavljeni = 'Prijavljeni';
+  const Dodaj = 'Dodaj';
   const [isRecord, setIsRecord] = useState(Prijavljeni);
 
   const ToggleRecord = (Record) => {
@@ -66,11 +65,13 @@ const StudentRecord = () => {
         </StudentHead>
         {isRecord === Prijavljeni ? <SignedIn /> : <AddStudent />}
       </StudentTable>
-      {isRecord === Prijavljeni ? (
-        <PrimaryButton type={'modal/card'} text={'Spremi'} />
-      ) : (
-        <SecondaryButton type={'modal/card'} text={'Dodaj'} />
-      )}
+      <ButtonWrapper>
+        {isRecord === Prijavljeni ? (
+          <PrimaryButton type={'modal/card'} text={'Spremi'} />
+        ) : (
+          <SecondaryButton type={'modal/card'} text={'Dodaj'} />
+        )}
+      </ButtonWrapper>
     </Modal>
   );
 };
@@ -97,23 +98,36 @@ const AddStudent = () => {
 };
 
 const SignedIn = () => {
+  const Korisnici = [
+    {
+      imeIprezime: 'Marko Mrkonjic',
+      email: 'markomrki45@hotmail.com',
+    },
+    {
+      imeIprezime: 'Marko Mrkonjic',
+      email: 'markomrki45@hotmail.com',
+    },
+    {
+      imeIprezime: 'Marko Mrkonjic',
+      email: 'markomrki45@hotmail.com',
+    },
+  ];
   return (
     <>
       <StudentBody>
         <StudentRow>
-          <StudentInput>
-            <Input />
-          </StudentInput>
+          <SearchBar />
         </StudentRow>
         <StudentRow>
-          <StudentData>
-            <InputCheckBox type="checkbox" />
-            <StudentInfo>Marko Mrkonjic</StudentInfo>
-          </StudentData>
-          <StudentData>
-            <InputCheckBox type="checkbox" />
-            <StudentInfo>Andrija Mrkonjic</StudentInfo>
-          </StudentData>
+          {Korisnici.map((korisnik, index) => (
+            <StudentData key={index}>
+              <InputCheckbox id={index} type="checkbox" />
+              <CheckboxOptionLabel htmlFor={index}>
+                {' '}
+                {korisnik.imeIprezime}
+              </CheckboxOptionLabel>
+            </StudentData>
+          ))}
         </StudentRow>
       </StudentBody>
     </>

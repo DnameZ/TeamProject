@@ -59,7 +59,6 @@ export const StudentInput = styled.div`
   margin-bottom: 24px;
   height: 56px;
   padding: 16px;
-  padding-bottom: 16px;
 
   @media screen and (${breakpoints.tablet}) {
     width: 580px;
@@ -73,6 +72,7 @@ export const StudentInput = styled.div`
 
 export const StudentRow = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: space-between;
 `;
@@ -123,6 +123,7 @@ export const StudentBody = styled.div`
   width: 100%;
   border: ${tableBorderNormal};
   border-top: none;
+  padding: 16px;
   border-collapse: collapse;
   border-radius: 0px 0px 6px 6px;
 `;
@@ -130,32 +131,20 @@ export const StudentBody = styled.div`
 export const StudentData = styled.div`
   display: flex;
   flex-direction: row;
-  border: ${tableBorderNormal};
-  border-top: none;
-  border-right: none;
-  border-left: none;
+  border-bottom: ${tableBorderNormal};
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 16px;
-  width: 200px;
+  padding: 16px 0 0;
+
+  &:last-child {
+    border: none;
+  }
 
   @media screen and (${breakpoints.tablet}) {
-    width: 526px;
     margin-right: 16px;
   }
-
-  @media screen and (${breakpoints.desktop}) {
-    width: 506px;
-    margin-right: 16px;
-  }
-`;
-
-export const InputCheckBox = styled.input`
-  margin-bottom: 16px;
-  align-self: flex-start;
-  width: 24px;
-  height: 24px;
 `;
 
 export const StudentInfo = styled.p`
@@ -165,8 +154,8 @@ export const StudentInfo = styled.p`
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 10%;
-  height: 40%;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Form = styled.div` 
