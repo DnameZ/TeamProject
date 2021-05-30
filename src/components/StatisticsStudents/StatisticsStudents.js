@@ -1,13 +1,13 @@
 import React from 'react';
-import { BsArrowUpDown } from 'react-icons/bs';
+import SortImageStudents from '../../assets/images/sort-icon-2.png';
 import {
   TableWrapper,
   TableHead,
   Tr,
   Th,
+  SortIconStudents,
   TableBody,
   Td,
-  Hr,
   MobileWrapper,
   MobileTitle,
   MobileText,
@@ -18,19 +18,11 @@ const StatisticsStudents = ({ nameSurname, emailAdress, participations }) => {
     <>
       <MobileWrapper>
         <MobileTitle>Ime i prezime:</MobileTitle>
-        <MobileText>dasdsa</MobileText>
+        <MobileText>{nameSurname}</MobileText>
         <MobileTitle>Email adresa:</MobileTitle>
-        <MobileText>sadsa</MobileText>
+        <MobileText>{emailAdress}</MobileText>
         <MobileTitle>Broj sudjelovanja:</MobileTitle>
-        <MobileText>dsadsa</MobileText>
-      </MobileWrapper>
-      <MobileWrapper>
-        <MobileTitle>Ime i prezime:</MobileTitle>
-        <MobileText>dasdsa</MobileText>
-        <MobileTitle>Email adresa:</MobileTitle>
-        <MobileText>sadsa</MobileText>
-        <MobileTitle>Broj sudjelovanja:</MobileTitle>
-        <MobileText>dsadsa</MobileText>
+        <MobileText>{participations}</MobileText>
       </MobileWrapper>
 
       <TableWrapper>
@@ -38,20 +30,17 @@ const StatisticsStudents = ({ nameSurname, emailAdress, participations }) => {
           <Tr>
             <Th>Ime i prezime</Th>
             <Th>Email adresa</Th>
-            <Th>Broj sudjelovanja</Th>
+            <Th>
+              Broj sudjelovanja
+              <SortIconStudents src={SortImageStudents} alt="Sort Icon" />
+            </Th>
           </Tr>
         </TableHead>
         <TableBody>
           <Tr>
-            <Td>dasdsa</Td>
-            <Td>sadsa</Td>
-            <Td>dsadsa</Td>
-          </Tr>
-          <Hr />
-          <Tr>
-            <Td>dasdsa</Td>
-            <Td>sadsa</Td>
-            <Td>dsadsa</Td>
+            <Td>{nameSurname}</Td>
+            <Td>{emailAdress}</Td>
+            <Td>{participations}</Td>
           </Tr>
         </TableBody>
       </TableWrapper>

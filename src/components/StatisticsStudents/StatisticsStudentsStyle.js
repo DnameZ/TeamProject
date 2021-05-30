@@ -109,4 +109,19 @@ export const Td = styled.td`
   }
 `;
 
-export const Hr = styled.tr``;
+export const SortIconStudents = styled.img`
+  width: 17px;
+  height: 15px;
+  object-fit: contain;
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    margin-left: 32px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    margin-left: 114px;
+  }
+`;
