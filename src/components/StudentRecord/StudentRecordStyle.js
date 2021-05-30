@@ -30,7 +30,7 @@ export const NumberOfStudents = styled.p`
   align-self: flex-end;
 `;
 
-export const StudentRecord = styled.table`
+export const StudentRecord = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -43,9 +43,9 @@ export const StudentRecord = styled.table`
   background-color: ${colors.white};
 `;
 
-export const StudentHead = styled.thead`
+export const StudentHead = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   border: ${tableBorderNormal};
   border-collapse: collapse;
   border-radius: 6px 6px 0px 0px;
@@ -55,7 +55,7 @@ export const StudentHead = styled.thead`
   height: 56px;
 `;
 
-export const StudentInput = styled.td`
+export const StudentInput = styled.div`
   margin-bottom: 24px;
   height: 56px;
   padding: 16px;
@@ -71,71 +71,50 @@ export const StudentInput = styled.td`
   }
 `;
 
-export const StudentRow = styled.tr`
-  align-self: center;
+export const StudentRow = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 `;
 
-export const StudentHeading = styled.th`
-  align-self: center;
-  &:first-child {
-    padding-left: 26px;
-    padding-right: 69px;
-  }
-  &:last-child {
-    padding-right: 42px;
-  }
+export const HeaderButton = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
+  font-weight: bold;
+  width: 50%;
+  height: 100%;
+  color: ${colors.darkGrey};
+
   ${(props) =>
     props.type === 'active' &&
     `color:${colors.black}; font-weight:bold;
-  &:after {
-    width: 49%;
+  &::after {
+    width: 100%;
     height: 4px;
     background-color: ${colors.blue};
     content:"";
     position:absolute;
-    top:274px;
-    bottom:468px;
-    margin-left:-100px;
+    bottom:0;
+    left:0;
+
   }`}
+
   ${(props) =>
     props.type === 'inactive' && `color:${colors.lightGrey}; font-weight:bold;`}
-
-    @media screen and (${breakpoints.tablet}) {
-    width: 546px;
-
-    ${(props) =>
-      props.type === 'active' &&
-      `color:${colors.black}; font-weight:bold;
-      &:after {
-        width: 45.3%;
-        position:absolute;
-        top:282px;
-        bottom:468px;
-        margin-left:-177px;
-      }`}
-  }
-
-  @media screen and (${breakpoints.desktop}) {
-    ${(props) =>
-      props.type === 'active' &&
-      `;
-      &:after {
-        width: 45.1%;
-        margin-left:-168px;
-      }`}
-  }
 `;
 
-export const Heading = ({ type, text, Func, Record }) => {
+export const Heading = ({ type, text, Func }) => {
   return (
-    <StudentHeading onClick={() => Func(Record)} type={type}>
+    <HeaderButton onClick={() => Func()} type={type}>
       {text}
-    </StudentHeading>
+    </HeaderButton>
   );
 };
 
-export const StudentBody = styled.tbody`
+export const StudentBody = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -148,7 +127,7 @@ export const StudentBody = styled.tbody`
   border-radius: 0px 0px 6px 6px;
 `;
 
-export const StudentData = styled.td`
+export const StudentData = styled.div`
   display: flex;
   flex-direction: row;
   border: ${tableBorderNormal};
@@ -204,7 +183,7 @@ export const Form = styled.div`
   
   `;
 
-export const FormRow = styled.tr`
+export const FormRow = styled.div`
   display: block;
   margin-left: 16px;
   margin-right: 16px;

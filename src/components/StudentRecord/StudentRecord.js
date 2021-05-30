@@ -30,9 +30,9 @@ import {
 } from '../../lib/styles/generalStyles';
 
 const StudentRecord = () => {
-  const Prijavljeni = 'Prijavljeni';
-  const Dodaj = 'Dodaj';
-  const [isRecord, setIsRecord] = useState('');
+  const Prijavljeni = 'Prijavljeni polaznici';
+  const Dodaj = 'Dodaj polaznike';
+  const [isRecord, setIsRecord] = useState(Prijavljeni);
 
   const ToggleRecord = (Record) => {
     setIsRecord(Record);
@@ -53,18 +53,16 @@ const StudentRecord = () => {
       </EventInfo>
       <StudentTable>
         <StudentHead>
-          <StudentRow>
-            <Heading
-              Func={() => ToggleRecord(Prijavljeni)}
-              text={Prijavljeni}
-              type={SetActiveOrInactive(Prijavljeni)}
-            />
-            <Heading
-              Func={() => ToggleRecord(Dodaj)}
-              text={Dodaj}
-              type={SetActiveOrInactive(Dodaj)}
-            />
-          </StudentRow>
+          <Heading
+            Func={() => ToggleRecord(Prijavljeni)}
+            text={Prijavljeni}
+            type={SetActiveOrInactive(Prijavljeni)}
+          />
+          <Heading
+            Func={() => ToggleRecord(Dodaj)}
+            text={Dodaj}
+            type={SetActiveOrInactive(Dodaj)}
+          />
         </StudentHead>
         {isRecord === Prijavljeni ? <SignedIn /> : <AddStudent />}
       </StudentTable>
