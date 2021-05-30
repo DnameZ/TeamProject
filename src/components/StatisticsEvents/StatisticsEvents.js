@@ -1,10 +1,13 @@
 import React from 'react';
-
+import SortAZImage from '../../assets/images/sort-icon-1.png';
+import SortImage from '../../assets/images/sort-icon-2.png';
 import {
   TableWrapper,
   TableHead,
   Tr,
   Th,
+  SortIconAZ,
+  SortIcon,
   TableBody,
   Td,
   TdComments,
@@ -14,7 +17,7 @@ import {
   MobileTextCommentar,
 } from './StatisticsEventsStyle';
 
-const StatisticsEvents = ({ EventsTitle, AverageRating }) => {
+const StatisticsEvents = ({ eventsTitle, averageRating }) => {
   return (
     <>
       <MobileWrapper>
@@ -29,8 +32,14 @@ const StatisticsEvents = ({ EventsTitle, AverageRating }) => {
       <TableWrapper>
         <TableHead>
           <Tr>
-            <Th>Naziv događaja</Th>
-            <Th>Prosječna ocjena</Th>
+            <Th>
+              Naziv događaja
+              <SortIconAZ src={SortAZImage} alt="Sort Icon AZ" />
+            </Th>
+            <Th>
+              Prosječna ocjena
+              <SortIcon src={SortImage} alt="Sort Icon" />
+            </Th>
             <Th>Komentari</Th>
           </Tr>
         </TableHead>

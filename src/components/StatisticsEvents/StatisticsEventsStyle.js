@@ -7,7 +7,7 @@ export const MobileWrapper = styled.div`
   height: 222px;
   border-radius: 4px;
   border: 2px solid ${colors.lightGrey};
-  padding: 16px 24px 16px 16px;
+  padding: 20px 24px 16px 16px;
   background-color: ${colors.white};
   margin: 10px auto 16px;
   @media screen and (${breakpoints.tablet}) {
@@ -138,5 +138,34 @@ export const TdComments = styled.td`
       color: ${colors.blue};
       cursor: pointer;
     }
+  }
+`;
+
+export const SortIconAZ = styled.img`
+  width: 17px;
+  height: 15px;
+  object-fit: contain;
+
+  @media screen and (${breakpoints.tablet}) {
+    margin-left: 54px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    margin-left: 200px;
+  }
+`;
+
+export const SortIcon = styled.img`
+  width: 17px;
+  height: 15px;
+
+  object-fit: contain;
+
+  @media screen and (${breakpoints.tablet}) {
+    margin-left: 24px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    margin-left: 114px;
   }
 `;
