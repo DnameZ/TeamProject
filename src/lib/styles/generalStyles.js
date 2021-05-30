@@ -48,7 +48,7 @@ export const Option = styled.option`
 
 export const TextArea = styled.textarea`
   ${InputGeneral};
-  font-family: Helvetica;
+  font-family: 'HelveticaNeue', sans-serif;
   height: 112px;
 `;
 

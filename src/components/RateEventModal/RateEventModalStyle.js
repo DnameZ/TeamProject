@@ -57,13 +57,6 @@ export const Grade = styled.p`
         border-color: ${colors.blue};
     `};
 
-  ${
-    '' /* &:hover {
-    color: ${colors.blue};
-    border-color: ${colors.blue};
-  } */
-  }
-
   @media screen and (${breakpoints.tablet}) {
     width: 48px;
     height: 48px;
