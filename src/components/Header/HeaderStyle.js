@@ -125,6 +125,7 @@ export const Cpsrk = styled.h2`
 `;
 
 export const HamMenu = styled.div`
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: center;
