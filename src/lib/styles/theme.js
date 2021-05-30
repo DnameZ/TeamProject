@@ -14,7 +14,8 @@ export const colors = {
   darkBlue: '#145a8c',
   silver: '#bbbbbb',
   red: '#c2002c',
+  footerGray: '#eeeeee',
 };
-export const boxShadow = '1px 1px 4px 0 rgba(0, 0, 0, 0.1)';
+export const boxShadow = '1px 1px 4px 0 rgba(0, 0, 0, 0.2)';
 export const boxShadowHover = '2px 2px 8px 0 rgba(0, 0, 0, 0.1)';
 export const boxShadowFocus = '2px 2px 8px 0 rgba(0, 0, 0, 0.1)';

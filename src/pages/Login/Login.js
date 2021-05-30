@@ -57,7 +57,7 @@ const Login = () => {
             ) : null}
           </FormRow>
           <FormRow>
-            <PrimaryButton text="Prijava" />
+            <PrimaryButton text="Prijava" type="large" />
           </FormRow>
         </Form>
       </Overlay>
