@@ -1,6 +1,7 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 // pages
 import Login from './pages/Login/Login';
 import Events from './pages/Events/Events';
@@ -9,10 +10,20 @@ import Statistics from './pages/Statistics/Statistics';
 // components
 import StudentRecord from './components/StudentRecord/StudentRecord';
 import { Main } from './lib/styles/generalStyles';
+import Header from './components/Header/Header';
+
 function App() {
+  const location = useLocation();
+  const [path, setPath] = useState(location.pathname);
+
   useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => {
+    setPath(location.pathname);
+  }, [location]);
+
   return (
     <>
+      {path !== '/login' ? <Header /> : null}
       <Main>
         <StudentRecord />
         <Route path="/login" component={Login} />

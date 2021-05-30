@@ -1,8 +1,14 @@
 import styled, { css } from 'styled-components';
 import { colors, boxShadowFocus, breakpoints } from './theme';
+import TickIcon from '../../assets/images/tick-icon.png';
+import DropdownIcon from '../../assets/images/dropdown-icon.png';
 
 //Main
-export const Main = styled.div``;
+export const Main = styled.div`
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+`;
 
 //Input components
 export const InputGeneral = css`
@@ -11,7 +17,8 @@ export const InputGeneral = css`
   border: solid 1px ${colors.lightGrey};
   background-color: ${colors.white};
   font-size: 16px;
-  padding: 8px 5px;
+  padding: 0 16px;
+  line-height: 1.5;
 
   &:focus {
     border-color: ${colors.blue};
@@ -24,27 +31,40 @@ export const InputGeneral = css`
 
 export const Input = styled.input`
   ${InputGeneral};
+  padding: ${(props) => (props.forSearch ? '0 44px' : 'initial')};
 `;
 
 export const Select = styled.select`
   ${InputGeneral};
+  appearance: none;
+  background: url(${DropdownIcon}) calc(100% - 19px) / 14px no-repeat
+    ${colors.white};
 `;
 
-export const Option = styled.option``;
+export const Option = styled.option`
+  background-color: ${colors.white};
+  color: ${colors.darkGrey};
+`;
 
 export const TextArea = styled.textarea`
   ${InputGeneral};
+  font-family: 'HelveticaNeue', sans-serif;
   height: 112px;
+`;
+
+export const InputCheckbox = styled.input`
+  display: none;
 `;
 
 //Labels
 export const Label = styled.label`
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   display: inline-block;
   background-color: ${colors.white};
   font-weight: bold;
   color: ${colors.blue};
+  background-color: transparent;
 `;
 
 export const ErrorLabel = styled.p`
@@ -55,22 +75,50 @@ export const ErrorLabel = styled.p`
   padding-top: 8px;
 `;
 
+export const CheckboxOptionLabel = styled.label`
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  padding-left: 35px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid ${colors.darkGrey};
+    border-radius: 4px;
+  }
+
+  [type='checkbox']:checked + &::after {
+    content: '';
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 6px;
+    left: 4px;
+    background-image: url(${TickIcon});
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+`;
+
 //Button components
 export const ButtonDefault = css`
   display: block;
   width: 288px;
   height: 56px;
-  margin: auto;
   border-radius: 4px;
   text-decoration: none;
   background-color: ${colors.blue};
-  font-family: 'HelveticaNeue', sans-serif;
   font-size: 18px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.4;
-  letter-spacing: normal;
   color: ${colors.white};
   border: none;
 
@@ -85,8 +133,12 @@ export const ButtonDefault = css`
   }
 `;
 
-export const PrimaryButton = ({ text, type }) => {
-  return <PrimaryButtonStyle type={type}>{text}</PrimaryButtonStyle>;
+export const PrimaryButton = ({ text, type, onClick }) => {
+  return (
+    <PrimaryButtonStyle type={type} onClick={onClick}>
+      {text}
+    </PrimaryButtonStyle>
+  );
 };
 
 export const PrimaryButtonStyle = styled.button`
@@ -99,8 +151,12 @@ export const PrimaryButtonStyle = styled.button`
   }
 `;
 
-export const SecondaryButton = ({ text, type }) => {
-  return <SecondaryButtonStyle type={type}>{text}</SecondaryButtonStyle>;
+export const SecondaryButton = ({ text, type, onClick }) => {
+  return (
+    <SecondaryButtonStyle type={type} onClick={onClick}>
+      {text}
+    </SecondaryButtonStyle>
+  );
 };
 
 export const SecondaryButtonStyle = styled.button`
@@ -132,7 +188,7 @@ export const SectionButtonStyle = styled.button`
   border-width: 3px;
   border-style: solid;
   border-color: {
-    props.type==='inactive'?${colors.silver} : ${colors.blue};
+    props.type==='inactive'?${colors.silver}: ${colors.blue};
   }
   background-color: ${colors.white};
   color: ${colors.blue};

@@ -9,6 +9,8 @@ import {
   ModalTitle,
   IconWrapper,
   Icon,
+  ModalFooter,
+  Grade,
 } from './ModalStyle';
 
 // assets
@@ -26,6 +28,12 @@ const Modal = (props) => {
           </IconWrapper>
         </ModalHeader>
         <ModalContent>{props.children}</ModalContent>
+        {props.avgGrade ? (
+          <ModalFooter>
+            Prosječna ocjena za ovo predavanje je{' '}
+            <Grade>{props.avgGrade}</Grade>
+          </ModalFooter>
+        ) : null}
       </ModalWrapper>
     </>
   );
