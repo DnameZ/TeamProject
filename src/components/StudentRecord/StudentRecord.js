@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '../Modal/Modal';
 
 import SearchBar from '../SearchBar/SearchBar';
@@ -29,9 +29,24 @@ import {
 } from '../../lib/styles/generalStyles';
 
 const StudentRecord = () => {
+  const PrijavljeniP = 'Prijavljeni polaznici';
+  const DodajP = 'Dodaj polaznike';
   const Prijavljeni = 'Prijavljeni';
   const Dodaj = 'Dodaj';
   const [isRecord, setIsRecord] = useState(Prijavljeni);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerWidth < 720) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  });
 
   const ToggleRecord = (Record) => {
     setIsRecord(Record);
@@ -54,12 +69,12 @@ const StudentRecord = () => {
         <StudentHead>
           <Heading
             Func={() => ToggleRecord(Prijavljeni)}
-            text={Prijavljeni}
+            text={isMobile === false ? PrijavljeniP : Prijavljeni}
             type={SetActiveOrInactive(Prijavljeni)}
           />
           <Heading
             Func={() => ToggleRecord(Dodaj)}
-            text={Dodaj}
+            text={isMobile === false ? DodajP : Dodaj}
             type={SetActiveOrInactive(Dodaj)}
           />
         </StudentHead>
@@ -74,6 +89,10 @@ const StudentRecord = () => {
       </ButtonWrapper>
     </Modal>
   );
+};
+
+const NormalHeading = (Func, arr, type) => {
+  return <></>;
 };
 
 const AddStudent = () => {
