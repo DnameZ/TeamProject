@@ -179,12 +179,19 @@ export const SecondaryButtonStyle = styled.button`
   }
 `;
 
-export const SectionButton = ({ text, type }) => {
-  return <SectionButtonStyle type={type}>{text}</SectionButtonStyle>;
+export const SectionButton = ({ text, type, Func }) => {
+  return (
+    <SectionButtonStyle onClick={() => Func()} type={type}>
+      {text}
+    </SectionButtonStyle>
+  );
 };
 
 export const SectionButtonStyle = styled.button`
   ${ButtonDefault};
+  position:relative;
+  &:last-child{margin-left:-3px; border-radius: 0 4px 4px 0; z-index:2;}
+  border-radius: 4px 0 0 4px;
   border-width: 3px;
   border-style: solid;
   border-color: {
@@ -200,6 +207,7 @@ export const SectionButtonStyle = styled.button`
   }
 
   ${(props) => props.type === 'inactive' && `color: ${colors.silver};`}
+  ${(props) => props.type === 'active' && `z-index:3;`}
 
   @media screen and (${breakpoints.tablet}) {
     width: 344px;
