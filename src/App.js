@@ -8,6 +8,7 @@ import Events from './pages/Events/Events';
 import Records from './pages/Records/Records';
 import Statistics from './pages/Statistics/Statistics';
 // components
+import StudentRecord from './components/StudentRecord/StudentRecord';
 import { Main } from './lib/styles/generalStyles';
 import Header from './components/Header/Header';
 
@@ -24,6 +25,7 @@ function App() {
     <>
       {path !== '/login' ? <Header /> : null}
       <Main>
+        <StudentRecord />
         <Route path="/login" component={Login} />
         <Route path="/events" component={Events} />
         <Route path="/records" component={Records} />
