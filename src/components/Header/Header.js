@@ -60,12 +60,12 @@ const Header = () => {
           </Nav>
         </Inner>
       </HeaderInner>
-      {isOpen === false ? '' : <HamburegerMenu />}
+      {isOpen === false ? '' : <HamburgerMenu />}
     </>
   );
 };
 
-const HamburegerMenu = () => {
+const HamburgerMenu = () => {
   return (
     <>
       <HamMenu>

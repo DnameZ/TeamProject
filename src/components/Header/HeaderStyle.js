@@ -7,7 +7,7 @@ export const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 3;
   box-shadow: ${boxShadow};
   height: 70px;
 `;
@@ -28,6 +28,8 @@ export const CPSRKcontainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
+  height: 38x;
+
   @media screen and (${breakpoints.tablet}) {
     margin-left: 40px;
   }
@@ -93,13 +95,7 @@ export const Nav = styled.nav`
     flex-direction: row-reverse;
     margin-right: 40px;
   }
-  @media screen and (${breakpoints.desktop}) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row-reverse;
-    margin-right: 48px;
-  }
+
   @media screen and (${breakpoints.desktopLarge}) {
     margin-right: 108px;
   }
@@ -108,9 +104,7 @@ export const Nav = styled.nav`
 export const Cpsrk = styled.h2`
   position: fixed;
   left: 120px;
-  top: 20px;
-  width: 397px;
-  height: 26px;
+  top: 23px;
   font-size: 18px;
   font-weight: bold;
   line-height: 1.44;
@@ -124,15 +118,20 @@ export const Cpsrk = styled.h2`
   }
 `;
 
-export const HamMenu = styled.section`
+export const HamMenu = styled.div`
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   background-color: ${colors.backgroundGrey};
-  margin-top: 1.4px;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  z-index: 2;
+
+  @media screen and (${breakpoints.tablet}) {
+    display: none;
+  }
 `;
 
 export const HamMenuButton = styled.div`
