@@ -45,8 +45,9 @@ const StudentRecord = () => {
   };
 
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize);
-  });
+  }, []);
 
   const ToggleRecord = (Record) => {
     setIsRecord(Record);
@@ -89,10 +90,6 @@ const StudentRecord = () => {
       </ButtonWrapper>
     </Modal>
   );
-};
-
-const NormalHeading = (Func, arr, type) => {
-  return <></>;
 };
 
 const AddStudent = () => {
