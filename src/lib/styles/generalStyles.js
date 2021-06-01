@@ -220,3 +220,22 @@ export const SectionButtonStyle = styled.button`
     width: 180px;
   }
 `;
+
+// section content
+export const SectionContent = styled.div`
+  margin: 104px 16px 16px 16px;
+
+  @media screen and (${breakpoints.tablet}) {
+    margin: 104px 40px 16px 40px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    ${(props) =>
+      props.columns === 2 &&
+      'margin: 160px 108px 48px 108px; display: grid; grid-template-columns: 20% 80%;'}
+  }
+`;
+
+export const EventsWrapper = styled.div``;
+
+export const FilterWrapper = styled.div``;
