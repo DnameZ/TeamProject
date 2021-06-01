@@ -114,5 +114,6 @@ export const RowValue = styled.p`
 
 export const ButtonWrapper = styled.div`
   margin-top: 25px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 `;
