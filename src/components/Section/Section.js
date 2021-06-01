@@ -9,10 +9,10 @@ import {
   HeadingWrapper,
 } from '../Section/SectionStyle';
 
-const Section = () => {
-  const MojiDogađaji = 'Moji Događaji';
-  const SviDogađdaji = 'Svi Događaji';
-  const [curEvent, setcurEvent] = useState(SviDogađdaji);
+const Section = ({ onOpenFilter, onOpenStatus }) => {
+  const mojiDogadaji = 'Moji Događaji';
+  const sviDogadaji = 'Svi Događaji';
+  const [curEvent, setcurEvent] = useState(sviDogadaji);
   const ToggleDogađaj = (Događaj) => {
     setcurEvent(Događaj);
   };
@@ -26,22 +26,22 @@ const Section = () => {
     <SectionWrapper>
       <HeadingWrapper>
         <BigHeading>Događaji</BigHeading>
-        {curEvent === SviDogađdaji ? (
-          <SmallHeading>Filtriaj</SmallHeading>
+        {curEvent === sviDogadaji ? (
+          <SmallHeading onClick={onOpenFilter}>Filtriraj</SmallHeading>
         ) : (
-          <SmallHeading>Status</SmallHeading>
+          <SmallHeading onClick={onOpenStatus}>Status</SmallHeading>
         )}
       </HeadingWrapper>
       <SectionButtonWrapper>
         <SectionButton
-          text={SviDogađdaji}
-          type={SetActiveOrInactive(SviDogađdaji)}
-          Func={() => ToggleDogađaj(SviDogađdaji)}
+          text={sviDogadaji}
+          type={SetActiveOrInactive(sviDogadaji)}
+          Func={() => ToggleDogađaj(sviDogadaji)}
         />
         <SectionButton
-          text={MojiDogađaji}
-          type={SetActiveOrInactive(MojiDogađaji)}
-          Func={() => ToggleDogađaj(MojiDogađaji)}
+          text={mojiDogadaji}
+          type={SetActiveOrInactive(mojiDogadaji)}
+          Func={() => ToggleDogađaj(mojiDogadaji)}
         />
       </SectionButtonWrapper>
     </SectionWrapper>

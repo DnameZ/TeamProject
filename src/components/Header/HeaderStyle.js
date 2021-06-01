@@ -26,6 +26,12 @@ export const Inner = styled.div`
   @media screen and (${breakpoints.desktop}) {
     padding: 0 108px;
   }
+
+  @media screen and (${breakpoints.desktopLarge}) {
+    max-width: 1224px;
+    padding: 0;
+    margin: 0 auto;
+  }
 `;
 
 export const LogoWrapper = styled.div`

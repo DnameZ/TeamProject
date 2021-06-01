@@ -144,11 +144,12 @@ export const PrimaryButton = ({ text, type, onClick }) => {
 export const PrimaryButtonStyle = styled.button`
   ${ButtonDefault};
   ${(props) => props.type === 'modal/card' && `width: 256px; height: 56px;`}
+  ${(props) =>
+    props.type === 'fullWidth' && `width:100% !important; height: 56px;`}
 
   @media screen and (${breakpoints.tablet}) {
     ${(props) => props.type === 'small' && `width: 104px; height: 48px;`}
     ${(props) => props.type === 'large' && `width: 336px; height: 56px;`}
-    ${(props) => props.type === 'fullwidth' && `width:100%; height: 56px;`}
   }
 `;
 
@@ -173,7 +174,9 @@ export const SecondaryButtonStyle = styled.button`
   }
 
   ${(props) => props.type === 'modal/card' && `width: 224px; height: 56px;`}
-  ${(props) => props.type === 'fullwidth' && `width:100%; height: 56px;`}
+  ${(props) =>
+    props.type === 'fullWidth' &&
+    `width:100% !important; height: 56px; !important`}
   @media screen and (${breakpoints.tablet}) {
     width: 226px;
     height: 50px;
@@ -192,7 +195,7 @@ export const SectionButton = ({ text, type, Func }) => {
 export const SectionButtonStyle = styled.button`
   ${ButtonDefault};
   position:relative;
-  &:last-child{left: -3px; border-radius: 0 4px 4px 0; z-index:2;}
+  &:last-child{left: -3px; border-radius: 0 4px 4px 0; }
   border-radius: 4px 0 0 4px;
   border-width: 3px;
   border-style: solid;
@@ -200,7 +203,7 @@ export const SectionButtonStyle = styled.button`
   background-color: ${colors.white};
   color: ${colors.blue};
   width: 50%;
-  height: 66px;
+  height: 56px;
   border-color: {
     props.type==='inactive'?${colors.silver}: ${colors.blue};
   };
@@ -210,32 +213,50 @@ export const SectionButtonStyle = styled.button`
   }
 
   ${(props) => props.type === 'inactive' && `color: ${colors.silver};`}
-  ${(props) => props.type === 'active' && `z-index:3;`}
+  ${(props) => props.type === 'active' && `z-index:1;`}
 
   @media screen and (${breakpoints.tablet}) {
     width: 100%;
   }
   
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     width: 180px;
   }
 `;
 
 // section content
 export const SectionContent = styled.div`
-  margin: 104px 16px 16px 16px;
+  margin: 24px 16px 16px 16px;
 
   @media screen and (${breakpoints.tablet}) {
     margin: 104px 40px 16px 40px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     ${(props) =>
       props.columns === 2 &&
-      'margin: 160px 108px 48px 108px; display: grid; grid-template-columns: 20% 80%;'}
+      `margin: 80px 108px 48px;
+       display: grid;
+       grid-template-columns: auto auto;
+       justify-content: space-between;`}
+    max-width: 1224px;
+    margin: 80px auto 48px;
   }
 `;
 
-export const EventsWrapper = styled.div``;
+export const EventsWrapper = styled.div`
+  margin: 0 auto;
 
-export const FilterWrapper = styled.div``;
+  @media screen and (${breakpoints.desktop}) {
+    max-width: 832px;
+  }
+`;
+
+export const FilterWrapper = styled.div`
+  max-width: 288px;
+  display: none;
+
+  @media screen and (${breakpoints.desktopLarge}) {
+    display: block;
+  }
+`;

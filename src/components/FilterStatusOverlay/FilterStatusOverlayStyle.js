@@ -3,9 +3,12 @@ import { breakpoints, colors } from '../../lib/styles/theme';
 
 export const Overlay = styled.div`
   min-height: calc(100vh - 70px);
-  position: relative;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
   top: 70px;
   background-color: ${colors.backgroundGrey};
+  border-top: 4px solid ${colors.blue};
 `;
 
 export const FilterWrapper = styled.div`
