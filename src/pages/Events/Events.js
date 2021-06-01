@@ -20,6 +20,7 @@ import eventsMock from '../../lib/mock/events';
 const Events = () => {
   const [filter, setFilter] = useState(false);
   const [status, setStatus] = useState(false);
+  const [allEvents, setAllEvents] = useState(true);
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -29,9 +30,25 @@ const Events = () => {
     setStatus((prevStatus) => !prevStatus);
   };
 
+  const handleResize = (event) => {
+    if (event.target.innerWidth > 1300) {
+      setStatus(false);
+      setFilter(false);
+    }
+  };
+
+  window.addEventListener('resize', handleResize);
+
   return (
     <>
-      <Section onOpenFilter={toggleFilter} onOpenStatus={toggleStatus} />
+      <Section
+        onOpenFilter={toggleFilter}
+        onOpenStatus={toggleStatus}
+        sectionTitle="Događaji"
+        leftButton="Svi događaji"
+        rightButton="Moji događaji"
+        setAllEvents={setAllEvents}
+      />
       {filter ? (
         <FilterStatusOverlay title="Filtriraj" onOverlayClosed={toggleFilter}>
           <Filter />
@@ -46,9 +63,7 @@ const Events = () => {
       ) : null}
       {!filter && !status ? (
         <SectionContent columns={2}>
-          <FilterWrapper>
-            <Filter />
-          </FilterWrapper>
+          {<FilterWrapper>{allEvents ? <Filter /> : <Status />}</FilterWrapper>}
           <EventsWrapper>
             {eventsMock.map((event) => (
               <EventCard
@@ -60,7 +75,7 @@ const Events = () => {
                 freeSpots={event.availability}
                 company={event.company}
                 shortDescription={event.shortDescription}
-                buttonText="Prijavi se"
+                buttonText="Prijavi/Odjavi se"
               />
             ))}
           </EventsWrapper>

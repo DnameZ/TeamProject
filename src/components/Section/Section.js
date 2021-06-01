@@ -9,12 +9,21 @@ import {
   HeadingWrapper,
 } from '../Section/SectionStyle';
 
-const Section = ({ onOpenFilter, onOpenStatus }) => {
-  const mojiDogadaji = 'Moji Događaji';
-  const sviDogadaji = 'Svi Događaji';
+const Section = ({
+  onOpenFilter,
+  onOpenStatus,
+  sectionTitle,
+  leftButton,
+  rightButton,
+  buttonsHidden,
+  setAllEvents,
+}) => {
+  const mojiDogadaji = rightButton;
+  const sviDogadaji = leftButton;
   const [curEvent, setcurEvent] = useState(sviDogadaji);
-  const ToggleDogađaj = (Događaj) => {
-    setcurEvent(Događaj);
+  const ToggleDogađaj = (dogadaj) => {
+    setcurEvent(dogadaj);
+    dogadaj === leftButton ? setAllEvents(true) : setAllEvents(false);
   };
   const SetActiveOrInactive = (text) => {
     const active = 'active';
@@ -25,25 +34,27 @@ const Section = ({ onOpenFilter, onOpenStatus }) => {
   return (
     <SectionWrapper>
       <HeadingWrapper>
-        <BigHeading>Događaji</BigHeading>
+        <BigHeading>{sectionTitle}</BigHeading>
         {curEvent === sviDogadaji ? (
           <SmallHeading onClick={onOpenFilter}>Filtriraj</SmallHeading>
         ) : (
           <SmallHeading onClick={onOpenStatus}>Status</SmallHeading>
         )}
       </HeadingWrapper>
-      <SectionButtonWrapper>
-        <SectionButton
-          text={sviDogadaji}
-          type={SetActiveOrInactive(sviDogadaji)}
-          Func={() => ToggleDogađaj(sviDogadaji)}
-        />
-        <SectionButton
-          text={mojiDogadaji}
-          type={SetActiveOrInactive(mojiDogadaji)}
-          Func={() => ToggleDogađaj(mojiDogadaji)}
-        />
-      </SectionButtonWrapper>
+      {!buttonsHidden ? (
+        <SectionButtonWrapper>
+          <SectionButton
+            text={sviDogadaji}
+            type={SetActiveOrInactive(sviDogadaji)}
+            Func={() => ToggleDogađaj(sviDogadaji)}
+          />
+          <SectionButton
+            text={mojiDogadaji}
+            type={SetActiveOrInactive(mojiDogadaji)}
+            Func={() => ToggleDogađaj(mojiDogadaji)}
+          />
+        </SectionButtonWrapper>
+      ) : null}
     </SectionWrapper>
   );
 };

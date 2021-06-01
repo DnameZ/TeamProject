@@ -229,7 +229,7 @@ export const SectionContent = styled.div`
   margin: 24px 16px 16px 16px;
 
   @media screen and (${breakpoints.tablet}) {
-    margin: 104px 40px 16px 40px;
+    margin: 34px 40px 16px 40px;
   }
 
   @media screen and (${breakpoints.desktopLarge}) {
