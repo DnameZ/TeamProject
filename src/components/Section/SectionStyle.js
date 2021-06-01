@@ -16,9 +16,15 @@ export const Section = styled.section`
 
   @media screen and (${breakpoints.desktop}) {
     padding: 0 108px;
+    margin-top: 162px;
+  }
+
+  @media screen and (${breakpoints.desktopLarge}) {
+    max-width: 1224px;
+    padding: 0;
+    margin: 162px auto 0;
     display: flex;
     justify-content: space-between;
-    margin-top: 162px;
   }
 `;
 
@@ -26,7 +32,7 @@ export const HeadingWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 34px;
+  margin-bottom: 24px;
 
   @media screen and (${breakpoints.desktopLarge}) {
     margin-bottom: 0;
@@ -52,7 +58,7 @@ export const SmallHeading = styled.h3`
   align-self: center;
   line-height: 1.86;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     display: none;
   }
 `;
