@@ -10,6 +10,7 @@ import Statistics from './pages/Statistics/Statistics';
 // components
 import { Main } from './lib/styles/generalStyles';
 import Header from './components/Header/Header';
+import Section from './components/Section/Section';
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
     <>
       {path !== '/login' ? <Header /> : null}
       <Main>
+        <Section />
         <Route path="/login" component={Login} />
         <Route path="/events" component={Events} />
         <Route path="/records" component={Records} />

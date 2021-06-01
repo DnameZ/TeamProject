@@ -6,60 +6,62 @@ import { breakpoints } from '../../lib/styles/theme';
 export const Section = styled.section`
   height: 100%;
   width: 100%;
-  margin-top: 160px;
+  margin-top: 94px;
+  padding: 0 16px;
+
+  @media screen and (${breakpoints.tablet}) {
+    padding: 0 40px;
+    margin-top: 130px;
+  }
+
   @media screen and (${breakpoints.desktop}) {
+    padding: 0 108px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    margin-top: 162px;
   }
 `;
 
 export const HeadingWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   width: 100%;
+  margin-bottom: 34px;
+
+  @media screen and (${breakpoints.desktopLarge}) {
+    margin-bottom: 0;
+  }
 `;
 
 export const BigHeading = styled.h2`
-  margin-left: 16px;
   font-size: 28px;
   font-weight: bold;
+  line-height: 1.86;
+
   @media screen and (${breakpoints.tablet}) {
-    margin-left: 40px;
     font-size: 36px;
   }
+
   @media screen and (${breakpoints.desktopLarge}) {
-    margin-left: 108px;
     font-size: 36px;
   }
 `;
 
 export const SmallHeading = styled.h3`
   font-size: 16px;
-  align-self: flex-end;
-  margin-right: 16px;
-  @media screen and (${breakpoints.tablet}) {
-    margin-right: 40px;
-  }
+  align-self: center;
+  line-height: 1.86;
+
   @media screen and (${breakpoints.desktop}) {
     display: none;
   }
 `;
 
 export const SectionButtonWrapper = styled.div`
-  display: inline-flex;
-  margin-top: 32px;
-  margin-left: 14px;
-  @media screen and (${breakpoints.tablet}) {
-    margin-left: 40px;
-  }
+  display: flex;
+  width: calc(100% + 3px);
+
   @media screen and (${breakpoints.desktop}) {
-    margin-top: 0px;
-    margin-right: 38px;
-  }
-  @media screen and (${breakpoints.desktopLarge}) {
-    margin-top: 0px;
-    margin-right: 108px;
+    justify-content: flex-end;
   }
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors, breakpoints, boxShadowHover } from '../../lib/styles/theme';
 
 export const EventCard = styled.div`
-  width: 288px;
+  width: 100%;
   margin: 0 auto;
   margin-top: 16px;
   padding: 16px 2px;
@@ -13,14 +13,6 @@ export const EventCard = styled.div`
   &:hover {
     box-shadow: ${boxShadowHover};
     border: solid 2px ${colors.blue};
-  }
-
-  @media screen and (${breakpoints.tablet}) {
-    width: 688px;
-  }
-
-  @media screen and (${breakpoints.desktop}) {
-    width: 832px;
   }
 `;
 
@@ -34,7 +26,6 @@ export const EventCardHeader = styled.div`
 `;
 
 export const EventCardTitle = styled.h2`
-  width: 230px;
   height: 54px;
   margin: 0 16px 16px 14px;
   font-size: 18px;
@@ -43,7 +34,6 @@ export const EventCardTitle = styled.h2`
   color: ${colors.blue};
 
   @media screen and (${breakpoints.tablet}) {
-    width: 688px;
     height: 20px;
     font-size: 24px;
   }
@@ -114,5 +104,6 @@ export const RowValue = styled.p`
 
 export const ButtonWrapper = styled.div`
   margin-top: 25px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 `;

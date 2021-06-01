@@ -14,6 +14,7 @@ import {
   HamOptions,
   Options,
   NavLink,
+  LogoWrapper,
 } from './HeaderStyle';
 
 import { PrimaryButton } from '../../lib/styles/generalStyles';
@@ -32,12 +33,14 @@ const Header = () => {
     <>
       <HeaderInner>
         <Inner>
-          <LogoContainer>
-            <FinalLogo type={'NavLogo'} src={Icon} />
-          </LogoContainer>
-          <CPSRKcontainer>
-            <Cpsrk>Centar za podršku studentima i razvoj karijera</Cpsrk>
-          </CPSRKcontainer>
+          <LogoWrapper>
+            <LogoContainer>
+              <FinalLogo type={'NavLogo'} src={Icon} />
+            </LogoContainer>
+            <CPSRKcontainer>
+              <Cpsrk>Centar za podršku studentima i razvoj karijera</Cpsrk>
+            </CPSRKcontainer>
+          </LogoWrapper>
           <Hamburger>
             {isOpen === false ? (
               <HamburgerLogo type={'Hamb'} src={HamIcon} Func={ToggleHamb} />
