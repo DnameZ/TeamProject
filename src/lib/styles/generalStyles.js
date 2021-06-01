@@ -148,6 +148,7 @@ export const PrimaryButtonStyle = styled.button`
   @media screen and (${breakpoints.tablet}) {
     ${(props) => props.type === 'small' && `width: 104px; height: 48px;`}
     ${(props) => props.type === 'large' && `width: 336px; height: 56px;`}
+    ${(props) => props.type === 'fullwidth' && `width:100%; height: 56px;`}
   }
 `;
 
@@ -172,6 +173,7 @@ export const SecondaryButtonStyle = styled.button`
   }
 
   ${(props) => props.type === 'modal/card' && `width: 224px; height: 56px;`}
+  ${(props) => props.type === 'fullwidth' && `width:100%; height: 56px;`}
   @media screen and (${breakpoints.tablet}) {
     width: 226px;
     height: 50px;
@@ -190,17 +192,18 @@ export const SectionButton = ({ text, type, Func }) => {
 export const SectionButtonStyle = styled.button`
   ${ButtonDefault};
   position:relative;
-  &:last-child{margin-left:-3px; border-radius: 0 4px 4px 0; z-index:2;}
+  &:last-child{left: -3px; border-radius: 0 4px 4px 0; z-index:2;}
   border-radius: 4px 0 0 4px;
   border-width: 3px;
   border-style: solid;
-  border-color: {
-    props.type==='inactive'?${colors.silver}: ${colors.blue};
-  }
+
   background-color: ${colors.white};
   color: ${colors.blue};
-  width: 144px;
-  height: 56px;
+  width: 50%;
+  height: 66px;
+  border-color: {
+    props.type==='inactive'?${colors.silver}: ${colors.blue};
+  };
 
   &:hover {
     background-color: ${colors.white};
@@ -210,12 +213,10 @@ export const SectionButtonStyle = styled.button`
   ${(props) => props.type === 'active' && `z-index:3;`}
 
   @media screen and (${breakpoints.tablet}) {
-    width: 344px;
-    height: 66px;
+    width: 100%;
   }
-
+  
   @media screen and (${breakpoints.desktop}) {
     width: 180px;
-    height: 66px;
   }
 `;

@@ -3,8 +3,7 @@ import { colors, breakpoints } from '../../lib/styles/theme';
 
 export const MobileWrapper = styled.div`
   display: block;
-  width: 288px;
-  height: 222px;
+  width: 100%;
   border-radius: 4px;
   border: 2px solid ${colors.lightGrey};
   padding: 20px 24px 16px 16px;

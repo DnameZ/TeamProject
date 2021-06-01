@@ -14,9 +14,23 @@ export const Header = styled.header`
 
 export const Inner = styled.div`
   height: 100%;
-  padding: 0 15px;
+  padding: 0 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  @media screen and (${breakpoints.tablet}) {
+    padding: 0 40px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    padding: 0 108px;
+  }
+`;
+
+export const LogoWrapper = styled.div`
+  display: flex;
+  gap: 16px;
   align-items: center;
 `;
 
@@ -28,17 +42,9 @@ export const CPSRKcontainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
+  position: relative;
+  top: 2px;
   height: 38x;
-
-  @media screen and (${breakpoints.tablet}) {
-    margin-left: 40px;
-  }
-  @media screen and (${breakpoints.desktop}) {
-    margin-left: 60px;
-  }
-  @media screen and (${breakpoints.desktopLarge}) {
-    margin-left: 108px;
-  }
 `;
 
 export const Logo = styled.img`
@@ -93,29 +99,14 @@ export const Nav = styled.nav`
     justify-content: center;
     align-items: center;
     flex-direction: row-reverse;
-    margin-right: 40px;
-  }
-
-  @media screen and (${breakpoints.desktopLarge}) {
-    margin-right: 108px;
   }
 `;
 
 export const Cpsrk = styled.h2`
-  position: fixed;
-  left: 120px;
-  top: 23px;
   font-size: 18px;
   font-weight: bold;
   line-height: 1.44;
   color: ${colors.black};
-
-  @media screen and (${breakpoints.desktop}) {
-    margin-left: 10px;
-  }
-  @media screen and (${breakpoints.desktopLarge}) {
-    margin-left: 50px;
-  }
 `;
 
 export const HamMenu = styled.div`

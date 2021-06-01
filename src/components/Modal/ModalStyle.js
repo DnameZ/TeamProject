@@ -14,7 +14,7 @@ export const ModalBackground = styled.div`
 
 export const ModalWrapper = styled.div`
   margin: 160px 0 80px;
-  width: 288px;
+  width: 90%;
   border-radius: 10px;
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: ${colors.white};
@@ -29,7 +29,6 @@ export const ModalWrapper = styled.div`
   }
 
   @media screen and (${breakpoints.desktop}) {
-    margin-top: 80px;
     width: 648px;
   }
 `;
