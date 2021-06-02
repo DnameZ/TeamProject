@@ -13,23 +13,27 @@ import {
 
 import { PrimaryButton, SecondaryButton } from '../../lib/styles/generalStyles';
 
-const FilterStatusOverlay = (props) => {
+const FilterStatusOverlay = ({ title, onOverlayClosed, children }) => {
   return (
     <>
       <Overlay>
         <FilterWrapper>
           <FilterContent>
             <FilterHeader>
-              <Title>{props.title}</Title>
+              <Title>{title}</Title>
               <CloseIcon>
-                <GrClose />
+                <GrClose onClick={onOverlayClosed} />
               </CloseIcon>
             </FilterHeader>
-            {props.children}
+            {children}
           </FilterContent>
           <ButtonsWrapper>
-            <PrimaryButton text="Prikaži rezultate" type="large" />
-            <SecondaryButton text="Zatvori" type="large" />
+            <PrimaryButton text="Prikaži rezultate" type="fullWidth" />
+            <SecondaryButton
+              text="Zatvori"
+              type="fullWidth"
+              onClick={onOverlayClosed}
+            />
           </ButtonsWrapper>
         </FilterWrapper>
       </Overlay>
