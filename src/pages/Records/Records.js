@@ -11,7 +11,7 @@ import {
   SectionContent,
 } from '../../lib/styles/generalStyles';
 import Filter from '../../components/Filter/Filter';
-import FilterStatusOverlay from '../../components/FilterStatusOverlay/FilterStatusOverlay';
+import FilterOverlay from '../../components/FilterOverlay/FilterOverlay';
 
 //api
 import { getAllEvents } from '../../api/event';
@@ -121,7 +121,7 @@ const Records = () => {
         />
       )}
       {filter ? (
-        <FilterStatusOverlay
+        <FilterOverlay
           title="Filtriraj"
           onOverlayClosed={toggleFilter}
           handleShowResults={handleShowResults}

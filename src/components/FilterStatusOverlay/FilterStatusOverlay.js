@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GrClose } from 'react-icons/gr';
 
 import {
@@ -10,24 +10,14 @@ import {
   Title,
   CloseIcon,
 } from './FilterStatusOverlayStyle';
-import Filter from '../Filter/Filter';
 import { PrimaryButton, SecondaryButton } from '../../lib/styles/generalStyles';
 
-const FilterStatusOverlay = ({ title, onOverlayClosed, handleShowResults }) => {
-  const [searchValue, setSearchValue] = useState('');
-
-  const handleSearch = (value) => {
-    setSearchValue(value);
-  };
-
-  const onShowResults = () => {
-    const filterCriteria = {
-      title: searchValue,
-    };
-
-    handleShowResults(filterCriteria);
-  };
-
+const FilterStatusOverlay = ({
+  title,
+  onOverlayClosed,
+  onShowResults,
+  children,
+}) => {
   return (
     <>
       <Overlay>
@@ -39,7 +29,7 @@ const FilterStatusOverlay = ({ title, onOverlayClosed, handleShowResults }) => {
                 <GrClose onClick={onOverlayClosed} />
               </CloseIcon>
             </FilterHeader>
-            <Filter handleSearch={handleSearch} />
+            {children}
           </FilterContent>
           <ButtonsWrapper>
             <PrimaryButton
