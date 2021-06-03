@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GrClose } from 'react-icons/gr';
 
 import {
@@ -10,10 +10,24 @@ import {
   Title,
   CloseIcon,
 } from './FilterStatusOverlayStyle';
-
+import Filter from '../Filter/Filter';
 import { PrimaryButton, SecondaryButton } from '../../lib/styles/generalStyles';
 
-const FilterStatusOverlay = ({ title, onOverlayClosed, children }) => {
+const FilterStatusOverlay = ({ title, onOverlayClosed, handleShowResults }) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearch = (value) => {
+    setSearchValue(value);
+  };
+
+  const onShowResults = () => {
+    const filterCriteria = {
+      title: searchValue,
+    };
+
+    handleShowResults(filterCriteria);
+  };
+
   return (
     <>
       <Overlay>
@@ -25,10 +39,14 @@ const FilterStatusOverlay = ({ title, onOverlayClosed, children }) => {
                 <GrClose onClick={onOverlayClosed} />
               </CloseIcon>
             </FilterHeader>
-            {children}
+            <Filter handleSearch={handleSearch} />
           </FilterContent>
           <ButtonsWrapper>
-            <PrimaryButton text="Prikaži rezultate" type="fullWidth" />
+            <PrimaryButton
+              text="Prikaži rezultate"
+              type="fullWidth"
+              onClick={onShowResults}
+            />
             <SecondaryButton
               text="Zatvori"
               type="fullWidth"

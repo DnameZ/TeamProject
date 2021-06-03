@@ -16,7 +16,6 @@ const Filter = ({ handleSearch }) => {
     'marketing',
     'frontend',
     'backend',
-    ,
     'mobile apps',
     'development',
   ];

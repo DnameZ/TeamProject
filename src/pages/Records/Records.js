@@ -53,7 +53,7 @@ const Records = () => {
   useEffect(() => {
     handleResize();
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wM1QyMDoyMTowNC44NzVaIiwiaWF0IjoxNjIyNzUxNjY0fQ.SR4zzwT-1GLXFYpl-opvx_HU_WhoNCaVbY2P0YBZjxU';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wM1QyMToyNTo1MS40NzNaIiwiaWF0IjoxNjIyNzU1NTUxfQ.apuhssCp5rZZRKFCLv8gUzp4O_dQtZV6MmrZmQLO-bs';
     getAllEvents(jwt).then((result) => {
       setEvents(removeFutureEvents(result));
       setIsLoading(false);
@@ -92,8 +92,17 @@ const Records = () => {
   };
 
   const handleSearch = (value) => {
-    console.log(value);
     setSearchValue(value.toLowerCase());
+  };
+
+  const handleShowResults = (searchCriteria) => {
+    if (searchCriteria.title) {
+      handleSearch(searchCriteria.title);
+    } else {
+      handleSearch('');
+    }
+
+    toggleFilter();
   };
 
   return (
@@ -112,9 +121,11 @@ const Records = () => {
         />
       )}
       {filter ? (
-        <FilterStatusOverlay title="Filtriraj" onOverlayClosed={toggleFilter}>
-          <Filter />
-        </FilterStatusOverlay>
+        <FilterStatusOverlay
+          title="Filtriraj"
+          onOverlayClosed={toggleFilter}
+          handleShowResults={handleShowResults}
+        />
       ) : null}
       {!filter ? (
         <SectionContent columns={2}>
