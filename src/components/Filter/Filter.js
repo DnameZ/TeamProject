@@ -10,16 +10,13 @@ import {
 } from '../../lib/styles/generalStyles';
 import SearchBar from '../SearchBar/SearchBar';
 
-const Filter = () => {
+const Filter = ({ handleSearch }) => {
   const categories = [
     'IOT',
     'marketing',
     'frontend',
     'backend',
-    'mobile apps',
-    'marketing',
-    'frontend',
-    'backend',
+    ,
     'mobile apps',
     'development',
   ];
@@ -29,11 +26,12 @@ const Filter = () => {
     '15.10. (Utorak)',
     '16.10. (Srijeda)',
   ];
+
   return (
     <>
       <FilterOption>
         <Label>Pretraži događaj</Label>
-        <SearchBar />
+        <SearchBar onValueChanged={handleSearch} />
       </FilterOption>
       <FilterOption>
         <Label>Dan događanja</Label>

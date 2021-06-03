@@ -69,7 +69,7 @@ const Events = () => {
               <EventCard
                 key={event.id}
                 title={event.title}
-                location={event.title}
+                location={event.location}
                 date={event.date}
                 time={event.time}
                 freeSpots={event.availability}
