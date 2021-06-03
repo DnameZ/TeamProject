@@ -19,12 +19,19 @@ import eventsMock from '../../lib/mock/events';
 const Records = () => {
   const [filter, setFilter] = useState(false);
   const [allEvents, setAllEvents] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
   };
 
   const handleResize = (event) => {
+    if (window.innerWidth < 720) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+
     if (event.target.innerWidth > 1300) {
       setFilter(false);
     }
@@ -34,12 +41,21 @@ const Records = () => {
 
   return (
     <>
-      <Section
-        onOpenFilter={toggleFilter}
-        sectionTitle="Evidencija polaznika"
-        buttonsHidden
-        setAllEvents={setAllEvents}
-      />
+      {isMobile ? (
+        <Section
+          onOpenFilter={toggleFilter}
+          sectionTitle="Evidencija"
+          buttonsHidden
+          setAllEvents={setAllEvents}
+        />
+      ) : (
+        <Section
+          onOpenFilter={toggleFilter}
+          sectionTitle="Evidencija polaznika"
+          buttonsHidden
+          setAllEvents={setAllEvents}
+        />
+      )}
       {filter ? (
         <FilterStatusOverlay title="Filtriraj" onOverlayClosed={toggleFilter}>
           <Filter />
