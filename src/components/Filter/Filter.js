@@ -10,22 +10,14 @@ import {
 } from '../../lib/styles/generalStyles';
 import SearchBar from '../SearchBar/SearchBar';
 
-const Filter = ({ handleSearch }) => {
-  const categories = [
-    'IOT',
-    'marketing',
-    'frontend',
-    'backend',
-    'mobile apps',
-    'development',
-  ];
-  const companies = ['Speck', 'Infinum', 'Five'];
-  const eventDays = [
-    '14.10. (Ponedjeljak)',
-    '15.10. (Utorak)',
-    '16.10. (Srijeda)',
-  ];
+//Mock data
+import {
+  dates as eventDays,
+  companies,
+  categories,
+} from '../../lib/mock/filterData';
 
+const Filter = ({ handleSearch }) => {
   return (
     <>
       <FilterOption>
@@ -39,8 +31,8 @@ const Filter = ({ handleSearch }) => {
             Odaberi...
           </Option>
           {eventDays.map((day, index) => (
-            <Option value={day} key={index}>
-              {day}
+            <Option value={day.value} key={index}>
+              {day.display}
             </Option>
           ))}
         </Select>

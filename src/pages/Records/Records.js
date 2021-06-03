@@ -53,7 +53,7 @@ const Records = () => {
   useEffect(() => {
     handleResize();
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wM1QyMToyNTo1MS40NzNaIiwiaWF0IjoxNjIyNzU1NTUxfQ.apuhssCp5rZZRKFCLv8gUzp4O_dQtZV6MmrZmQLO-bs';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wM1QyMjozOTozNC43MzBaIiwiaWF0IjoxNjIyNzU5OTc0fQ.4w7ZG0TFrY4XKvFeNflDH8RqpOHme89S3HZpLEUkN8g';
     getAllEvents(jwt).then((result) => {
       setEvents(removeFutureEvents(result));
       setIsLoading(false);
