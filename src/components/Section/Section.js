@@ -17,14 +17,21 @@ const Section = ({
   rightButton,
   buttonsHidden,
   setAllEvents,
+  setShowEvents,
 }) => {
   const mojiDogadaji = rightButton;
   const sviDogadaji = leftButton;
   const [curEvent, setcurEvent] = useState(sviDogadaji);
   const ToggleDogađaj = (dogadaj) => {
     setcurEvent(dogadaj);
-    dogadaj === leftButton ? setAllEvents(true) : setAllEvents(false);
+    if (setAllEvents) {
+      dogadaj === leftButton ? setAllEvents(true) : setAllEvents(false);
+    }
+    if (setShowEvents) {
+      dogadaj === leftButton ? setShowEvents(true) : setShowEvents(false);
+    }
   };
+
   const SetActiveOrInactive = (text) => {
     const active = 'active';
     const inactive = 'inactive';
