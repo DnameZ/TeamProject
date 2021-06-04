@@ -8,7 +8,11 @@ import {
 } from './CommentListStyle';
 import Modal from '../Modal/Modal';
 
-const CommentList = () => {
+const CommentList = (props) => {
+  if (!props.show) {
+    return null;
+  }
+
   const eventTitle = 'Kreiraj svoju Pokedex aplikaciju uz ReactJS';
   const comments = [
     {
@@ -39,7 +43,10 @@ const CommentList = () => {
 
   return (
     <>
-      <Modal title="Komentari" avgGrade={4.7}>
+      <Modal
+        handleModalClose={props.handleClose}
+        title="Komentari"
+        avgGrade={4.7}>
         <InfoWrapper>
           <InfoTitle>Naziv događaja:</InfoTitle>
           <InfoValue>{eventTitle}</InfoValue>
