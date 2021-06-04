@@ -3,12 +3,11 @@ import { colors, breakpoints } from '../../lib/styles/theme';
 
 export const MobileWrapper = styled.div`
   display: block;
-  width: 100%;
   border-radius: 4px;
   border: 2px solid ${colors.lightGrey};
   padding: 20px 24px 16px 16px;
   background-color: ${colors.white};
-  margin: 10px auto 16px;
+  margin: 10px 16px 16px 16px;
   @media screen and (${breakpoints.tablet}) {
     display: none;
   }
@@ -31,15 +30,20 @@ export const MobileText = styled.p`
 export const TableWrapper = styled.table`
   display: none;
   border-collapse: collapse;
+
   @media screen and (${breakpoints.tablet}) {
     display: block;
     width: 684px;
-    margin: 0 auto;
+    margin: 55px auto 15px;
     text-align: left;
   }
-
   @media screen and (${breakpoints.desktop}) {
     width: 1012px;
+    margin-top: 55px;
+  }
+
+  @media screen and (${breakpoints.desktopLarge}) {
+    margin-top: 100px;
   }
 `;
 
