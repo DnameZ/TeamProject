@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 // pages
@@ -10,6 +10,7 @@ import Statistics from './pages/Statistics/Statistics';
 // components
 import { Main } from './lib/styles/generalStyles';
 import Header from './components/Header/Header';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,12 @@ function App() {
     setPath(location.pathname);
   }, [location]);
 
+  const { setIsAdmin, setIsLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem('authToken') ? true : false);
+    setIsAdmin(JSON.parse(localStorage.getItem('isAdmin')));
+  }, [setIsAdmin, setIsLoggedIn]);
   return (
     <>
       {path !== '/login' ? <Header /> : null}

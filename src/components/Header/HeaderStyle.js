@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { breakpoints, colors, boxShadow } from '../../lib/styles/theme';
+import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   background-color: ${colors.white};
@@ -153,7 +154,7 @@ export const Options = styled.h2`
   }
 `;
 
-export const NavLink = styled.a`
+export const NavItem = styled(NavLink)`
   cursor: pointer;
   display: inline-block;
   text-decoration: none;

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
+//style
 import {
   Header as HeaderInner,
   Inner,
@@ -13,19 +15,24 @@ import {
   HamMenuButton,
   HamOptions,
   Options,
-  NavLink,
+  NavItem,
   LogoWrapper,
 } from './HeaderStyle';
-
 import { PrimaryButton } from '../../lib/styles/generalStyles';
 
+// assets
 import Icon from '../../assets/images/CPSRK.png';
 import HamIcon from '../../assets/images/Hamb.png';
 import XIcon from '../../assets/images/xButton.png';
 
+//components
+import { AuthContext } from '../../context/AuthContext';
+
 const Header = () => {
+  const { isAdmin, handleUserLogout } = useContext(AuthContext);
   const [isOpen, setisOpen] = useState(false);
   const [isActive, setisActive] = useState('');
+
   const ToggleHamb = () => {
     setisOpen((isOpen) => !isOpen);
   };
@@ -49,17 +56,27 @@ const Header = () => {
             )}
           </Hamburger>
           <Nav>
-            <PrimaryButton type={'small'} text={'Odjava'} />
-            <NavLink
-              onClick={() => setisActive('evidencija')}
-              isActive={isActive === 'evidencija'}>
-              Evidencija
-            </NavLink>
-            <NavLink
-              onClick={() => setisActive('statistika')}
-              isActive={isActive === 'statistika'}>
-              Statistika
-            </NavLink>
+            <PrimaryButton
+              onClick={() => handleUserLogout()}
+              type={'small'}
+              text={'Odjava'}
+            />
+            {isAdmin && (
+              <NavItem
+                to="/records"
+                onClick={() => setisActive('evidencija')}
+                isActive={() => isActive === 'evidencija'}>
+                Evidencija
+              </NavItem>
+            )}
+            {isAdmin && (
+              <NavItem
+                to="/statistics"
+                onClick={() => setisActive('statistika')}
+                isActive={() => isActive === 'statistika'}>
+                Statistika
+              </NavItem>
+            )}
           </Nav>
         </Inner>
       </HeaderInner>
@@ -69,16 +86,21 @@ const Header = () => {
 };
 
 const HamburgerMenu = () => {
+  const { isAdmin, handleUserLogout } = useContext(AuthContext);
   return (
     <>
       <HamMenu>
         <HamOptions>
           <Options>Događaji</Options>
-          <Options>Evidencija</Options>
-          <Options>Statistika</Options>
+          {isAdmin && <Options>Evidencija</Options>}
+          {isAdmin && <Options>Statistika</Options>}
         </HamOptions>
         <HamMenuButton>
-          <PrimaryButton type={'large'} text={'Odjava'} />
+          <PrimaryButton
+            onClick={() => handleUserLogout()}
+            type={'large'}
+            text={'Odjava'}
+          />
         </HamMenuButton>
         <FinalLogo type={'BackLogo'} src={Icon} />
       </HamMenu>

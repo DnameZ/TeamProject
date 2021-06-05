@@ -260,3 +260,22 @@ export const FilterWrapper = styled.div`
     display: block;
   }
 `;
+
+// message
+export const SuccessMessage = styled.p`
+  margin: 0 auto;
+  padding: 15px;
+  margin-bottom: 32px;
+  border-radius: 6px;
+  background: ${colors.successBackground};
+  color: ${colors.success};
+  ${(props) =>
+    props.isError &&
+    `
+        background: ${colors.errorBackground};
+        color: ${colors.error};
+    `};
+  @media screen and (${breakpoints.mobileLarge}) {
+    max-width: 400px;
+  }
+`;

@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+// style
 import headingImage from '../../assets/images/login-heading.png';
 import { Overlay, Figure, Image, Form, FormRow } from './LoginStyle';
 import {
@@ -6,11 +10,20 @@ import {
   Label,
   ErrorLabel,
   PrimaryButton,
+  SuccessMessage,
 } from '../../lib/styles/generalStyles';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+
+// components
+import { loginUser } from '../../api/user';
+import { getAllUsers } from '../../api/user';
+import { AuthContext } from '../../context/AuthContext';
 
 const Login = () => {
+  const [isError, setIsError] = useState(false);
+  const [successMessage, setIsSuccessMessage] = useState('');
+  const [isRequestFinished, setIsRequestFinished] = useState(false);
+  const { handleUserLogin } = useContext(AuthContext);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -24,10 +37,25 @@ const Login = () => {
         .min(8, 'Password must be at least 8 characters long!')
         .required('Password is required!'),
     }),
-    onSubmit: (values) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values));
-      }, 1000);
+    onSubmit: async (values) => {
+      setIsError(false);
+      setIsRequestFinished(false);
+
+      try {
+        const response = await loginUser(values);
+        const users = await getAllUsers(response.token);
+        const isAdmin = users.find(
+          (user) => user.email === values.email,
+        ).isAdmin;
+
+        handleUserLogin(response.token, isAdmin);
+        setIsSuccessMessage('User login successful');
+      } catch (error) {
+        setIsError(true);
+        setIsSuccessMessage('User login failed!');
+      } finally {
+        setIsRequestFinished(true);
+      }
     },
   });
 
@@ -37,6 +65,9 @@ const Login = () => {
         <Figure>
           <Image src={headingImage} />
         </Figure>
+        {isRequestFinished && (
+          <SuccessMessage isError={isError}>{successMessage}</SuccessMessage>
+        )}
         <Form onSubmit={formik.handleSubmit}>
           <FormRow>
             <Label htmlFor="email">Email:</Label>
