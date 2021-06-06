@@ -11,6 +11,8 @@ import Statistics from './pages/Statistics/Statistics';
 import { Main } from './lib/styles/generalStyles';
 import Header from './components/Header/Header';
 
+import StudentRecord from './components/StudentRecord/StudentRecord';
+
 function App() {
   const location = useLocation();
   const [path, setPath] = useState(location.pathname);
@@ -23,6 +25,7 @@ function App() {
   return (
     <>
       {path !== '/login' ? <Header /> : null}
+      <StudentRecord />
       <Main>
         <Route path="/login" component={Login} />
         <Route path="/events" component={Events} />

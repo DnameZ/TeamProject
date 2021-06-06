@@ -114,9 +114,13 @@ const AddStudent = () => {
 };
 
 const SignedIn = () => {
+  const [text, setText] = useState(null);
+  const handleChange = (value) => {
+    setText(value);
+  };
   const Korisnici = [
     {
-      imeIprezime: 'Marko Mrkonjic',
+      imeIprezime: 'Andrija Mrkonjic',
       email: 'markomrki45@hotmail.com',
     },
     {
@@ -128,14 +132,21 @@ const SignedIn = () => {
       email: 'markomrki45@hotmail.com',
     },
   ];
+  const filteredUsers = Korisnici.filter((user) => {
+    if (text == '') {
+      return user;
+    } else if (user.imeIprezime.toLowerCase().includes(text.toLowerCase())) {
+      return user;
+    }
+  });
   return (
     <>
       <StudentBody>
         <StudentRow>
-          <SearchBar />
+          <SearchBar onValueChanged={handleChange} />
         </StudentRow>
         <StudentRow>
-          {Korisnici.map((korisnik, index) => (
+          {filteredUsers.map((korisnik, index) => (
             <StudentData key={index}>
               <InputCheckbox id={index} type="checkbox" />
               <CheckboxOptionLabel htmlFor={index}>
