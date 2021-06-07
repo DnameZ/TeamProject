@@ -114,7 +114,7 @@ const AddStudent = () => {
 };
 
 const SignedIn = () => {
-  const [text, setText] = useState(null);
+  const [text, setText] = useState('');
   const handleChange = (value) => {
     setText(value);
   };
@@ -132,6 +132,16 @@ const SignedIn = () => {
       email: 'markomrki45@hotmail.com',
     },
   ];
+  const getHighlightedText = (text, highlight) => {
+    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+    return (
+      <span>
+        {parts.map((part) =>
+          part.toLowerCase() === highlight.toLowerCase() ? <b>{part}</b> : part,
+        )}
+      </span>
+    );
+  };
   const filteredUsers = Korisnici.filter((user) => {
     if (text == '') {
       return user;
@@ -139,6 +149,7 @@ const SignedIn = () => {
       return user;
     }
   });
+
   return (
     <>
       <StudentBody>
@@ -151,7 +162,7 @@ const SignedIn = () => {
               <InputCheckbox id={index} type="checkbox" />
               <CheckboxOptionLabel htmlFor={index}>
                 {' '}
-                {korisnik.imeIprezime}
+                {getHighlightedText(korisnik.imeIprezime, text)}
               </CheckboxOptionLabel>
             </StudentData>
           ))}
