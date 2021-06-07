@@ -31,7 +31,7 @@ export const InputGeneral = css`
 
 export const Input = styled.input`
   ${InputGeneral};
-  padding: ${(props) => (props.forSearch ? '0 44px' : 'initial')};
+  padding: ${(props) => (props.forSearch ? '0 44px' : '16px')};
 `;
 
 export const Select = styled.select`

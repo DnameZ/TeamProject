@@ -143,7 +143,9 @@ export const HamOptions = styled.div`
   margin-top: 82px;
 `;
 
-export const Options = styled.h2`
+export const Options = styled(NavLink)`
+  text-decoration: none;
+  display: flex;
   padding-right: 159px;
   line-height: 2.6;
   font-size: 24px;
@@ -165,7 +167,7 @@ export const NavItem = styled(NavLink)`
   margin-right: 32px;
 
   ${(props) =>
-    props.isActive &&
+    props.jeaktivan &&
     `
   &:after {
     width: 100%;

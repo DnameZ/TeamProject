@@ -10,7 +10,6 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem('authToken', authToken);
     localStorage.setItem('isAdmin', isAdmin);
 
-    console.log(isAdmin);
     setIsLoggedIn(true);
     setIsAdmin(isAdmin);
   }

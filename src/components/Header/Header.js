@@ -27,11 +27,14 @@ import XIcon from '../../assets/images/xButton.png';
 
 //components
 import { AuthContext } from '../../context/AuthContext';
+import { useHistory } from 'react-router';
 
 const Header = () => {
+  const history = useHistory();
   const { isAdmin, handleUserLogout } = useContext(AuthContext);
   const [isOpen, setisOpen] = useState(false);
   const [isActive, setisActive] = useState('');
+  console.log(isActive);
 
   const ToggleHamb = () => {
     setisOpen((isOpen) => !isOpen);
@@ -57,7 +60,10 @@ const Header = () => {
           </Hamburger>
           <Nav>
             <PrimaryButton
-              onClick={() => handleUserLogout()}
+              onClick={() => {
+                handleUserLogout();
+                history.push('/login');
+              }}
               type={'small'}
               text={'Odjava'}
             />
@@ -65,7 +71,7 @@ const Header = () => {
               <NavItem
                 to="/records"
                 onClick={() => setisActive('evidencija')}
-                isActive={() => isActive === 'evidencija'}>
+                jeaktivan={isActive === 'evidencija' ? 'true' : undefined}>
                 Evidencija
               </NavItem>
             )}
@@ -73,31 +79,35 @@ const Header = () => {
               <NavItem
                 to="/statistics"
                 onClick={() => setisActive('statistika')}
-                isActive={() => isActive === 'statistika'}>
+                jeaktivan={isActive === 'statistika' ? 'true' : undefined}>
                 Statistika
               </NavItem>
             )}
           </Nav>
         </Inner>
       </HeaderInner>
-      {isOpen === false ? '' : <HamburgerMenu />}
+      {isOpen === false ? '' : <HamburgerMenu toggleHamb={!isOpen} />}
     </>
   );
 };
 
 const HamburgerMenu = () => {
+  const history = useHistory();
   const { isAdmin, handleUserLogout } = useContext(AuthContext);
   return (
     <>
       <HamMenu>
         <HamOptions>
-          <Options>Događaji</Options>
-          {isAdmin && <Options>Evidencija</Options>}
-          {isAdmin && <Options>Statistika</Options>}
+          <Options to="events">Događaji</Options>
+          {isAdmin && <Options to="/records">Evidencija</Options>}
+          {isAdmin && <Options to="/statistics">Statistika</Options>}
         </HamOptions>
         <HamMenuButton>
           <PrimaryButton
-            onClick={() => handleUserLogout()}
+            onClick={() => {
+              handleUserLogout();
+              history.push('/login');
+            }}
             type={'large'}
             text={'Odjava'}
           />

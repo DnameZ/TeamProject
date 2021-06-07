@@ -17,8 +17,10 @@ import {
 import { loginUser } from '../../api/user';
 import { getAllUsers } from '../../api/user';
 import { AuthContext } from '../../context/AuthContext';
+import { useHistory } from 'react-router';
 
 const Login = () => {
+  const history = useHistory();
   const [isError, setIsError] = useState(false);
   const [successMessage, setIsSuccessMessage] = useState('');
   const [isRequestFinished, setIsRequestFinished] = useState(false);
@@ -32,10 +34,10 @@ const Login = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email('Invalid email address!')
-        .required('Email is required!'),
+        .required('Email adresa je obavezna!'),
       password: Yup.string()
         .min(8, 'Password must be at least 8 characters long!')
-        .required('Password is required!'),
+        .required('Lozinka je obavezna!'),
     }),
     onSubmit: async (values) => {
       setIsError(false);
@@ -50,6 +52,8 @@ const Login = () => {
 
         handleUserLogin(response.token, isAdmin);
         setIsSuccessMessage('User login successful');
+
+        history.push(isAdmin ? '/records' : '/events');
       } catch (error) {
         setIsError(true);
         setIsSuccessMessage('User login failed!');
@@ -88,7 +92,7 @@ const Login = () => {
             ) : null}
           </FormRow>
           <FormRow>
-            <PrimaryButton text="Prijava" type="large" />
+            <PrimaryButton text="Prijava" type="fullWidth" />
           </FormRow>
         </Form>
       </Overlay>
