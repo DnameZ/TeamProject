@@ -1,3 +1,5 @@
+import apiOrigin from './api';
+
 // export const createEvent = (event, authToken) => {
 //   return fetch(`${apiOrigin}/api/event`, {
 //     method: 'POST',
@@ -53,5 +55,5 @@ export const rateEvent = (review, id, authToken) => {
       'auth-token': authToken,
     },
     body: JSON.stringify(review),
-  }).then((res) => res.json());
+  }).then((res) => res);
 };
