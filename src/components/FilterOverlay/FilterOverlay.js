@@ -4,10 +4,12 @@ import FilterStatusOverlay from '../FilterStatusOverlay/FilterStatusOverlay';
 
 const FilterOverlay = ({ title, onOverlayClosed, handleShowResults }) => {
   const [searchValue, setSearchValue] = useState('');
+  const [organizer, setOrganizer] = useState('');
 
   const onShowResults = () => {
     const filterCriteria = {
       title: searchValue,
+      organizer: organizer,
     };
 
     handleShowResults(filterCriteria);
@@ -18,7 +20,10 @@ const FilterOverlay = ({ title, onOverlayClosed, handleShowResults }) => {
       title={title}
       onOverlayClosed={onOverlayClosed}
       onShowResults={onShowResults}>
-      <Filter handleSearch={setSearchValue} />
+      <Filter
+        handleSearch={setSearchValue}
+        handleCompanySearch={setOrganizer}
+      />
     </FilterStatusOverlay>
   );
 };

@@ -23,6 +23,7 @@ const Records = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [events, setEvents] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [organizer, setOrganizer] = useState('');
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -53,7 +54,7 @@ const Records = () => {
   useEffect(() => {
     handleResize();
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wM1QyMjozOTozNC43MzBaIiwiaWF0IjoxNjIyNzU5OTc0fQ.4w7ZG0TFrY4XKvFeNflDH8RqpOHme89S3HZpLEUkN8g';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wOFQxNDozNzowMy4yNzNaIiwiaWF0IjoxNjIzMTYzMDIzfQ.H3bz-eqe15zxnwXJQanAgPQxXiKNzr6s7vM5u-Ot1EU';
     getAllEvents(jwt).then((result) => {
       setEvents(removeFutureEvents(result));
       setIsLoading(false);
@@ -96,11 +97,12 @@ const Records = () => {
   };
 
   const handleShowResults = (searchCriteria) => {
-    if (searchCriteria.title) {
-      handleSearch(searchCriteria.title);
-    } else {
-      handleSearch('');
-    }
+    searchCriteria.title
+      ? handleSearch(searchCriteria.title)
+      : handleSearch('');
+    searchCriteria.organizer
+      ? setOrganizer(searchCriteria.organizer)
+      : setOrganizer('');
 
     toggleFilter();
   };
@@ -130,13 +132,17 @@ const Records = () => {
       {!filter ? (
         <SectionContent columns={2}>
           <FilterWrapper>
-            <Filter handleSearch={handleSearch} />
+            <Filter
+              handleSearch={handleSearch}
+              handleCompanySearch={setOrganizer}
+            />
           </FilterWrapper>
           <EventsWrapper>
             {!isLoading ? (
               events.map(
                 (event) =>
-                  event.name.toLowerCase().includes(searchValue) && (
+                  event.name.toLowerCase().includes(searchValue) &&
+                  event.organizer.includes(organizer) && (
                     <EventCard
                       key={event.id}
                       title={event.name}
