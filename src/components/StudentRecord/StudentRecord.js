@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../Modal/Modal';
 
 import SearchBar from '../SearchBar/SearchBar';
+import { confirmUserAttendance } from '../../api/user';
 
 import {
   EventInfo,
@@ -35,6 +36,15 @@ const StudentRecord = ({ handleModalClose }) => {
   const Dodaj = 'Dodaj';
   const [isRecord, setIsRecord] = useState(Prijavljeni);
   const [isMobile, setIsMobile] = useState(false);
+  const object = {
+    confirmedUsers: [
+      '5a88c32c-1187-4584-89d8-1a6f2751658b',
+      '1c9d5b23-cffe-4a9b-aefc-dbd75963b4a9',
+    ],
+  };
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjMDJhN2NkOS0zMTIxLTQ1MTYtODBiZS0xZjI2YTQ0YzFjNzkiLCJ0aW1lIjoiMjAyMS0wNi0wOFQxODo1OTo0My4yOTRaIiwiaWF0IjoxNjIzMTc4NzgzfQ.Q62odCOa-6qJL0vAwUTAaxe8VSZeNdynGqqnxxJ4j8M';
+  const id = '153f16cb-48f9-4293-aff9-3436d9d0417c';
 
   const handleResize = () => {
     if (window.innerWidth < 720) {
@@ -83,7 +93,11 @@ const StudentRecord = ({ handleModalClose }) => {
       </StudentTable>
       <ButtonWrapper>
         {isRecord === Prijavljeni ? (
-          <PrimaryButton type={'modal/card'} text={'Spremi'} />
+          <PrimaryButton
+            onClick={() => confirmUserAttendance(object, id, token)}
+            type={'modal/card'}
+            text={'Spremi'}
+          />
         ) : (
           <SecondaryButton type={'modal/card'} text={'Dodaj'} />
         )}

@@ -77,7 +77,9 @@ export const confirmUserAttendance = (confirmedUsers, id, authToken) => {
       'auth-token': authToken,
     },
     body: JSON.stringify(confirmedUsers),
-  }).then((res) => res.json());
+  })
+    .then((res) => res)
+    .then();
 };
 
 export const getEventRatings = (id, authToken) => {
