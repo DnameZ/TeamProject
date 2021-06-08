@@ -17,13 +17,22 @@ import {
   categories,
 } from '../../lib/mock/filterData';
 
-const Filter = ({ handleSearch, handleCompanySearch, handleDateSearch }) => {
+const Filter = ({
+  handleSearch,
+  handleCompanySearch,
+  handleDateSearch,
+  handleCategoriesSearch,
+}) => {
   const handleCompanyChange = (event) => {
     handleCompanySearch(event.target.value);
   };
 
   const handleDateChange = (event) => {
     handleDateSearch(event.target.value);
+  };
+
+  const handleCategoriesChange = (event) => {
+    handleCategoriesSearch(event.target.checked, event.target.value);
   };
 
   return (
@@ -63,7 +72,9 @@ const Filter = ({ handleSearch, handleCompanySearch, handleDateSearch }) => {
                 type="checkbox"
                 value={category}
                 id={index}
-                name="category"></InputCheckbox>
+                name="category"
+                onChange={handleCategoriesChange}
+              />
               <CheckboxOptionLabel htmlFor={index}>
                 {category}
               </CheckboxOptionLabel>

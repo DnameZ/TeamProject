@@ -25,6 +25,7 @@ const Records = () => {
   const [searchValue, setSearchValue] = useState('');
   const [organizer, setOrganizer] = useState('');
   const [eventDate, setEventDate] = useState('');
+  const [categories, setCategories] = useState([]);
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -55,7 +56,7 @@ const Records = () => {
   useEffect(() => {
     handleResize();
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wOFQxNzozNjowMy4wMDhaIiwiaWF0IjoxNjIzMTczNzYzfQ.JKM5CsoTvAd059G-11kmcI30CaPHciUY3YUrmls0TOc';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wOFQxODo0ODoyMy42NzNaIiwiaWF0IjoxNjIzMTc4MTAzfQ.hDuiPg1ypp49hKpHGTwqvCjLO_13PX_Kjwl_lnJBIMQ';
     getAllEvents(jwt).then((result) => {
       setEvents(removeFutureEvents(result));
       setIsLoading(false);
@@ -97,6 +98,17 @@ const Records = () => {
     setSearchValue(value.toLowerCase());
   };
 
+  const handleCategoriesSearch = (isChecked, value) => {
+    let newCategoriesList;
+    if (isChecked) {
+      newCategoriesList = categories.concat(value);
+      setCategories(newCategoriesList);
+    } else {
+      newCategoriesList = categories.filter((category) => category !== value);
+      setCategories(newCategoriesList);
+    }
+  };
+
   const handleShowResults = (searchCriteria) => {
     searchCriteria.title
       ? handleSearch(searchCriteria.title)
@@ -107,6 +119,8 @@ const Records = () => {
       : setOrganizer('');
 
     searchCriteria.date ? setEventDate(searchCriteria.date) : setEventDate('');
+
+    setCategories(searchCriteria.categories);
 
     toggleFilter();
   };
@@ -140,6 +154,7 @@ const Records = () => {
               handleSearch={handleSearch}
               handleCompanySearch={setOrganizer}
               handleDateSearch={setEventDate}
+              handleCategoriesSearch={handleCategoriesSearch}
             />
           </FilterWrapper>
           <EventsWrapper>
@@ -148,7 +163,11 @@ const Records = () => {
                 (event) =>
                   event.name.toLowerCase().includes(searchValue) &&
                   event.organizer.includes(organizer) &&
-                  event.startTime.includes(eventDate) && (
+                  event.startTime.includes(eventDate) &&
+                  (categories.every((category) =>
+                    event.category.includes(category),
+                  ) ||
+                    categories.length === 0) && (
                     <EventCard
                       key={event.id}
                       title={event.name}
