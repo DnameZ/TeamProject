@@ -24,6 +24,7 @@ const Records = () => {
   const [events, setEvents] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [organizer, setOrganizer] = useState('');
+  const [eventDate, setEventDate] = useState('');
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -54,7 +55,7 @@ const Records = () => {
   useEffect(() => {
     handleResize();
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wOFQxNDozNzowMy4yNzNaIiwiaWF0IjoxNjIzMTYzMDIzfQ.H3bz-eqe15zxnwXJQanAgPQxXiKNzr6s7vM5u-Ot1EU';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wOFQxNzozNjowMy4wMDhaIiwiaWF0IjoxNjIzMTczNzYzfQ.JKM5CsoTvAd059G-11kmcI30CaPHciUY3YUrmls0TOc';
     getAllEvents(jwt).then((result) => {
       setEvents(removeFutureEvents(result));
       setIsLoading(false);
@@ -100,9 +101,12 @@ const Records = () => {
     searchCriteria.title
       ? handleSearch(searchCriteria.title)
       : handleSearch('');
+
     searchCriteria.organizer
       ? setOrganizer(searchCriteria.organizer)
       : setOrganizer('');
+
+    searchCriteria.date ? setEventDate(searchCriteria.date) : setEventDate('');
 
     toggleFilter();
   };
@@ -135,6 +139,7 @@ const Records = () => {
             <Filter
               handleSearch={handleSearch}
               handleCompanySearch={setOrganizer}
+              handleDateSearch={setEventDate}
             />
           </FilterWrapper>
           <EventsWrapper>
@@ -142,7 +147,8 @@ const Records = () => {
               events.map(
                 (event) =>
                   event.name.toLowerCase().includes(searchValue) &&
-                  event.organizer.includes(organizer) && (
+                  event.organizer.includes(organizer) &&
+                  event.startTime.includes(eventDate) && (
                     <EventCard
                       key={event.id}
                       title={event.name}

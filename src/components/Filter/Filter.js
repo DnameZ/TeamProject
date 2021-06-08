@@ -17,9 +17,13 @@ import {
   categories,
 } from '../../lib/mock/filterData';
 
-const Filter = ({ handleSearch, handleCompanySearch }) => {
+const Filter = ({ handleSearch, handleCompanySearch, handleDateSearch }) => {
   const handleCompanyChange = (event) => {
     handleCompanySearch(event.target.value);
+  };
+
+  const handleDateChange = (event) => {
+    handleDateSearch(event.target.value);
   };
 
   return (
@@ -30,7 +34,7 @@ const Filter = ({ handleSearch, handleCompanySearch }) => {
       </FilterOption>
       <FilterOption>
         <Label>Dan događanja</Label>
-        <Select defaultValue="">
+        <Select defaultValue="" onChange={handleDateChange}>
           <Option value="">Svi</Option>
           {eventDays.map((day, index) => (
             <Option value={day.value} key={index}>
