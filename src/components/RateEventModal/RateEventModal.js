@@ -16,11 +16,11 @@ import {
 
 import { TextArea } from '../../lib/styles/generalStyles';
 
-const RateEventModal = (props) => {
+const RateEventModal = (props, handleModalClose) => {
   const [selectedGrade, setSelectedGrade] = useState(0);
 
   return (
-    <Modal title="Ocijeni događaj">
+    <Modal title="Ocijeni događaj" handleModalClose={handleModalClose}>
       <ContentWrapper>
         <ContentRow>
           <RowTitle>Ime događaja:</RowTitle>

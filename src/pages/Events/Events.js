@@ -75,7 +75,7 @@ const Events = () => {
                 freeSpots={event.availability}
                 company={event.company}
                 shortDescription={event.shortDescription}
-                buttonText="Prijavi/Odjavi se"
+                buttonText="Ocijeni"
               />
             ))}
           </EventsWrapper>

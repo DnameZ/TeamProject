@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { BsChevronExpand, BsChevronContract } from 'react-icons/bs';
+import StudentRecord from '../StudentRecord/StudentRecord';
+import Rate from '../RateEventModal/RateEventModal';
 
 // style
 import {
@@ -29,9 +31,26 @@ const EventCard = ({
   buttonText,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
+  const [Modal, setModal] = useState(false);
+
+  const OpenModal = () => {
+    setModal((Modal) => !Modal);
+  };
+  const SetModal = (buttonText) => {
+    const Evidentiraj = 'Evidentiraj';
+    const Ocijeni = 'Ocijeni';
+
+    switch (buttonText) {
+      case Evidentiraj:
+        return <StudentRecord handleModalClose={OpenModal} />;
+      case Ocijeni:
+        return <Rate handleModalClose={OpenModal} />;
+    }
+  };
 
   return (
     <>
+      {Modal == true && SetModal(buttonText)}
       <EventCardWrapper>
         <EventCardHeader>
           <EventCardTitle>{title}</EventCardTitle>
@@ -87,7 +106,11 @@ const EventCard = ({
           )}
         </EventCardContent>
         <ButtonWrapper>
-          <PrimaryButton type="modal/card" text={buttonText} />
+          <PrimaryButton
+            type="modal/card"
+            text={buttonText}
+            onClick={() => OpenModal(buttonText)}
+          />
         </ButtonWrapper>
       </EventCardWrapper>
     </>

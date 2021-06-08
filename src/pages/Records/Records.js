@@ -4,6 +4,7 @@ import { DummyItem, ButtonWrapper } from './RecordsStyle';
 //Components
 import Section from '../../components/Section/Section';
 import EventCard from '../../components/EventCard/EventCard';
+import StudentRecord from '../../components/StudentRecord/StudentRecord';
 import {
   EventsWrapper,
   FilterWrapper,

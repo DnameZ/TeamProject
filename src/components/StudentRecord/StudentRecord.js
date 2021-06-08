@@ -28,7 +28,7 @@ import {
   SecondaryButton,
 } from '../../lib/styles/generalStyles';
 
-const StudentRecord = () => {
+const StudentRecord = ({ handleModalClose }) => {
   const PrijavljeniP = 'Prijavljeni polaznici';
   const DodajP = 'Dodaj polaznike';
   const Prijavljeni = 'Prijavljeni';
@@ -60,7 +60,7 @@ const StudentRecord = () => {
   };
 
   return (
-    <Modal title={'Evidentiraj polaznike'}>
+    <Modal title={'Evidentiraj polaznike'} handleModalClose={handleModalClose}>
       <EventInfo>
         <LabelNameOfEvent>Naziv događaja:</LabelNameOfEvent>
         <NameOfEvent>Kreiraj svoju Pokedex aplikaciju uz ReactJS</NameOfEvent>
