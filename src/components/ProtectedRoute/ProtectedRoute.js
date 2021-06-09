@@ -14,7 +14,7 @@ export const ProtectedRoute = ({
     if (isLoggedIn) {
       if (isAdmin) {
         return '/records';
-      } else if (!isLoggedIn) {
+      } else {
         return '/events';
       }
     } else {
