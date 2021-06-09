@@ -48,6 +48,8 @@ const Events = () => {
         leftButton="Svi događaji"
         rightButton="Moji događaji"
         setAllEvents={setAllEvents}
+        leftTitle="Filtriraj"
+        rightTitle="Status"
       />
       {filter ? (
         <FilterStatusOverlay title="Filtriraj" onOverlayClosed={toggleFilter}>

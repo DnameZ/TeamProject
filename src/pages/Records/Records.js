@@ -47,6 +47,7 @@ const Records = () => {
           sectionTitle="Evidencija"
           buttonsHidden
           setAllEvents={setAllEvents}
+          leftTitle="Filtriraj"
         />
       ) : (
         <Section
@@ -54,6 +55,7 @@ const Records = () => {
           sectionTitle="Evidencija polaznika"
           buttonsHidden
           setAllEvents={setAllEvents}
+          leftTitle="Filtriraj"
         />
       )}
       {filter ? (

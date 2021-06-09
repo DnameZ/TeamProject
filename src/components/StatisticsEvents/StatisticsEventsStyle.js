@@ -5,7 +5,7 @@ export const MobileWrapper = styled.div`
   display: block;
   border-radius: 4px;
   border: 2px solid ${colors.lightGrey};
-  padding: 20px 24px 16px 16px;
+  padding: 15px 24px 0px 16px;
   background-color: ${colors.white};
   margin: 10px 16px 16px 16px;
   @media screen and (${breakpoints.tablet}) {
@@ -24,7 +24,7 @@ export const MobileText = styled.p`
   font-size: 14px;
   line-height: 1.5;
   color: ${colors.darkGrey};
-  margin: 4px 0 16px;
+  margin: 4px 0 10px;
 `;
 
 export const MobileTextCommentar = styled.p`
@@ -43,6 +43,7 @@ export const TableWrapper = styled.table`
   display: none;
   border-collapse: collapse;
   margin-top: 10px;
+
   @media screen and (${breakpoints.tablet}) {
     display: block;
     width: 684px;
@@ -50,7 +51,7 @@ export const TableWrapper = styled.table`
     text-align: left;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     width: 1012px;
   }
 `;
@@ -80,7 +81,7 @@ export const Th = styled.th`
     }
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     &:nth-child(1) {
       width: 390px;
     }
@@ -113,7 +114,7 @@ export const Td = styled.td`
     }
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     &:nth-child(2) {
       text-align: left;
     }
@@ -151,7 +152,7 @@ export const SortIconAZ = styled.img`
     margin-left: 54px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     margin-left: 200px;
   }
 `;
@@ -168,7 +169,7 @@ export const SortIcon = styled.img`
     margin-left: 24px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     margin-left: 114px;
   }
 `;
