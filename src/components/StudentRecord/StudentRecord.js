@@ -42,8 +42,7 @@ const StudentRecord = ({ handleModalClose }) => {
       '1c9d5b23-cffe-4a9b-aefc-dbd75963b4a9',
     ],
   };
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjMDJhN2NkOS0zMTIxLTQ1MTYtODBiZS0xZjI2YTQ0YzFjNzkiLCJ0aW1lIjoiMjAyMS0wNi0wOFQxODo1OTo0My4yOTRaIiwiaWF0IjoxNjIzMTc4NzgzfQ.Q62odCOa-6qJL0vAwUTAaxe8VSZeNdynGqqnxxJ4j8M';
+  const authToken = localStorage.getItem('authToken');
   const id = '153f16cb-48f9-4293-aff9-3436d9d0417c';
 
   const handleResize = () => {
@@ -94,7 +93,7 @@ const StudentRecord = ({ handleModalClose }) => {
       <ButtonWrapper>
         {isRecord === Prijavljeni ? (
           <PrimaryButton
-            onClick={() => confirmUserAttendance(object, id, token)}
+            onClick={() => confirmUserAttendance(object, id, authToken)}
             type={'modal/card'}
             text={'Spremi'}
           />
