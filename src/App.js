@@ -10,6 +10,7 @@ import Statistics from './pages/Statistics/Statistics';
 
 // components
 import Header from './components/Header/Header';
+import Rate from './components/RateEventModal/RateEventModal';
 import { Main } from './lib/styles/generalStyles';
 import { AuthContext } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';

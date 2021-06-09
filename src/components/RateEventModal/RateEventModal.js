@@ -22,11 +22,10 @@ const RateEventModal = (props) => {
   const [value, setValue] = useState('');
 
   const review = { comment: value, rating: selectedGrade };
-  const authToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wOFQyMDo0NjowOC43NjNaIiwiaWF0IjoxNjIzMTg1MTY4fQ.IPMpWZPEmbnm0tIn2QPjxDfncsYD8ju_pkG6qa4jo1U';
   const id = '153f16cb-48f9-4293-aff9-3436d9d0417c';
 
   const SendData = () => {
+    const authToken = localStorage.getItem('authToken');
     rateEvent(review, id, authToken);
   };
 
