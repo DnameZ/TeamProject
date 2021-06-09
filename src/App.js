@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useState, useContext } from 'react';
 import { Switch } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Redirect, Route } from 'react-router-dom';
 // pages
 import Login from './pages/Login/Login';
 import Events from './pages/Events/Events';
@@ -24,7 +24,7 @@ function App() {
     setPath(location.pathname);
   }, [location]);
 
-  const { setIsAdmin, setIsLoggedIn } = useContext(AuthContext);
+  const { setIsAdmin, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem('authToken') ? true : false);
@@ -43,6 +43,18 @@ function App() {
             role="isAdmin"
             path="/statistics"
             component={Statistics}
+          />
+
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return isLoggedIn ? (
+                <Redirect to="/events" />
+              ) : (
+                <Redirect to="/login" />
+              );
+            }}
           />
         </Switch>
       </Main>
