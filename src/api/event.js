@@ -11,8 +11,6 @@ import apiOrigin from './api';
 //   }).then((res) => res.json());
 // };
 
-import apiOrigin from './api';
-
 export const getAllEvents = (authToken) => {
   return fetch(`${apiOrigin}/api/event`, {
     method: 'GET',
