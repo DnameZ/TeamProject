@@ -36,7 +36,7 @@ const Login = () => {
         .email('Invalid email address!')
         .required('Email adresa je obavezna!'),
       password: Yup.string()
-        .min(8, 'Password must be at least 8 characters long!')
+        .min(8, 'Lozinka se mora sastojati od barem 8 znakova!')
         .required('Lozinka je obavezna!'),
     }),
     onSubmit: async (values) => {
@@ -51,12 +51,12 @@ const Login = () => {
         ).isAdmin;
 
         handleUserLogin(response.token, isAdmin);
-        setIsSuccessMessage('User login successful');
+        setIsSuccessMessage('Uspješna prijava!');
 
         history.push(isAdmin ? '/records' : '/events');
       } catch (error) {
         setIsError(true);
-        setIsSuccessMessage('User login failed!');
+        setIsSuccessMessage('Prijava nije uspjela!');
       } finally {
         setIsRequestFinished(true);
       }
