@@ -22,6 +22,7 @@ const SearchBar = ({ onValueChanged }) => {
     searchInput.current.value = '';
     searchInput.current.focus();
     setInputEmpty(true);
+    onValueChanged('');
   };
 
   return (
