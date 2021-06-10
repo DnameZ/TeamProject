@@ -5,6 +5,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(true);
+  const [authToken, setAuthToken] = useState(localStorage.getItem('authToken'));
 
   function handleUserLogin(authToken, isAdmin) {
     localStorage.setItem('authToken', authToken);
@@ -12,6 +13,7 @@ const AuthProvider = ({ children }) => {
 
     setIsLoggedIn(true);
     setIsAdmin(isAdmin);
+    setAuthToken(authToken);
   }
 
   function handleUserLogout() {
@@ -20,6 +22,7 @@ const AuthProvider = ({ children }) => {
 
     setIsAdmin(false);
     setIsLoggedIn(false);
+    setAuthToken('');
   }
 
   return (
@@ -31,6 +34,7 @@ const AuthProvider = ({ children }) => {
         setIsAdmin,
         handleUserLogin,
         handleUserLogout,
+        authToken,
       }}>
       {children}
     </AuthContext.Provider>
