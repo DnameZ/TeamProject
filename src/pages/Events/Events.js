@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ButtonWrapper, DummyItem } from './EventsStyle';
+import { getAllEvents } from '../../api/event';
 
 //Components
 import Section from '../../components/Section/Section';
@@ -21,6 +22,14 @@ const Events = () => {
   const [filter, setFilter] = useState(false);
   const [status, setStatus] = useState(false);
   const [allEvents, setAllEvents] = useState(true);
+  const [events, setEvents] = useState([{}]);
+  let authToken = localStorage.getItem('authToken');
+
+  const SetButtonText = () => {
+    const PrijaviSe = 'Prijavi se';
+    const OdjaviSe = 'Ocjeni';
+    return allEvents === true ? PrijaviSe : OdjaviSe;
+  };
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -37,6 +46,10 @@ const Events = () => {
     }
   };
 
+  useEffect(() => {
+    getAllEvents(authToken).then((result) => setEvents(result));
+  }, []);
+
   window.addEventListener('resize', handleResize);
 
   return (
@@ -49,6 +62,7 @@ const Events = () => {
         rightButton="Moji događaji"
         setAllEvents={setAllEvents}
       />
+
       {filter ? (
         <FilterStatusOverlay title="Filtriraj" onOverlayClosed={toggleFilter}>
           <Filter />
@@ -65,17 +79,17 @@ const Events = () => {
         <SectionContent columns={2}>
           {<FilterWrapper>{allEvents ? <Filter /> : <Status />}</FilterWrapper>}
           <EventsWrapper>
-            {eventsMock.map((event) => (
+            {events.map((event) => (
               <EventCard
                 key={event.id}
-                title={event.title}
-                location={event.title}
-                date={event.date}
+                title={event.name}
+                location={event.location}
+                date={event.startTime}
                 time={event.time}
-                freeSpots={event.availability}
-                company={event.company}
-                shortDescription={event.shortDescription}
-                buttonText="Prijavi/Odjavi se"
+                freeSpots={event.seats}
+                company={event.organizer}
+                shortDescription={event.description}
+                buttonText={SetButtonText()}
               />
             ))}
           </EventsWrapper>
