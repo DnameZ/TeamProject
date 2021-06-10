@@ -24,6 +24,9 @@ const Records = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [events, setEvents] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [organizer, setOrganizer] = useState('');
+  const [eventDate, setEventDate] = useState('');
+  const [categories, setCategories] = useState([]);
   const { authToken } = useContext(AuthContext);
 
   const toggleFilter = () => {
@@ -95,12 +98,29 @@ const Records = () => {
     setSearchValue(value.toLowerCase());
   };
 
-  const handleShowResults = (searchCriteria) => {
-    if (searchCriteria.title) {
-      handleSearch(searchCriteria.title);
+  const handleCategoriesSearch = (isChecked, value) => {
+    let newCategoriesList;
+    if (isChecked) {
+      newCategoriesList = categories.concat(value);
+      setCategories(newCategoriesList);
     } else {
-      handleSearch('');
+      newCategoriesList = categories.filter((category) => category !== value);
+      setCategories(newCategoriesList);
     }
+  };
+
+  const handleShowResults = (searchCriteria) => {
+    searchCriteria.title
+      ? handleSearch(searchCriteria.title)
+      : handleSearch('');
+
+    searchCriteria.organizer
+      ? setOrganizer(searchCriteria.organizer)
+      : setOrganizer('');
+
+    searchCriteria.date ? setEventDate(searchCriteria.date) : setEventDate('');
+
+    setCategories(searchCriteria.categories);
 
     toggleFilter();
   };
@@ -130,13 +150,24 @@ const Records = () => {
       {!filter ? (
         <SectionContent columns={2}>
           <FilterWrapper>
-            <Filter handleSearch={handleSearch} />
+            <Filter
+              handleSearch={handleSearch}
+              handleCompanySearch={setOrganizer}
+              handleDateSearch={setEventDate}
+              handleCategoriesSearch={handleCategoriesSearch}
+            />
           </FilterWrapper>
           <EventsWrapper>
             {!isLoading ? (
               events.map(
                 (event) =>
-                  event.name.toLowerCase().includes(searchValue) && (
+                  event.name.toLowerCase().includes(searchValue) &&
+                  event.organizer.includes(organizer) &&
+                  event.startTime.includes(eventDate) &&
+                  (categories.every((category) =>
+                    event.category.includes(category),
+                  ) ||
+                    categories.length === 0) && (
                     <EventCard
                       key={event.id}
                       title={event.name}
