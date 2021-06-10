@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { DummyItem, ButtonWrapper, LoadingSpinner } from './RecordsStyle';
 
 //Components
@@ -12,6 +12,7 @@ import {
 } from '../../lib/styles/generalStyles';
 import Filter from '../../components/Filter/Filter';
 import FilterOverlay from '../../components/FilterOverlay/FilterOverlay';
+import { AuthContext } from '../../context/AuthContext';
 
 //api
 import { getAllEvents } from '../../api/event';
@@ -26,6 +27,7 @@ const Records = () => {
   const [organizer, setOrganizer] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [categories, setCategories] = useState([]);
+  const { authToken } = useContext(AuthContext);
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -55,13 +57,11 @@ const Records = () => {
 
   useEffect(() => {
     handleResize();
-    const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlZTQzZDQ2MS1iOWI3LTRhNjctODA0Zi05NWIxMTBiZDZjZDciLCJ0aW1lIjoiMjAyMS0wNi0wOFQxODo0ODoyMy42NzNaIiwiaWF0IjoxNjIzMTc4MTAzfQ.hDuiPg1ypp49hKpHGTwqvCjLO_13PX_Kjwl_lnJBIMQ';
-    getAllEvents(jwt).then((result) => {
+    getAllEvents(authToken).then((result) => {
       setEvents(removeFutureEvents(result));
       setIsLoading(false);
     });
-  }, []);
+  });
 
   const parseDate = (rawDate) => {
     const options = {

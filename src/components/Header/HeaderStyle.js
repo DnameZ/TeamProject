@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { breakpoints, colors, boxShadow } from '../../lib/styles/theme';
+import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   background-color: ${colors.white};
@@ -142,7 +143,9 @@ export const HamOptions = styled.div`
   margin-top: 82px;
 `;
 
-export const Options = styled.h2`
+export const Options = styled(NavLink)`
+  text-decoration: none;
+  display: flex;
   padding-right: 159px;
   line-height: 2.6;
   font-size: 24px;
@@ -153,7 +156,7 @@ export const Options = styled.h2`
   }
 `;
 
-export const NavLink = styled.a`
+export const NavItem = styled(NavLink)`
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
@@ -164,7 +167,7 @@ export const NavLink = styled.a`
   margin-right: 32px;
 
   ${(props) =>
-    props.isActive &&
+    props.jeaktivan &&
     `
   &:after {
     width: 100%;
