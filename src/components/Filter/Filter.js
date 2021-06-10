@@ -10,50 +10,52 @@ import {
 } from '../../lib/styles/generalStyles';
 import SearchBar from '../SearchBar/SearchBar';
 
-const Filter = () => {
-  const categories = [
-    'IOT',
-    'marketing',
-    'frontend',
-    'backend',
-    'mobile apps',
-    'marketing',
-    'frontend',
-    'backend',
-    'mobile apps',
-    'development',
-  ];
-  const companies = ['Speck', 'Infinum', 'Five'];
-  const eventDays = [
-    '14.10. (Ponedjeljak)',
-    '15.10. (Utorak)',
-    '16.10. (Srijeda)',
-  ];
+//Mock data
+import {
+  dates as eventDays,
+  companies,
+  categories,
+} from '../../lib/mock/filterData';
+
+const Filter = ({
+  handleSearch,
+  handleCompanySearch,
+  handleDateSearch,
+  handleCategoriesSearch,
+}) => {
+  const handleCompanyChange = (event) => {
+    handleCompanySearch(event.target.value);
+  };
+
+  const handleDateChange = (event) => {
+    handleDateSearch(event.target.value);
+  };
+
+  const handleCategoriesChange = (event) => {
+    handleCategoriesSearch(event.target.checked, event.target.value);
+  };
+
   return (
     <>
       <FilterOption>
         <Label>Pretraži događaj</Label>
-        <SearchBar />
+        <SearchBar onValueChanged={handleSearch} />
       </FilterOption>
       <FilterOption>
         <Label>Dan događanja</Label>
-        <Select defaultValue="">
-          <Option disabled value="" hidden>
-            Odaberi...
-          </Option>
+        <Select defaultValue="" onChange={handleDateChange}>
+          <Option value="">Svi</Option>
           {eventDays.map((day, index) => (
-            <Option value={day} key={index}>
-              {day}
+            <Option value={day.value} key={index}>
+              {day.display}
             </Option>
           ))}
         </Select>
       </FilterOption>
       <FilterOption>
         <Label>Firma</Label>
-        <Select defaultValue="">
-          <Option disabled value="" hidden>
-            Odaberi...
-          </Option>
+        <Select defaultValue="" onChange={handleCompanyChange}>
+          <Option value="">Sve</Option>
           {companies.map((company, index) => (
             <Option value={company} key={index}>
               {company}
@@ -70,7 +72,9 @@ const Filter = () => {
                 type="checkbox"
                 value={category}
                 id={index}
-                name="category"></InputCheckbox>
+                name="category"
+                onChange={handleCategoriesChange}
+              />
               <CheckboxOptionLabel htmlFor={index}>
                 {category}
               </CheckboxOptionLabel>

@@ -1,3 +1,5 @@
+import apiOrigin from './api';
+
 // export const createEvent = (event, authToken) => {
 //   return fetch(`${apiOrigin}/api/event`, {
 //     method: 'POST',

@@ -13,7 +13,8 @@ import {
 } from '../../lib/styles/generalStyles';
 import Filter from '../../components/Filter/Filter';
 import Status from '../../components/Status/Status';
-import FilterStatusOverlay from '../../components/FilterStatusOverlay/FilterStatusOverlay';
+import FilterOverlay from '../../components/FilterOverlay/FilterOverlay';
+import StatusOverlay from '../../components/StatusOverlay/StatusOverlay';
 
 //Mock data
 import eventsMock from '../../lib/mock/events';
@@ -64,16 +65,10 @@ const Events = () => {
       />
 
       {filter ? (
-        <FilterStatusOverlay title="Filtriraj" onOverlayClosed={toggleFilter}>
-          <Filter />
-        </FilterStatusOverlay>
+        <FilterOverlay title="Filtriraj" onOverlayClosed={toggleFilter} />
       ) : null}
       {status ? (
-        <FilterStatusOverlay
-          title="Status događaja"
-          onOverlayClosed={toggleStatus}>
-          <Status />
-        </FilterStatusOverlay>
+        <StatusOverlay title="Status događaja" onOverlayClosed={toggleStatus} />
       ) : null}
       {!filter && !status ? (
         <SectionContent columns={2}>
@@ -82,9 +77,9 @@ const Events = () => {
             {events.map((event) => (
               <EventCard
                 key={event.id}
-                title={event.name}
+                title={event.title}
                 location={event.location}
-                date={event.startTime}
+                date={event.date}
                 time={event.time}
                 freeSpots={event.seats}
                 company={event.organizer}

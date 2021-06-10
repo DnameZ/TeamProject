@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../lib/styles/theme';
+import Loader from 'react-loader-spinner';
 
 export const ButtonWrapper = styled.div`
   margin: 16px 0;
@@ -17,3 +18,9 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const DummyItem = styled.div``;
+
+export const LoadingSpinner = styled(Loader)`
+  margin: 50px auto;
+  width: fit-content;
+  text-align: center;
+`;
