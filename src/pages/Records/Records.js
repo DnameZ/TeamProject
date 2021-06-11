@@ -132,7 +132,6 @@ const Records = () => {
           onOpenFilter={toggleFilter}
           sectionTitle="Evidencija"
           buttonsHidden
-          setAllEvents={setAllEvents}
           leftTitle="Filtriraj"
         />
       ) : (
@@ -140,7 +139,6 @@ const Records = () => {
           onOpenFilter={toggleFilter}
           sectionTitle="Evidencija polaznika"
           buttonsHidden
-          setAllEvents={setAllEvents}
           leftTitle="Filtriraj"
         />
       )}
