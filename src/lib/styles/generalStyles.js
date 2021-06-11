@@ -31,7 +31,7 @@ export const InputGeneral = css`
 
 export const Input = styled.input`
   ${InputGeneral};
-  padding: ${(props) => (props.forSearch ? '0 44px' : 'initial')};
+  padding: ${(props) => (props.forSearch ? '0 44px' : '16px')};
 `;
 
 export const Select = styled.select`
@@ -258,5 +258,24 @@ export const FilterWrapper = styled.div`
 
   @media screen and (${breakpoints.desktopLarge}) {
     display: block;
+  }
+`;
+
+// message
+export const SuccessMessage = styled.p`
+  margin: 0 auto;
+  padding: 15px;
+  margin-bottom: 32px;
+  border-radius: 6px;
+  background: ${colors.successBackground};
+  color: ${colors.success};
+  ${(props) =>
+    props.isError &&
+    `
+        background: ${colors.errorBackground};
+        color: ${colors.error};
+    `};
+  @media screen and (${breakpoints.mobileLarge}) {
+    max-width: 400px;
   }
 `;

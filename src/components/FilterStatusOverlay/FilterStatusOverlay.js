@@ -10,10 +10,14 @@ import {
   Title,
   CloseIcon,
 } from './FilterStatusOverlayStyle';
-
 import { PrimaryButton, SecondaryButton } from '../../lib/styles/generalStyles';
 
-const FilterStatusOverlay = ({ title, onOverlayClosed, children }) => {
+const FilterStatusOverlay = ({
+  title,
+  onOverlayClosed,
+  onShowResults,
+  children,
+}) => {
   return (
     <>
       <Overlay>
@@ -28,7 +32,11 @@ const FilterStatusOverlay = ({ title, onOverlayClosed, children }) => {
             {children}
           </FilterContent>
           <ButtonsWrapper>
-            <PrimaryButton text="Prikaži rezultate" type="fullWidth" />
+            <PrimaryButton
+              text="Prikaži rezultate"
+              type="fullWidth"
+              onClick={onShowResults}
+            />
             <SecondaryButton
               text="Zatvori"
               type="fullWidth"
