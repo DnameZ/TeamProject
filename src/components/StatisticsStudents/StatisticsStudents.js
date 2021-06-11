@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SortImageStudents from '../../assets/images/sort-icon-2.png';
 import {
   TableWrapper,
@@ -13,9 +13,12 @@ import {
   MobileText,
 } from './StatisticsStudentsStyle';
 import SortModal from '../../components/SortModal/SortModal';
-
-const StatisticsStudents = ({ nameSurname, emailAdress, participations }) => {
+import { getAllUsers } from '../../api/user';
+import { AuthContext } from '../../context/AuthContext';
+const StatisticsStudents = () => {
   const [showSortModalEvents, setShowSortModalEvents] = useState(false);
+  const [users, setUsers] = useState([]);
+  const { authToken } = useContext(AuthContext);
 
   const handleResize = () => {
     if (window.innerWidth < 768) {
@@ -23,52 +26,15 @@ const StatisticsStudents = ({ nameSurname, emailAdress, participations }) => {
     }
   };
 
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize);
+  // }, []);
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
-  }, []);
-
-  const students = [
-    {
-      nameSurname: 'Ivan Horvat',
-      emailAdress: 'ivan.horvat@gmail.com',
-      participations: 34,
-    },
-    {
-      nameSurname: 'Ivan Horvat',
-      emailAdress: 'ivan.horvat@gmail.com',
-      participations: 23,
-    },
-    {
-      nameSurname: 'Ivan Horvat',
-      emailAdress: 'ivan.horvat@gmail.com',
-      participations: 22,
-    },
-    {
-      nameSurname: 'Ivan Horvat',
-      emailAdress: 'ivan.horvat@gmail.com',
-      participations: 4,
-    },
-    {
-      nameSurname: 'Ivan Horvat',
-      emailAdress: 'ivan.horvat@gmail.com',
-      participations: 34,
-    },
-    {
-      nameSurname: 'Ivan Horvat',
-      emailAdress: 'ivan.horvat@gmail.com',
-      participations: 23,
-    },
-    {
-      nameSurname: 'Ivan Horvat',
-      emailAdress: 'ivan.horvat@gmail.com',
-      participations: 22,
-    },
-    {
-      nameSurname: 'Ivan Horvat',
-      emailAdress: 'ivan.horvat@gmail.com',
-      participations: 4,
-    },
-  ];
+    handleResize();
+    getAllUsers(authToken).then((result) => {
+      setUsers(result);
+    });
+  });
   return (
     <>
       <SortModal
@@ -78,16 +44,21 @@ const StatisticsStudents = ({ nameSurname, emailAdress, participations }) => {
         position="participations"
         showSortModalEvents={showSortModalEvents}
       />
-      {students.map((studentsInfo, index) => (
-        <MobileWrapper key={index}>
-          <MobileTitle>Ime i prezime:</MobileTitle>
-          <MobileText>{studentsInfo.nameSurname}</MobileText>
-          <MobileTitle>Email adresa:</MobileTitle>
-          <MobileText>{studentsInfo.emailAdress}</MobileText>
-          <MobileTitle>Broj sudjelovanja:</MobileTitle>
-          <MobileText>{studentsInfo.participations}</MobileText>
-        </MobileWrapper>
-      ))}
+      {users.map(
+        (studentsInfo) =>
+          !studentsInfo.isAdmin && (
+            <MobileWrapper key={studentsInfo.id}>
+              <MobileTitle>Ime i prezime:</MobileTitle>
+              <MobileText>
+                {studentsInfo.nameSurname} {studentsInfo.lastName}
+              </MobileText>
+              <MobileTitle>Email adresa:</MobileTitle>
+              <MobileText>{studentsInfo.email}</MobileText>
+              <MobileTitle>Broj sudjelovanja:</MobileTitle>
+              <MobileText>{studentsInfo.participations}</MobileText>
+            </MobileWrapper>
+          ),
+      )}
       <TableWrapper>
         <TableHead>
           <Tr>
@@ -103,15 +74,20 @@ const StatisticsStudents = ({ nameSurname, emailAdress, participations }) => {
             </Th>
           </Tr>
         </TableHead>
-        {students.map((studentsInfo, index) => (
-          <TableBody key={index}>
-            <Tr>
-              <Td>{studentsInfo.nameSurname}</Td>
-              <Td>{studentsInfo.emailAdress}</Td>
-              <Td>{studentsInfo.participations}</Td>
-            </Tr>
-          </TableBody>
-        ))}
+        {users.map(
+          (studentsInfo) =>
+            !studentsInfo.isAdmin && (
+              <TableBody key={studentsInfo.id}>
+                <Tr>
+                  <Td>
+                    {studentsInfo.firstName} {studentsInfo.lastName}
+                  </Td>
+                  <Td>{studentsInfo.email}</Td>
+                  <Td>{studentsInfo.participations}</Td>
+                </Tr>
+              </TableBody>
+            ),
+        )}
       </TableWrapper>
     </>
   );

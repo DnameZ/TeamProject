@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SortAZImage from '../../assets/images/sort-icon-1.png';
 import SortImage from '../../assets/images/sort-icon-2.png';
 import {
@@ -16,15 +16,18 @@ import {
   MobileText,
   MobileTextCommentar,
 } from './StatisticsEventsStyle';
-import eventsMock from '../../lib/mock/events';
+
 import CommentList from '../CommentList/CommentList';
 import SortModal from '../../components/SortModal/SortModal';
-
+import { getAllEvents } from '../../api/event';
+import { AuthContext } from '../../context/AuthContext';
 const StatisticsEvents = () => {
   const [show, setShow] = useState(false);
   const [showSortModalEvents, setShowSortModalEvents] = useState(
     'modal-one' | 'modal-two',
   );
+  const [events, setEvents] = useState([]);
+  const { authToken } = useContext(AuthContext);
 
   const handleShowModalOne = () => {
     setShowSortModalEvents('modal-one');
@@ -40,10 +43,16 @@ const StatisticsEvents = () => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize);
+  // }, []);
 
+  useEffect(() => {
+    handleResize();
+    getAllEvents(authToken).then((result) => {
+      setEvents(result);
+    });
+  });
   return (
     <>
       <SortModal
@@ -61,10 +70,10 @@ const StatisticsEvents = () => {
         showSortModalEvents={showSortModalEvents === 'modal-two'}
       />
       <CommentList handleClose={() => setShow(false)} show={show} />
-      {eventsMock.map((event) => (
+      {events.map((event) => (
         <MobileWrapper key={event.id}>
           <MobileTitle>Naziv događaja:</MobileTitle>
-          <MobileText>{event.title}</MobileText>
+          <MobileText>{event.name}</MobileText>
           <MobileTitle>Prosječna ocjena:</MobileTitle>
           <MobileText>4,7</MobileText>
           <MobileTitle>Komentari:</MobileTitle>
@@ -96,10 +105,10 @@ const StatisticsEvents = () => {
             <Th>Komentari</Th>
           </Tr>
         </TableHead>
-        {eventsMock.map((event) => (
+        {events.map((event) => (
           <TableBody key={event.id}>
             <Tr>
-              <Td>{event.title}</Td>
+              <Td>{event.name}</Td>
               <Td>4.7</Td>
               <TdComments onClick={() => setShow(true)}>
                 Pogledaj komentare
