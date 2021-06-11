@@ -17,6 +17,7 @@ import {
 } from './EventCardStyle';
 
 import { PrimaryButton } from '../../lib/styles/generalStyles';
+import { registerForEvent } from '../../api/event';
 
 const EventCard = ({
   title,
@@ -27,8 +28,18 @@ const EventCard = ({
   company,
   shortDescription,
   buttonText,
+  id,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
+  const authToken = localStorage.getItem('authToken');
+
+  const GetID = () => {
+    const PrijaviSe = 'Prijavi se';
+    switch (buttonText) {
+      case PrijaviSe:
+        registerForEvent(id, authToken);
+    }
+  };
 
   return (
     <>
@@ -87,7 +98,11 @@ const EventCard = ({
           )}
         </EventCardContent>
         <ButtonWrapper>
-          <PrimaryButton type="modal/card" text={buttonText} />
+          <PrimaryButton
+            onClick={() => GetID()}
+            type="modal/card"
+            text={buttonText}
+          />
         </ButtonWrapper>
       </EventCardWrapper>
     </>
