@@ -58,8 +58,8 @@ export const rateEvent = (review, id, authToken) => {
   }).then((res) => res.json());
 };
 
-export const getEventRatingsAndComments = (authToken) => {
-  return fetch(`${apiOrigin}/api/event-user/ratings`, {
+export const getEventRatingsAndComments = (authToken, id) => {
+  return fetch(`${apiOrigin}/api/event-user/ratings/${id}`, {
     method: 'GET',
     headers: {
       'auth-token': authToken,

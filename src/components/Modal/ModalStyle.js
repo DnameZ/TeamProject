@@ -20,7 +20,7 @@ export const ModalWrapper = styled.div`
   background-color: ${colors.white};
   position: absolute;
   top: 0;
-  z-index: 1;
+  z-index: 6;
   overflow: hidden;
   left: 50%;
   transform: translate(-50%);

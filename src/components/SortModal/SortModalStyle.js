@@ -9,7 +9,7 @@ export const SortModalBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 4;
+  z-index: 3;
   @media screen and (${breakpoints.tablet}) {
     display: none;
   }
@@ -19,7 +19,7 @@ export const SortModalWrapper = styled.div`
   position: absolute;
   top: 140px;
   right: 16px;
-  z-index: 5;
+  z-index: 4;
   width: 178px;
   height: 152px;
   margin: 8px 0 0;

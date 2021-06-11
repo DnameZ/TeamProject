@@ -76,7 +76,7 @@ export const Th = styled.th`
       width: 311px;
     }
     &:nth-child(3) {
-      width: 311px;
+      width: 312px;
     }
   }
 `;

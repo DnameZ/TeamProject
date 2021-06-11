@@ -21,6 +21,7 @@ import CommentList from '../CommentList/CommentList';
 import SortModal from '../../components/SortModal/SortModal';
 import { getAllEvents } from '../../api/event';
 import { AuthContext } from '../../context/AuthContext';
+
 const StatisticsEvents = () => {
   const [show, setShow] = useState(false);
   const [showSortModalEvents, setShowSortModalEvents] = useState(
@@ -43,16 +44,13 @@ const StatisticsEvents = () => {
     }
   };
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize);
-  // }, []);
-
   useEffect(() => {
     handleResize();
     getAllEvents(authToken).then((result) => {
       setEvents(result);
     });
   });
+
   return (
     <>
       <SortModal
@@ -109,7 +107,7 @@ const StatisticsEvents = () => {
           <TableBody key={event.id}>
             <Tr>
               <Td>{event.name}</Td>
-              <Td>4.7</Td>
+              <Td>{event.userRating}</Td>
               <TdComments onClick={() => setShow(true)}>
                 Pogledaj komentare
               </TdComments>

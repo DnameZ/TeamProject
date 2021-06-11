@@ -15,6 +15,7 @@ import {
 import SortModal from '../../components/SortModal/SortModal';
 import { getAllUsers } from '../../api/user';
 import { AuthContext } from '../../context/AuthContext';
+
 const StatisticsStudents = () => {
   const [showSortModalEvents, setShowSortModalEvents] = useState(false);
   const [users, setUsers] = useState([]);
@@ -26,15 +27,13 @@ const StatisticsStudents = () => {
     }
   };
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize);
-  // }, []);
   useEffect(() => {
     handleResize();
     getAllUsers(authToken).then((result) => {
       setUsers(result);
     });
   });
+
   return (
     <>
       <SortModal
