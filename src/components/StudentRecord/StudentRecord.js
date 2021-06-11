@@ -172,8 +172,8 @@ const SignedIn = () => {
         <StudentRow>
           {filteredUsers.map((korisnik, index) => (
             <StudentData key={index}>
-              <InputCheckbox id={index} type="checkbox" />
-              <CheckboxOptionLabel htmlFor={index}>
+              <InputCheckbox id={index + 6} type="checkbox" />
+              <CheckboxOptionLabel htmlFor={index + 6}>
                 {' '}
                 {getHighlightedText(korisnik.imeIprezime, text)}
               </CheckboxOptionLabel>

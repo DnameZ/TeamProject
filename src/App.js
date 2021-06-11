@@ -7,6 +7,7 @@ import Login from './pages/Login/Login';
 import Events from './pages/Events/Events';
 import Records from './pages/Records/Records';
 import Statistics from './pages/Statistics/Statistics';
+import Record from './components/StudentRecord/StudentRecord';
 // components
 import Header from './components/Header/Header';
 import { Main } from './lib/styles/generalStyles';
