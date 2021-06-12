@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BsChevronExpand, BsChevronContract } from 'react-icons/bs';
 import StudentRecord from '../StudentRecord/StudentRecord';
 import Rate from '../RateEventModal/RateEventModal';
+import { registerForEvent } from '../../api/event';
 
 // style
 import {
@@ -29,9 +30,11 @@ const EventCard = ({
   company,
   shortDescription,
   buttonText,
+  id,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
   const [Modal, setModal] = useState(false);
+  const authToken = localStorage.getItem('authToken');
 
   const OpenModal = () => {
     setModal((Modal) => !Modal);
@@ -39,12 +42,15 @@ const EventCard = ({
   const SetModal = (buttonText) => {
     const Evidentiraj = 'Evidentiraj';
     const Ocijeni = 'Ocijeni';
+    const PrijaviSe = 'Prijavi se';
 
     switch (buttonText) {
       case Evidentiraj:
         return <StudentRecord handleModalClose={OpenModal} />;
       case Ocijeni:
         return <Rate handleModalClose={OpenModal} />;
+      case PrijaviSe:
+        registerForEvent(id, authToken);
     }
   };
 

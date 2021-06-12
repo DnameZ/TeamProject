@@ -170,6 +170,7 @@ const Records = () => {
                   ) ||
                     categories.length === 0) && (
                     <EventCard
+                      id={event.id}
                       key={event.id}
                       title={event.name}
                       location={event.location}

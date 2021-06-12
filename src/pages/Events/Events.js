@@ -62,6 +62,7 @@ const Events = () => {
           <EventsWrapper>
             {eventsMock.map((event) => (
               <EventCard
+                id={event.id}
                 key={event.id}
                 title={event.title}
                 location={event.location}
