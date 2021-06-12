@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { DummyItem, EmptyMsg } from './EventsStyle';
 import { getAllEvents } from '../../api/event';
 import { getUserEvents } from '../../api/event';
@@ -15,6 +15,7 @@ import Filter from '../../components/Filter/Filter';
 import Status from '../../components/Status/Status';
 import FilterOverlay from '../../components/FilterOverlay/FilterOverlay';
 import StatusOverlay from '../../components/StatusOverlay/StatusOverlay';
+import { AuthContext } from '../../context/AuthContext';
 
 //Mock data
 
@@ -27,6 +28,7 @@ const Events = () => {
   const [eventDate, setEventDate] = useState('');
   const [organizer, setOrganizer] = useState('');
   const [categories, setCategories] = useState([]);
+  const { authToken } = useContext(AuthContext);
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -56,11 +58,10 @@ const Events = () => {
   };
 
   useEffect(() => {
-    let authToken = localStorage.getItem('authToken');
     allEvents === true
       ? getAllEvents(authToken).then((result) => setEvents(result))
       : getUserEvents(authToken).then((result) => setEvents(result));
-  }, [allEvents]);
+  }, [allEvents, authToken]);
 
   window.addEventListener('resize', handleResize);
 
