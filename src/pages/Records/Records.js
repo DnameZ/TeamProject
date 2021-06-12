@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { DummyItem, ButtonWrapper, LoadingSpinner } from './RecordsStyle';
+import { LoadingSpinner } from './RecordsStyle';
 
 //Components
 import Section from '../../components/Section/Section';
@@ -7,7 +7,6 @@ import EventCard from '../../components/EventCard/EventCard';
 import {
   EventsWrapper,
   FilterWrapper,
-  PrimaryButton,
   SectionContent,
 } from '../../lib/styles/generalStyles';
 import Filter from '../../components/Filter/Filter';
@@ -190,12 +189,6 @@ const Records = () => {
               />
             )}
           </EventsWrapper>
-          <DummyItem />
-          {!isLoading && (
-            <ButtonWrapper>
-              <PrimaryButton text="Prikaži više" type="fullWidth" />
-            </ButtonWrapper>
-          )}
         </SectionContent>
       ) : null}
     </>
