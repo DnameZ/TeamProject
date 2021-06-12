@@ -33,24 +33,26 @@ const EventCard = ({
   id,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
+  const [evidentiraj, setEvidentiraj] = useState(false);
   const [Modal, setModal] = useState(false);
   const authToken = localStorage.getItem('authToken');
+  const Evidentiraj = 'Evidentiraj';
+  const Ocijeni = 'Ocijeni';
+  const PrijaviSe = 'Prijavi se';
 
   const OpenModal = () => {
     setModal((Modal) => !Modal);
   };
   const SetModal = (buttonText) => {
-    const Evidentiraj = 'Evidentiraj';
-    const Ocijeni = 'Ocijeni';
-    const PrijaviSe = 'Prijavi se';
-
     switch (buttonText) {
       case Evidentiraj:
-        return <StudentRecord handleModalClose={OpenModal} />;
+        return <StudentRecord ID={id} handleModalClose={OpenModal} />;
       case Ocijeni:
         return <Rate handleModalClose={OpenModal} />;
       case PrijaviSe:
         registerForEvent(id, authToken);
+      default:
+        console.log('Nothing');
     }
   };
 

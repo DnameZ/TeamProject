@@ -3,6 +3,7 @@ import Modal from '../Modal/Modal';
 
 import SearchBar from '../SearchBar/SearchBar';
 import { confirmUserAttendance } from '../../api/user';
+import { getUsersRegisteredToEvent } from '../../api/user';
 
 import {
   EventInfo,
@@ -29,13 +30,14 @@ import {
   SecondaryButton,
 } from '../../lib/styles/generalStyles';
 
-const StudentRecord = ({ handleModalClose }) => {
+const StudentRecord = ({ handleModalClose, ID }) => {
   const PrijavljeniP = 'Prijavljeni polaznici';
   const DodajP = 'Dodaj polaznike';
   const Prijavljeni = 'Prijavljeni';
   const Dodaj = 'Dodaj';
   const [isRecord, setIsRecord] = useState(Prijavljeni);
   const [isMobile, setIsMobile] = useState(false);
+  const [users, setUsers] = useState([]);
   const object = {
     confirmedUsers: [
       '5a88c32c-1187-4584-89d8-1a6f2751658b',
@@ -43,7 +45,7 @@ const StudentRecord = ({ handleModalClose }) => {
     ],
   };
   const authToken = localStorage.getItem('authToken');
-  const id = '153f16cb-48f9-4293-aff9-3436d9d0417c';
+  const id = ID;
 
   const handleResize = () => {
     if (window.innerWidth < 720) {
@@ -56,6 +58,7 @@ const StudentRecord = ({ handleModalClose }) => {
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
+    getUsersRegisteredToEvent(id, authToken).then((result) => setUsers(result));
   }, []);
 
   const ToggleRecord = (Record) => {
@@ -88,7 +91,7 @@ const StudentRecord = ({ handleModalClose }) => {
             type={SetActiveOrInactive(Dodaj)}
           />
         </StudentHead>
-        {isRecord === Prijavljeni ? <SignedIn /> : <AddStudent />}
+        {isRecord === Prijavljeni ? <SignedIn users={users} /> : <AddStudent />}
       </StudentTable>
       <ButtonWrapper>
         {isRecord === Prijavljeni ? (
@@ -126,7 +129,7 @@ const AddStudent = () => {
   );
 };
 
-const SignedIn = () => {
+const SignedIn = ({ users }) => {
   const [text, setText] = useState('');
   const handleChange = (value) => {
     setText(value);
@@ -149,17 +152,21 @@ const SignedIn = () => {
     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
     return (
       <span>
-        {parts.map((part) =>
-          part.toLowerCase() === highlight.toLowerCase() ? <b>{part}</b> : part,
-        )}
+        {parts.map((part) => (part === highlight ? <b>{part}</b> : part))}
       </span>
     );
   };
-  const filteredUsers = Korisnici.filter((user) => {
+
+  let finalData = users.map((user) => ({
+    ...user,
+    fullName: `${user.firstName} ${user.lastName} (${user.email})` || '',
+  }));
+
+  const filteredUsers = finalData.filter((user) => {
     if (text == '') {
-      return user;
-    } else if (user.imeIprezime.toLowerCase().includes(text.toLowerCase())) {
-      return user;
+      return user.fullName;
+    } else {
+      return user.fullName;
     }
   });
 
@@ -175,7 +182,7 @@ const SignedIn = () => {
               <InputCheckbox id={index + 6} type="checkbox" />
               <CheckboxOptionLabel htmlFor={index + 6}>
                 {' '}
-                {getHighlightedText(korisnik.imeIprezime, text)}
+                {getHighlightedText(korisnik.fullName, text)}
               </CheckboxOptionLabel>
             </StudentData>
           ))}
