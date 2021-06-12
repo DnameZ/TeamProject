@@ -34,7 +34,6 @@ const Header = () => {
   const { isAdmin, handleUserLogout } = useContext(AuthContext);
   const [isOpen, setisOpen] = useState(false);
   const [isActive, setisActive] = useState('');
-  console.log(isActive);
 
   const ToggleHamb = () => {
     setisOpen((isOpen) => !isOpen);

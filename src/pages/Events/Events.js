@@ -23,6 +23,7 @@ const Events = () => {
   const [status, setStatus] = useState(false);
   const [allEvents, setAllEvents] = useState(true);
   const [events, setEvents] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -39,6 +40,15 @@ const Events = () => {
     }
   };
 
+  const resetFilters = () => {
+    setSearchValue('');
+  };
+
+  const handleSetAllEvents = (value) => {
+    setAllEvents(value);
+    resetFilters();
+  };
+
   useEffect(() => {
     let authToken = localStorage.getItem('authToken');
     allEvents === true
@@ -48,6 +58,18 @@ const Events = () => {
 
   window.addEventListener('resize', handleResize);
 
+  const handleSearch = (value) => {
+    setSearchValue(value.toLowerCase());
+  };
+
+  const handleShowResults = (searchCriteria) => {
+    searchCriteria.title
+      ? handleSearch(searchCriteria.title)
+      : handleSearch('');
+
+    toggleFilter();
+  };
+
   return (
     <>
       <Section
@@ -56,17 +78,26 @@ const Events = () => {
         sectionTitle="Događaji"
         leftButton="Svi događaji"
         rightButton="Moji događaji"
-        setAllEvents={setAllEvents}
+        setAllEvents={handleSetAllEvents}
       />
       {filter ? (
-        <FilterOverlay title="Filtriraj" onOverlayClosed={toggleFilter} />
+        <FilterOverlay
+          title="Filtriraj"
+          onOverlayClosed={toggleFilter}
+          handleShowResults={handleShowResults}
+        />
       ) : null}
       {status ? (
         <StatusOverlay title="Status događaja" onOverlayClosed={toggleStatus} />
       ) : null}
       {!filter && !status ? (
         events.length !== 0 ? (
-          <MapEvents Events={events} allEvents={allEvents} />
+          <MapEvents
+            Events={events}
+            allEvents={allEvents}
+            searchValue={searchValue}
+            handleSearch={handleSearch}
+          />
         ) : (
           <EmptyMsg>Nema prijavljenih događaja</EmptyMsg>
         )
@@ -75,10 +106,10 @@ const Events = () => {
   );
 };
 
-const MapEvents = ({ Events, allEvents }) => {
+const MapEvents = ({ Events, allEvents, searchValue, handleSearch }) => {
   const SetButtonText = () => {
     const PrijaviSe = 'Prijavi se';
-    const OdjaviSe = 'Ocjeni';
+    const OdjaviSe = 'Ocijeni';
     return allEvents === true ? PrijaviSe : OdjaviSe;
   };
 
@@ -115,25 +146,35 @@ const MapEvents = ({ Events, allEvents }) => {
   return (
     <>
       <SectionContent columns={2}>
-        {<FilterWrapper>{allEvents ? <Filter /> : <Status />}</FilterWrapper>}
+        {
+          <FilterWrapper>
+            {allEvents ? <Filter handleSearch={handleSearch} /> : <Status />}
+          </FilterWrapper>
+        }
         <EventsWrapper>
-          {Events.map((event) => (
-            <EventCard
-              key={event.id || event.event.id}
-              id={event.id || event.event.id}
-              title={event.name || event.event.name}
-              location={event.location || event.event.location}
-              date={parseDate(event.startTime || event.event.startTime)}
-              time={parseTime(
-                event.startTime || event.event.startTime,
-                event.endTime || event.event.endTime,
-              )}
-              freeSpots={event.seats || event.event.seats}
-              company={event.organizer || event.event.organizer}
-              shortDescription={event.description || event.event.description}
-              buttonText={SetButtonText()}
-            />
-          ))}
+          {Events.map(
+            (event) =>
+              ((allEvents && event.name?.toLowerCase().includes(searchValue)) ||
+                !allEvents) && (
+                <EventCard
+                  key={event.id || event.event.id}
+                  id={event.id || event.event.id}
+                  title={event.name || event.event.name}
+                  location={event.location || event.event.location}
+                  date={parseDate(event.startTime || event.event.startTime)}
+                  time={parseTime(
+                    event.startTime || event.event.startTime,
+                    event.endTime || event.event.endTime,
+                  )}
+                  freeSpots={event.seats || event.event.seats}
+                  company={event.organizer || event.event.organizer}
+                  shortDescription={
+                    event.description || event.event.description
+                  }
+                  buttonText={SetButtonText()}
+                />
+              ),
+          )}
         </EventsWrapper>
         <DummyItem />
       </SectionContent>
