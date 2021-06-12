@@ -33,7 +33,6 @@ const EventCard = ({
   id,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
-  const [evidentiraj, setEvidentiraj] = useState(false);
   const [Modal, setModal] = useState(false);
   const authToken = localStorage.getItem('authToken');
   const Evidentiraj = 'Evidentiraj';
@@ -51,6 +50,7 @@ const EventCard = ({
         return <Rate handleModalClose={OpenModal} />;
       case PrijaviSe:
         registerForEvent(id, authToken);
+        break;
       default:
         console.log('Nothing');
     }
@@ -58,7 +58,7 @@ const EventCard = ({
 
   return (
     <>
-      {Modal == true && SetModal(buttonText)}
+      {Modal === true && SetModal(buttonText)}
       <EventCardWrapper>
         <EventCardHeader>
           <EventCardTitle>{title}</EventCardTitle>

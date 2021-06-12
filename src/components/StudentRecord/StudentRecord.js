@@ -62,7 +62,7 @@ const StudentRecord = ({ handleModalClose, ID }) => {
     handleResize();
     window.addEventListener('resize', handleResize);
     getUsersRegisteredToEvent(id, authToken).then((result) => setUsers(result));
-  }, []);
+  });
 
   const ToggleRecord = (Record) => {
     setIsRecord(Record);
@@ -162,20 +162,6 @@ const SignedIn = ({ users }) => {
   const handleChange = (value) => {
     setText(value);
   };
-  const Korisnici = [
-    {
-      imeIprezime: 'Andrija Mrkonjic',
-      email: 'markomrki45@hotmail.com',
-    },
-    {
-      imeIprezime: 'Marko Mrkonjic',
-      email: 'markomrki45@hotmail.com',
-    },
-    {
-      imeIprezime: 'Marko Mrkonjic',
-      email: 'markomrki45@hotmail.com',
-    },
-  ];
   const getHighlightedText = (text, highlight) => {
     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
     return (
@@ -191,7 +177,7 @@ const SignedIn = ({ users }) => {
   }));
 
   const filteredUsers = finalData.filter((user) => {
-    if (text == '') {
+    if (text === '') {
       return user.fullName;
     } else {
       return user.fullName;
