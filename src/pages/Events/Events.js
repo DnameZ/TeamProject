@@ -25,6 +25,7 @@ const Events = () => {
   const [events, setEvents] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [eventDate, setEventDate] = useState('');
+  const [organizer, setOrganizer] = useState('');
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -44,6 +45,7 @@ const Events = () => {
   const resetFilters = () => {
     setSearchValue('');
     setEventDate('');
+    setOrganizer('');
   };
 
   const handleSetAllEvents = (value) => {
@@ -68,6 +70,10 @@ const Events = () => {
     searchCriteria.title
       ? handleSearch(searchCriteria.title)
       : handleSearch('');
+
+    searchCriteria.organizer
+      ? setOrganizer(searchCriteria.organizer)
+      : setOrganizer('');
 
     searchCriteria.date ? setEventDate(searchCriteria.date) : setEventDate('');
 
@@ -103,6 +109,8 @@ const Events = () => {
             handleSearch={handleSearch}
             eventDate={eventDate}
             setEventDate={setEventDate}
+            organizer={organizer}
+            setOrganizer={setOrganizer}
           />
         ) : (
           <EmptyMsg>Nema prijavljenih događaja</EmptyMsg>
@@ -119,6 +127,8 @@ const MapEvents = ({
   handleSearch,
   eventDate,
   setEventDate,
+  organizer,
+  setOrganizer,
 }) => {
   const SetButtonText = () => {
     const PrijaviSe = 'Prijavi se';
@@ -165,6 +175,7 @@ const MapEvents = ({
               <Filter
                 handleSearch={handleSearch}
                 handleDateSearch={setEventDate}
+                handleCompanySearch={setOrganizer}
               />
             ) : (
               <Status />
@@ -176,6 +187,7 @@ const MapEvents = ({
             (event) =>
               ((allEvents &&
                 event.name?.toLowerCase().includes(searchValue) &&
+                event.organizer.includes(organizer) &&
                 event.startTime?.includes(eventDate)) ||
                 !allEvents) && (
                 <EventCard
