@@ -23,7 +23,6 @@ const Events = () => {
   const [status, setStatus] = useState(false);
   const [allEvents, setAllEvents] = useState(true);
   const [events, setEvents] = useState([]);
-  let authToken = localStorage.getItem('authToken');
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -41,6 +40,7 @@ const Events = () => {
   };
 
   useEffect(() => {
+    let authToken = localStorage.getItem('authToken');
     allEvents === true
       ? getAllEvents(authToken).then((result) => setEvents(result))
       : getUserEvents(authToken).then((result) => setEvents(result));
@@ -65,7 +65,7 @@ const Events = () => {
         <StatusOverlay title="Status događaja" onOverlayClosed={toggleStatus} />
       ) : null}
       {!filter && !status ? (
-        events.length != 0 ? (
+        events.length !== 0 ? (
           <MapEvents Events={events} allEvents={allEvents} />
         ) : (
           <EmptyMsg>Nema prijavljenih događaja</EmptyMsg>
