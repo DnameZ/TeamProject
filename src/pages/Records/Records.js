@@ -132,12 +132,14 @@ const Records = () => {
           onOpenFilter={toggleFilter}
           sectionTitle="Evidencija"
           buttonsHidden
+          leftTitle="Filtriraj"
         />
       ) : (
         <Section
           onOpenFilter={toggleFilter}
           sectionTitle="Evidencija polaznika"
           buttonsHidden
+          leftTitle="Filtriraj"
         />
       )}
       {filter ? (
