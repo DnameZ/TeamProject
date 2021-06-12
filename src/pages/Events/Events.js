@@ -24,6 +24,7 @@ const Events = () => {
   const [allEvents, setAllEvents] = useState(true);
   const [events, setEvents] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [eventDate, setEventDate] = useState('');
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -42,6 +43,7 @@ const Events = () => {
 
   const resetFilters = () => {
     setSearchValue('');
+    setEventDate('');
   };
 
   const handleSetAllEvents = (value) => {
@@ -66,6 +68,8 @@ const Events = () => {
     searchCriteria.title
       ? handleSearch(searchCriteria.title)
       : handleSearch('');
+
+    searchCriteria.date ? setEventDate(searchCriteria.date) : setEventDate('');
 
     toggleFilter();
   };
@@ -97,6 +101,8 @@ const Events = () => {
             allEvents={allEvents}
             searchValue={searchValue}
             handleSearch={handleSearch}
+            eventDate={eventDate}
+            setEventDate={setEventDate}
           />
         ) : (
           <EmptyMsg>Nema prijavljenih događaja</EmptyMsg>
@@ -106,7 +112,14 @@ const Events = () => {
   );
 };
 
-const MapEvents = ({ Events, allEvents, searchValue, handleSearch }) => {
+const MapEvents = ({
+  Events,
+  allEvents,
+  searchValue,
+  handleSearch,
+  eventDate,
+  setEventDate,
+}) => {
   const SetButtonText = () => {
     const PrijaviSe = 'Prijavi se';
     const OdjaviSe = 'Ocijeni';
@@ -148,13 +161,22 @@ const MapEvents = ({ Events, allEvents, searchValue, handleSearch }) => {
       <SectionContent columns={2}>
         {
           <FilterWrapper>
-            {allEvents ? <Filter handleSearch={handleSearch} /> : <Status />}
+            {allEvents ? (
+              <Filter
+                handleSearch={handleSearch}
+                handleDateSearch={setEventDate}
+              />
+            ) : (
+              <Status />
+            )}
           </FilterWrapper>
         }
         <EventsWrapper>
           {Events.map(
             (event) =>
-              ((allEvents && event.name?.toLowerCase().includes(searchValue)) ||
+              ((allEvents &&
+                event.name?.toLowerCase().includes(searchValue) &&
+                event.startTime?.includes(eventDate)) ||
                 !allEvents) && (
                 <EventCard
                   key={event.id || event.event.id}
