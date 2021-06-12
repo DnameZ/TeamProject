@@ -13,6 +13,7 @@ import {
   RowParagraph,
   RowGrades,
   Grade,
+  ButtonWrapper,
 } from './RateEventModalStyle';
 
 import { TextArea } from '../../lib/styles/generalStyles';
@@ -76,11 +77,13 @@ const RateEventModal = (props) => {
             </Grade>
           </RowGrades>
         </ContentRow>
-        <PrimaryButton
-          onClick={SendData}
-          type="modal/card"
-          text="Pošalji ocjenu"
-        />
+        <ButtonWrapper>
+          <PrimaryButton
+            onClick={SendData}
+            type="modal/card"
+            text="Pošalji ocjenu"
+          />
+        </ButtonWrapper>
       </ContentWrapper>
     </Modal>
   );
