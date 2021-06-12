@@ -26,6 +26,7 @@ const Events = () => {
   const [searchValue, setSearchValue] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [organizer, setOrganizer] = useState('');
+  const [categories, setCategories] = useState([]);
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -46,6 +47,7 @@ const Events = () => {
     setSearchValue('');
     setEventDate('');
     setOrganizer('');
+    setCategories([]);
   };
 
   const handleSetAllEvents = (value) => {
@@ -66,6 +68,17 @@ const Events = () => {
     setSearchValue(value.toLowerCase());
   };
 
+  const handleCategoriesSearch = (isChecked, value) => {
+    let newCategoriesList;
+    if (isChecked) {
+      newCategoriesList = categories.concat(value);
+      setCategories(newCategoriesList);
+    } else {
+      newCategoriesList = categories.filter((category) => category !== value);
+      setCategories(newCategoriesList);
+    }
+  };
+
   const handleShowResults = (searchCriteria) => {
     searchCriteria.title
       ? handleSearch(searchCriteria.title)
@@ -76,6 +89,8 @@ const Events = () => {
       : setOrganizer('');
 
     searchCriteria.date ? setEventDate(searchCriteria.date) : setEventDate('');
+
+    setCategories(searchCriteria.categories);
 
     toggleFilter();
   };
@@ -111,6 +126,8 @@ const Events = () => {
             setEventDate={setEventDate}
             organizer={organizer}
             setOrganizer={setOrganizer}
+            categories={categories}
+            handleCategoriesSearch={handleCategoriesSearch}
           />
         ) : (
           <EmptyMsg>Nema prijavljenih događaja</EmptyMsg>
@@ -129,6 +146,8 @@ const MapEvents = ({
   setEventDate,
   organizer,
   setOrganizer,
+  categories,
+  handleCategoriesSearch,
 }) => {
   const SetButtonText = () => {
     const PrijaviSe = 'Prijavi se';
@@ -176,6 +195,7 @@ const MapEvents = ({
                 handleSearch={handleSearch}
                 handleDateSearch={setEventDate}
                 handleCompanySearch={setOrganizer}
+                handleCategoriesSearch={handleCategoriesSearch}
               />
             ) : (
               <Status />
@@ -188,7 +208,11 @@ const MapEvents = ({
               ((allEvents &&
                 event.name?.toLowerCase().includes(searchValue) &&
                 event.organizer.includes(organizer) &&
-                event.startTime?.includes(eventDate)) ||
+                event.startTime?.includes(eventDate) &&
+                (categories.every((category) =>
+                  event.category?.includes(category),
+                ) ||
+                  categories.length === 0)) ||
                 !allEvents) && (
                 <EventCard
                   key={event.id || event.event.id}
