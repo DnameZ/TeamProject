@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../lib/styles/theme';
+import { breakpoints, colors } from '../../lib/styles/theme';
 
 export const ButtonWrapper = styled.div`
   margin: 16px 0;
@@ -14,6 +14,13 @@ export const ButtonWrapper = styled.div`
     width: 232px;
     margin: 48px auto;
   }
+`;
+
+export const EmptyMsg = styled.h2`
+  display: flex;
+  justify-content: center;
+  margin-top: 300px;
+  color: ${colors.lightGrey};
 `;
 
 export const DummyItem = styled.div``;
