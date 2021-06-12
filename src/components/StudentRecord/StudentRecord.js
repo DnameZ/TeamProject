@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../Modal/Modal';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import SearchBar from '../SearchBar/SearchBar';
 import { confirmUserAttendance } from '../../api/user';
@@ -20,6 +22,7 @@ import {
   FormRow,
   InputLabel,
   ButtonWrapper,
+  InputErrors,
 } from './StudentRecordStyle';
 
 import {
@@ -109,20 +112,45 @@ const StudentRecord = ({ handleModalClose, ID }) => {
 };
 
 const AddStudent = () => {
+  const formik = useFormik({
+    initialValues: {
+      Ime: '',
+      Prezime: '',
+      Email: '',
+    },
+    validationSchema: Yup.object({
+      Ime: Yup.string().required('User should have name'),
+      Prezime: Yup.string().required('User should have lastname'),
+      Email: Yup.string().required('User should have E-mail'),
+    }),
+  });
   return (
     <>
       <Form>
         <FormRow>
           <InputLabel>Ime</InputLabel>
-          <Input />
+          <Input id="Ime" type="text" {...formik.getFieldProps('Ime')} />
+          {formik.touched.Ime && formik.errors.Ime ? (
+            <InputErrors>{formik.errors.Ime}</InputErrors>
+          ) : null}
         </FormRow>
         <FormRow>
           <InputLabel>Prezime</InputLabel>
-          <Input />
+          <Input
+            id="Prezime"
+            type="text"
+            {...formik.getFieldProps('Prezime')}
+          />
+          {formik.touched.Prezime && formik.errors.Prezime ? (
+            <InputErrors>{formik.errors.Prezime}</InputErrors>
+          ) : null}
         </FormRow>
         <FormRow>
           <InputLabel>E-mail adresa</InputLabel>
-          <Input />
+          <Input id="Email" type="text" {...formik.getFieldProps('Email')} />
+          {formik.touched.Email && formik.errors.Email ? (
+            <InputErrors>{formik.errors.Email}</InputErrors>
+          ) : null}
         </FormRow>
       </Form>
     </>

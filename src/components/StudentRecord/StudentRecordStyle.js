@@ -202,7 +202,9 @@ export const InputLabel = styled.label`
 `;
 
 export const InputErrors = styled.p`
-  margin-left: 25px;
-  font-size: 14px;
-  color: ${colors.red};
+  margin-left: 0px;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: ${colors.darkBlue};
 `;
