@@ -33,7 +33,6 @@ const Header = () => {
   const history = useHistory();
   const { isAdmin, handleUserLogout } = useContext(AuthContext);
   const [isOpen, setisOpen] = useState(false);
-  const [isActive, setisActive] = useState('');
 
   const ToggleHamb = () => {
     setisOpen((isOpen) => !isOpen);
@@ -67,19 +66,13 @@ const Header = () => {
               text={'Odjava'}
             />
             {isAdmin && (
-              <NavItem
-                to="/records"
-                onClick={() => setisActive('evidencija')}
-                jeaktivan={isActive === 'evidencija' ? 'true' : undefined}>
-                Evidencija
+              <NavItem to="/statistics" activeClassName="active">
+                Statistika
               </NavItem>
             )}
             {isAdmin && (
-              <NavItem
-                to="/statistics"
-                onClick={() => setisActive('statistika')}
-                jeaktivan={isActive === 'statistika' ? 'true' : undefined}>
-                Statistika
+              <NavItem to="/records" activeClassName="active">
+                Evidencija
               </NavItem>
             )}
           </Nav>
