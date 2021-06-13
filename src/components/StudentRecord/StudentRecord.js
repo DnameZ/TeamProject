@@ -41,9 +41,7 @@ const StudentRecord = ({ handleModalClose, ID, freeSPOTS, title }) => {
   const [isRecord, setIsRecord] = useState(Prijavljeni);
   const [isMobile, setIsMobile] = useState(false);
   const [users, setUsers] = useState([]);
-  const object = {
-    confirmedUsers: [],
-  };
+  const object = { confirmedUsers: [] };
   const authToken = localStorage.getItem('authToken');
   const id = ID;
 
@@ -93,7 +91,11 @@ const StudentRecord = ({ handleModalClose, ID, freeSPOTS, title }) => {
             type={SetActiveOrInactive(Dodaj)}
           />
         </StudentHead>
-        {isRecord === Prijavljeni ? <SignedIn users={users} /> : <AddStudent />}
+        {isRecord === Prijavljeni ? (
+          <SignedIn users={users} confirmedUsers={object.confirmedUsers} />
+        ) : (
+          <AddStudent />
+        )}
       </StudentTable>
       <ButtonWrapper>
         {isRecord === Prijavljeni ? (
@@ -158,6 +160,7 @@ const AddStudent = () => {
 
 const SignedIn = ({ users, confirmedUsers }) => {
   const [text, setText] = useState('');
+
   const handleChange = (value) => {
     setText(value);
   };
@@ -185,7 +188,8 @@ const SignedIn = ({ users, confirmedUsers }) => {
 
   const handleAddingStudents = (isChecked, value) => {
     if (isChecked) {
-      console.log(value);
+      confirmedUsers.push(value);
+      console.log(confirmedUsers);
     } else {
     }
   };
