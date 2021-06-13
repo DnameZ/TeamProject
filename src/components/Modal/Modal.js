@@ -17,10 +17,11 @@ import {
 import CloseIcon from '../../assets/images/closeIcon.svg';
 
 const Modal = (props) => {
+  let y = window.scrollY;
   return (
     <>
       <ModalBackground />
-      <ModalWrapper>
+      <ModalWrapper value={y}>
         <ModalHeader>
           <ModalTitle>{props.title}</ModalTitle>
           <IconWrapper>

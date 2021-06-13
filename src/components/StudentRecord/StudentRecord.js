@@ -42,14 +42,10 @@ const StudentRecord = ({ handleModalClose, ID, freeSPOTS, title }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [users, setUsers] = useState([]);
   const object = {
-    confirmedUsers: [
-      '5a88c32c-1187-4584-89d8-1a6f2751658b',
-      '1c9d5b23-cffe-4a9b-aefc-dbd75963b4a9',
-    ],
+    confirmedUsers: [],
   };
   const authToken = localStorage.getItem('authToken');
   const id = ID;
-  let y = window.scrollY;
 
   const handleResize = () => {
     if (window.innerWidth < 720) {
@@ -63,7 +59,7 @@ const StudentRecord = ({ handleModalClose, ID, freeSPOTS, title }) => {
     handleResize();
     window.addEventListener('resize', handleResize);
     getUsersRegisteredToEvent(id, authToken).then((result) => setUsers(result));
-  });
+  }, []);
 
   const ToggleRecord = (Record) => {
     setIsRecord(Record);
@@ -77,7 +73,6 @@ const StudentRecord = ({ handleModalClose, ID, freeSPOTS, title }) => {
 
   return (
     <Modal title={'Evidentiraj polaznike'} handleModalClose={handleModalClose}>
-      {window.scrollTo(0, 0)}
       <EventInfo>
         <LabelNameOfEvent>Naziv događaja:</LabelNameOfEvent>
         <NameOfEvent>{title}</NameOfEvent>
@@ -161,7 +156,7 @@ const AddStudent = () => {
   );
 };
 
-const SignedIn = ({ users }) => {
+const SignedIn = ({ users, confirmedUsers }) => {
   const [text, setText] = useState('');
   const handleChange = (value) => {
     setText(value);
@@ -188,6 +183,17 @@ const SignedIn = ({ users }) => {
     }
   });
 
+  const handleAddingStudents = (isChecked, value) => {
+    if (isChecked) {
+      console.log(value);
+    } else {
+    }
+  };
+
+  const handleCheckboxChange = (event) => {
+    handleAddingStudents(event.target.checked, event.target.defaultValue);
+  };
+
   return (
     <>
       <StudentBody>
@@ -196,8 +202,14 @@ const SignedIn = ({ users }) => {
         </StudentRow>
         <StudentRow>
           {filteredUsers.map((korisnik, index) => (
-            <StudentData key={index}>
-              <InputCheckbox id={index + 6} type="checkbox" />
+            <StudentData key={index + 6}>
+              <InputCheckbox
+                id={index + 6}
+                type="checkbox"
+                value={korisnik.id}
+                name="korisnik.id"
+                onChange={handleCheckboxChange}
+              />
               <CheckboxOptionLabel htmlFor={index + 6}>
                 {' '}
                 {getHighlightedText(korisnik.fullName, text)}

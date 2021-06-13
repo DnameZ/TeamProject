@@ -19,7 +19,7 @@ export const ModalWrapper = styled.div`
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: ${colors.white};
   position: absolute;
-  top: 0;
+  top: ${(props) => props.value};
   z-index: 1;
   overflow: hidden;
   left: 50%;
