@@ -104,7 +104,7 @@ const StudentRecord = ({ handleModalClose, ID }) => {
             text={'Spremi'}
           />
         ) : (
-          <SecondaryButton type={'modal/card'} text={'Spremi'} />
+          <SecondaryButton type={'modal/card'} text={'Dodaj'} />
         )}
       </ButtonWrapper>
     </Modal>
