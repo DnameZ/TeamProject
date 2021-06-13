@@ -166,16 +166,8 @@ export const NavItem = styled(NavLink)`
   font-weight: bold;
   margin-right: 32px;
 
-  ${(props) =>
-    props.jeaktivan &&
-    `
-  &:after {
-    width: 100%;
-    height: 4px;
-    background-color: ${colors.blue};
-    content:"";
-    position:absolute;
-    top:41.5px;
-    left:0;
-  }`}
+  &.active {
+    border-bottom: 4px solid ${colors.darkBlue};
+    padding: 25px 0 23px;
+  }
 `;

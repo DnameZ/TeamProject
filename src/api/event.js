@@ -35,7 +35,7 @@ export const registerForEvent = (id, authToken) => {
     headers: {
       'auth-token': authToken,
     },
-  }).then((res) => res.json());
+  }).then((res) => res);
 };
 
 export const cancleEventRegistration = (id, authToken) => {
@@ -58,10 +58,11 @@ export const rateEvent = (review, id, authToken) => {
   }).then((res) => res.json());
 };
 
-export const getEventRatingsAndComments = (authToken, id) => {
-  return fetch(`${apiOrigin}/api/event-user/ratings/${id}`, {
+export const getUserEvents = (authToken) => {
+  return fetch(`${apiOrigin}/api/event-user/user-events`, {
     method: 'GET',
     headers: {
+      'Content-type': 'application/json',
       'auth-token': authToken,
     },
   }).then((res) => res.json());
