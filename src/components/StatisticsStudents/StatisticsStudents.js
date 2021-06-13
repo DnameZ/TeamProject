@@ -17,6 +17,7 @@ import { users } from '../../lib/mock/statistics';
 
 const StatisticsStudents = () => {
   const [showSortModalEvents, setShowSortModalEvents] = useState(false);
+  const [students, setStudents] = useState(users);
 
   const handleResize = () => {
     if (window.innerWidth < 768) {
@@ -26,7 +27,40 @@ const StatisticsStudents = () => {
 
   useEffect(() => {
     handleResize();
-  });
+    console.log(students);
+  }, [students]);
+
+  // sort
+  const compareA = (a, b) => {
+    if (a.participations < b.participations) {
+      return -1;
+    }
+    if (a.participations > b.participations) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const compareB = (a, b) => {
+    if (a.participations < b.participations) {
+      return 1;
+    }
+    if (a.participations > b.participations) {
+      return -1;
+    }
+    return 0;
+  };
+
+  const sortDefault = () => {
+    //  let sortedData = users.sort(compareA);
+    setStudents(users);
+  };
+
+  const sortDescending = () => {
+    let sortedData = students.sort(compareB);
+    setStudents(sortedData);
+    console.log(sortedData);
+  };
 
   return (
     <>
@@ -35,9 +69,12 @@ const StatisticsStudents = () => {
         content2="Po broju sudjelovanja"
         type="students"
         position="participations"
+        sortMethod1={sortDefault}
+        sortMethod2={sortDescending}
         showSortModalEvents={showSortModalEvents}
       />
-      {users.map(
+
+      {students.map(
         (studentsInfo) =>
           !studentsInfo.isAdmin && (
             <MobileWrapper key={studentsInfo.id}>
@@ -67,7 +104,7 @@ const StatisticsStudents = () => {
             </Th>
           </Tr>
         </TableHead>
-        {users.map(
+        {students.map(
           (studentsInfo) =>
             !studentsInfo.isAdmin && (
               <TableBody key={studentsInfo.id}>

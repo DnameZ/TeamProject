@@ -22,6 +22,7 @@ import SortModal from '../../components/SortModal/SortModal';
 import { events } from '../../lib/mock/statistics';
 const StatisticsEvents = () => {
   const [show, setShow] = useState(false);
+  const [event, setEvent] = useState(events);
   const [showSortModalEvents, setShowSortModalEvents] = useState(
     'modal-one' | 'modal-two',
   );
@@ -44,6 +45,44 @@ const StatisticsEvents = () => {
     handleResize();
   });
 
+  // sort
+  const compareA = (a, b) => {
+    const eventA = a.title.toUpperCase();
+    const eventB = b.title.toUpperCase();
+
+    if (eventA < eventB) {
+      return -1;
+    }
+    if (eventA > eventB) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const compareB = (a, b) => {
+    const eventA = a.title.toUpperCase();
+    const eventB = b.title.toUpperCase();
+
+    if (eventA < eventB) {
+      return 1;
+    }
+    if (eventA > eventB) {
+      return -1;
+    }
+    return 0;
+  };
+
+  const sortDescending = () => {
+    let sortedData = events.sort(compareA);
+    setEvent(sortedData);
+    console.log(sortedData);
+  };
+
+  const sortAscending = () => {
+    let sortedData = events.sort(compareB);
+    setEvent(sortedData);
+  };
+
   return (
     <>
       <SortModal
@@ -51,6 +90,8 @@ const StatisticsEvents = () => {
         content2="Abecedno uzlazno"
         content3="Abecedno silazno"
         position="eventsAZ"
+        sortMethod2={() => sortAscending()}
+        sortMethod3={() => sortDescending()}
         showSortModalEvents={showSortModalEvents === 'modal-one'}
       />
       <SortModal
@@ -58,6 +99,8 @@ const StatisticsEvents = () => {
         content2="Po prosječnoj ocjeni"
         type="students"
         position="avgGrade"
+        sortMethod1={() => sortAscending()}
+        sortMethod2={() => sortDescending()}
         showSortModalEvents={showSortModalEvents === 'modal-two'}
       />
       <CommentList handleClose={() => setShow(false)} show={show} />
