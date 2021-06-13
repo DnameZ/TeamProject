@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BsChevronExpand, BsChevronContract } from 'react-icons/bs';
 import StudentRecord from '../StudentRecord/StudentRecord';
 import Rate from '../RateEventModal/RateEventModal';
-import { registerForEvent } from '../../api/event';
 
 // style
 import {
@@ -20,6 +19,7 @@ import {
 } from './EventCardStyle';
 
 import { PrimaryButton } from '../../lib/styles/generalStyles';
+import { registerForEvent } from '../../api/event';
 
 const EventCard = ({
   title,
@@ -45,7 +45,7 @@ const EventCard = ({
   const SetModal = (buttonText) => {
     switch (buttonText) {
       case Evidentiraj:
-        return <StudentRecord ID={id} handleModalClose={OpenModal} />;
+        return <StudentRecord handleModalClose={OpenModal} />;
       case Ocijeni:
         return <Rate handleModalClose={OpenModal} />;
       case PrijaviSe:
