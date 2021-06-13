@@ -15,8 +15,12 @@ import {
 } from '../../lib/styles/generalStyles';
 import InfoIconImg from '../../assets/images/info-icon.png';
 
-const Status = () => {
+const Status = ({ handleStatusFilter }) => {
   const statuses = ['Svi', 'Nadolazeći', 'Završeni'];
+
+  const handleStatusChange = (event) => {
+    handleStatusFilter(event.target.value);
+  };
 
   return (
     <>
@@ -26,10 +30,13 @@ const Status = () => {
           {statuses.map((status, index) => (
             <SingleStatus key={index}>
               <InputCheckbox
-                type="checkbox"
+                type="radio"
                 value={status}
                 id={index}
-                name="status"></InputCheckbox>
+                defaultChecked={index === 0 ? true : false}
+                name="status"
+                onChange={handleStatusChange}
+              />
               <CheckboxOptionLabel htmlFor={index}>
                 {status}
               </CheckboxOptionLabel>

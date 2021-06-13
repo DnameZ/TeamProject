@@ -28,6 +28,7 @@ const Events = () => {
   const [eventDate, setEventDate] = useState('');
   const [organizer, setOrganizer] = useState('');
   const [categories, setCategories] = useState([]);
+  const [statusFilter, setStatusFilter] = useState('Svi');
   const { authToken } = useContext(AuthContext);
 
   const toggleFilter = () => {
@@ -50,11 +51,17 @@ const Events = () => {
     setEventDate('');
     setOrganizer('');
     setCategories([]);
+    setStatusFilter('Svi');
   };
 
   const handleSetAllEvents = (value) => {
     setAllEvents(value);
     resetFilters();
+  };
+
+  const handleStatusFilter = (value) => {
+    setStatusFilter(value);
+    toggleStatus();
   };
 
   useEffect(() => {
@@ -114,7 +121,11 @@ const Events = () => {
         />
       ) : null}
       {status ? (
-        <StatusOverlay title="Status događaja" onOverlayClosed={toggleStatus} />
+        <StatusOverlay
+          title="Status događaja"
+          onOverlayClosed={toggleStatus}
+          handleShowResults={handleStatusFilter}
+        />
       ) : null}
       {!filter && !status ? (
         events.length !== 0 ? (
@@ -129,6 +140,8 @@ const Events = () => {
             setOrganizer={setOrganizer}
             categories={categories}
             handleCategoriesSearch={handleCategoriesSearch}
+            statusFilter={statusFilter}
+            setStatusFilter={setStatusFilter}
           />
         ) : (
           <EmptyMsg>Nema prijavljenih događaja</EmptyMsg>
@@ -149,6 +162,8 @@ const MapEvents = ({
   setOrganizer,
   categories,
   handleCategoriesSearch,
+  statusFilter,
+  setStatusFilter,
 }) => {
   const SetButtonText = () => {
     const PrijaviSe = 'Prijavi se';
@@ -199,7 +214,7 @@ const MapEvents = ({
                 handleCategoriesSearch={handleCategoriesSearch}
               />
             ) : (
-              <Status />
+              <Status handleStatusFilter={setStatusFilter} />
             )}
           </FilterWrapper>
         }
@@ -208,13 +223,18 @@ const MapEvents = ({
             (event) =>
               ((allEvents &&
                 event.name?.toLowerCase().includes(searchValue) &&
-                event.organizer.includes(organizer) &&
+                event.organizer?.includes(organizer) &&
                 event.startTime?.includes(eventDate) &&
                 (categories.every((category) =>
                   event.category?.includes(category),
                 ) ||
                   categories.length === 0)) ||
-                !allEvents) && (
+                (!allEvents &&
+                  ((statusFilter === 'Nadolazeći' &&
+                    new Date(event.event.startTime?.toString()) > new Date()) ||
+                    (statusFilter === 'Završeni' &&
+                      new Date(event.event.endTime?.toString()) < new Date()) ||
+                    statusFilter === 'Svi'))) && (
                 <EventCard
                   key={event.id || event.event.id}
                   id={event.id || event.event.id}

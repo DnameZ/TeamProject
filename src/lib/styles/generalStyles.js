@@ -95,7 +95,8 @@ export const CheckboxOptionLabel = styled.label`
     border-radius: 4px;
   }
 
-  [type='checkbox']:checked + &::after {
+  [type='checkbox']:checked + &::after,
+  [type='radio']:checked + &::after {
     content: '';
     height: 20px;
     width: 20px;
