@@ -45,7 +45,14 @@ const EventCard = ({
   const SetModal = (buttonText) => {
     switch (buttonText) {
       case Evidentiraj:
-        return <StudentRecord handleModalClose={OpenModal} />;
+        return (
+          <StudentRecord
+            handleModalClose={OpenModal}
+            ID={id}
+            freeSPOTS={freeSpots}
+            title={title}
+          />
+        );
       case Ocijeni:
         return <Rate handleModalClose={OpenModal} />;
       case PrijaviSe:

@@ -192,11 +192,6 @@ const Records = () => {
             )}
           </EventsWrapper>
           <DummyItem />
-          {!isLoading && (
-            <ButtonWrapper>
-              <PrimaryButton text="Prikaži više" type="fullWidth" />
-            </ButtonWrapper>
-          )}
         </SectionContent>
       ) : null}
     </>

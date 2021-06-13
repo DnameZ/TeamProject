@@ -33,7 +33,7 @@ import {
   SecondaryButton,
 } from '../../lib/styles/generalStyles';
 
-const StudentRecord = ({ handleModalClose, ID }) => {
+const StudentRecord = ({ handleModalClose, ID, freeSPOTS, title }) => {
   const PrijavljeniP = 'Prijavljeni polaznici';
   const DodajP = 'Dodaj polaznike';
   const Prijavljeni = 'Prijavljeni';
@@ -49,6 +49,7 @@ const StudentRecord = ({ handleModalClose, ID }) => {
   };
   const authToken = localStorage.getItem('authToken');
   const id = ID;
+  let y = window.scrollY;
 
   const handleResize = () => {
     if (window.innerWidth < 720) {
@@ -76,10 +77,13 @@ const StudentRecord = ({ handleModalClose, ID }) => {
 
   return (
     <Modal title={'Evidentiraj polaznike'} handleModalClose={handleModalClose}>
+      {window.scrollTo(0, 0)}
       <EventInfo>
         <LabelNameOfEvent>Naziv događaja:</LabelNameOfEvent>
-        <NameOfEvent>Kreiraj svoju Pokedex aplikaciju uz ReactJS</NameOfEvent>
-        <NumberOfStudents>0/40</NumberOfStudents>
+        <NameOfEvent>{title}</NameOfEvent>
+        <NumberOfStudents>
+          {users.length}/{freeSPOTS}
+        </NumberOfStudents>
       </EventInfo>
       <StudentTable>
         <StudentHead>

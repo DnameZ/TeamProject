@@ -46,6 +46,7 @@ export const StudentRecord = styled.div`
 export const StudentHead = styled.div`
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
   border: ${tableBorderNormal};
   border-collapse: collapse;
   border-radius: 6px 6px 0px 0px;
