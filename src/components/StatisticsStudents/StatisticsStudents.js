@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import SortImageStudents from '../../assets/images/sort-icon-2.png';
 import {
   TableWrapper,
@@ -13,13 +13,10 @@ import {
   MobileText,
 } from './StatisticsStudentsStyle';
 import SortModal from '../../components/SortModal/SortModal';
-import { getAllUsers } from '../../api/user';
-import { AuthContext } from '../../context/AuthContext';
+import { users } from '../../lib/mock/statistics';
 
 const StatisticsStudents = () => {
   const [showSortModalEvents, setShowSortModalEvents] = useState(false);
-  const [users, setUsers] = useState([]);
-  const { authToken } = useContext(AuthContext);
 
   const handleResize = () => {
     if (window.innerWidth < 768) {
@@ -29,9 +26,6 @@ const StatisticsStudents = () => {
 
   useEffect(() => {
     handleResize();
-    getAllUsers(authToken).then((result) => {
-      setUsers(result);
-    });
   });
 
   return (
@@ -49,7 +43,7 @@ const StatisticsStudents = () => {
             <MobileWrapper key={studentsInfo.id}>
               <MobileTitle>Ime i prezime:</MobileTitle>
               <MobileText>
-                {studentsInfo.nameSurname} {studentsInfo.lastName}
+                {studentsInfo.firstName} {studentsInfo.lastName}
               </MobileText>
               <MobileTitle>Email adresa:</MobileTitle>
               <MobileText>{studentsInfo.email}</MobileText>

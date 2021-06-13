@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import SortAZImage from '../../assets/images/sort-icon-1.png';
 import SortImage from '../../assets/images/sort-icon-2.png';
 import {
@@ -19,16 +19,12 @@ import {
 
 import CommentList from '../CommentList/CommentList';
 import SortModal from '../../components/SortModal/SortModal';
-import { getAllEvents } from '../../api/event';
-import { AuthContext } from '../../context/AuthContext';
-
+import { events } from '../../lib/mock/statistics';
 const StatisticsEvents = () => {
   const [show, setShow] = useState(false);
   const [showSortModalEvents, setShowSortModalEvents] = useState(
     'modal-one' | 'modal-two',
   );
-  const [events, setEvents] = useState([]);
-  const { authToken } = useContext(AuthContext);
 
   const handleShowModalOne = () => {
     setShowSortModalEvents('modal-one');
@@ -46,9 +42,6 @@ const StatisticsEvents = () => {
 
   useEffect(() => {
     handleResize();
-    getAllEvents(authToken).then((result) => {
-      setEvents(result);
-    });
   });
 
   return (
@@ -71,9 +64,9 @@ const StatisticsEvents = () => {
       {events.map((event) => (
         <MobileWrapper key={event.id}>
           <MobileTitle>Naziv događaja:</MobileTitle>
-          <MobileText>{event.name}</MobileText>
+          <MobileText>{event.title}</MobileText>
           <MobileTitle>Prosječna ocjena:</MobileTitle>
-          <MobileText>4,7</MobileText>
+          <MobileText>{event.avgGrade}</MobileText>
           <MobileTitle>Komentari:</MobileTitle>
           <MobileTextCommentar onClick={() => setShow(true)}>
             Pogledaj komentare
@@ -106,8 +99,8 @@ const StatisticsEvents = () => {
         {events.map((event) => (
           <TableBody key={event.id}>
             <Tr>
-              <Td>{event.name}</Td>
-              <Td>{event.userRating}</Td>
+              <Td>{event.title}</Td>
+              <Td>{event.avgGrade}</Td>
               <TdComments onClick={() => setShow(true)}>
                 Pogledaj komentare
               </TdComments>
