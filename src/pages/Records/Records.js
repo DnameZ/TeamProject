@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { DummyItem, LoadingSpinner } from './RecordsStyle';
+import { LoadingSpinner } from './RecordsStyle';
 
 //Components
 import Section from '../../components/Section/Section';
@@ -190,7 +190,6 @@ const Records = () => {
               />
             )}
           </EventsWrapper>
-          <DummyItem />
         </SectionContent>
       ) : null}
     </>
