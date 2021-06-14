@@ -154,6 +154,10 @@ export const Options = styled(NavLink)`
   &:hover {
     color: ${colors.blue};
   }
+
+  &.active {
+    color: ${colors.blue};
+  }
 `;
 
 export const NavItem = styled(NavLink)`

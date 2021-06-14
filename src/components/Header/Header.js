@@ -78,21 +78,35 @@ const Header = () => {
           </Nav>
         </Inner>
       </HeaderInner>
-      {isOpen === false ? '' : <HamburgerMenu toggleHamb={!isOpen} />}
+      {isOpen === false ? '' : <HamburgerMenu ToggleHamb={ToggleHamb} />}
     </>
   );
 };
 
-const HamburgerMenu = () => {
+const HamburgerMenu = ({ ToggleHamb }) => {
   const history = useHistory();
   const { isAdmin, handleUserLogout } = useContext(AuthContext);
   return (
     <>
       <HamMenu>
         <HamOptions>
-          <Options to="events">Događaji</Options>
-          {isAdmin && <Options to="/records">Evidencija</Options>}
-          {isAdmin && <Options to="/statistics">Statistika</Options>}
+          {!isAdmin && <Options to="events">Događaji</Options>}
+          {isAdmin && (
+            <Options
+              to="/records"
+              activeClassName="active"
+              onClick={ToggleHamb}>
+              Evidencija
+            </Options>
+          )}
+          {isAdmin && (
+            <Options
+              to="/statistics"
+              activeClassName="active"
+              onClick={ToggleHamb}>
+              Statistika
+            </Options>
+          )}
         </HamOptions>
         <HamMenuButton>
           <PrimaryButton
