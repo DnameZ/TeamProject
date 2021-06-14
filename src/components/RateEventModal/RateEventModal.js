@@ -21,10 +21,8 @@ import { TextArea } from '../../lib/styles/generalStyles';
 const RateEventModal = (props) => {
   const [selectedGrade, setSelectedGrade] = useState(0);
   const [value, setValue] = useState('');
-
   const review = { comment: value, rating: selectedGrade };
-  const id = '153f16cb-48f9-4293-aff9-3436d9d0417c';
-
+  let id = props.id;
   const SendData = () => {
     const authToken = localStorage.getItem('authToken');
     rateEvent(review, id, authToken);
@@ -36,10 +34,11 @@ const RateEventModal = (props) => {
 
   return (
     <Modal title="Ocijeni događaj" handleModalClose={props.handleModalClose}>
+      {console.log(id)}
       <ContentWrapper>
         <ContentRow>
           <RowTitle>Ime događaja:</RowTitle>
-          <RowParagraph>{props.eventName}</RowParagraph>
+          <RowParagraph>{props.title}</RowParagraph>
         </ContentRow>
 
         <ContentRow>
@@ -79,7 +78,7 @@ const RateEventModal = (props) => {
         </ContentRow>
         <ButtonWrapper>
           <PrimaryButton
-            onClick={SendData}
+            onClick={() => SendData()}
             type="modal/card"
             text="Pošalji ocjenu"
           />
