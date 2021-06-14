@@ -20,7 +20,7 @@ const RateEventModal = (props) => {
   const [selectedGrade, setSelectedGrade] = useState(0);
 
   return (
-    <Modal title="Ocijeni događaj">
+    <Modal title="Ocijeni događaj" handleModalClose={props.handleModalClose}>
       <ContentWrapper>
         <ContentRow>
           <RowTitle>Ime događaja:</RowTitle>
