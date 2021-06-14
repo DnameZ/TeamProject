@@ -35,7 +35,7 @@ const RateEventModal = (props) => {
   };
 
   return (
-    <Modal title="Ocijeni događaj">
+    <Modal title="Ocijeni događaj" handleModalClose={props.handleModalClose}>
       <ContentWrapper>
         <ContentRow>
           <RowTitle>Ime događaja:</RowTitle>

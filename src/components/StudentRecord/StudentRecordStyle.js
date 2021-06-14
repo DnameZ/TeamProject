@@ -46,6 +46,7 @@ export const StudentRecord = styled.div`
 export const StudentHead = styled.div`
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
   border: ${tableBorderNormal};
   border-collapse: collapse;
   border-radius: 6px 6px 0px 0px;
@@ -202,7 +203,9 @@ export const InputLabel = styled.label`
 `;
 
 export const InputErrors = styled.p`
-  margin-left: 25px;
-  font-size: 14px;
-  color: ${colors.red};
+  margin-left: 0px;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: ${colors.darkBlue};
 `;
