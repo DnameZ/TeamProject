@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors, boxShadowFocus, breakpoints } from './theme';
+import { colors, boxShadowFocus, breakpoints, transitionCubic } from './theme';
 import TickIcon from '../../assets/images/tick-icon.png';
 import DropdownIcon from '../../assets/images/dropdown-icon.png';
 
@@ -123,6 +123,7 @@ export const ButtonDefault = css`
   line-height: 1.4;
   color: ${colors.white};
   border: none;
+  transition: ${transitionCubic};
 
   &:hover {
     cursor: pointer;

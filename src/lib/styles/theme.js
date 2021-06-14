@@ -24,3 +24,4 @@ export const boxShadow = '1px 1px 4px 0 rgba(0, 0, 0, 0.2)';
 export const boxShadowHover = '2px 2px 8px 0 rgba(0, 0, 0, 0.1)';
 export const boxShadowFocus = '2px 2px 8px 0 rgba(0, 0, 0, 0.1)';
 export const tableBorderNormal = `solid 1px #cccccc`;
+export const transitionCubic = 'all 0.3s cubic-bezier(.25,.8,.25,1)';
