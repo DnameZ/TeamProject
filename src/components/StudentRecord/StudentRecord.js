@@ -120,9 +120,9 @@ const AddStudent = () => {
       Email: '',
     },
     validationSchema: Yup.object({
-      Ime: Yup.string().required('User should have name'),
-      Prezime: Yup.string().required('User should have lastname'),
-      Email: Yup.string().required('User should have E-mail'),
+      Ime: Yup.string().required('Ime je obavezno!'),
+      Prezime: Yup.string().required('Prezime je obavezno!'),
+      Email: Yup.string().required('E-mail je obavezan!'),
     }),
   });
   return (
