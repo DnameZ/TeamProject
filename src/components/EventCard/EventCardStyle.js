@@ -14,6 +14,10 @@ export const EventCard = styled.div`
     box-shadow: ${boxShadowHover};
     border: solid 2px ${colors.blue};
   }
+
+  @media screen and (${breakpoints.desktopLarge}) {
+    min-width: 832px;
+  }
 `;
 
 export const EventCardHeader = styled.div`
