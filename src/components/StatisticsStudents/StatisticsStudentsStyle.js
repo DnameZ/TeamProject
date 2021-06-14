@@ -87,6 +87,7 @@ export const Th = styled.th`
 
 export const TableBody = styled.tbody`
   border: 2px solid ${colors.lightGrey};
+  background-color: ${colors.white};
 `;
 
 export const Td = styled.td`

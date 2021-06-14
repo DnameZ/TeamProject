@@ -93,6 +93,7 @@ export const CheckboxOptionLabel = styled.label`
     left: 0;
     border: 2px solid ${colors.darkGrey};
     border-radius: 4px;
+    background-color: ${colors.white};
   }
 
   [type='checkbox']:checked + &::after,
