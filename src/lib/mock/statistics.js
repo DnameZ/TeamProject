@@ -3,31 +3,37 @@ export const events = [
     id: 1,
     title: 'Kreiraj svoju Pokedex aplikaciju uz ReactJS',
     avgGrade: 4.7,
+    date: '2021-06-12',
   },
   {
     id: 2,
     title: 'Mogu li “ja” postati konzultant?',
     avgGrade: 4.6,
+    date: '2021-06-17',
   },
   {
     id: 3,
     title: 'Karijera informatičara nakon FOI-ja',
     avgGrade: 4.7,
+    date: '2021-06-15',
   },
   {
     id: 4,
     title: 'Kreiraj svoju Pokedex aplikaciju uz ReactJS',
     avgGrade: 4.7,
+    date: '2021-06-05',
   },
   {
     id: 5,
     title: 'Mogu li “ja” postati konzultant?',
     avgGrade: 4.9,
+    date: '2021-06-28',
   },
   {
     id: 6,
     title: 'Karijera informatičara nakon FOI-ja',
     avgGrade: 4.8,
+    date: '2021-05-22',
   },
 ];
 

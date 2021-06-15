@@ -27,19 +27,7 @@ const StatisticsStudents = () => {
 
   useEffect(() => {
     handleResize();
-    console.log(students);
   }, [students]);
-
-  // sort
-  const compareA = (a, b) => {
-    if (a.participations < b.participations) {
-      return -1;
-    }
-    if (a.participations > b.participations) {
-      return 1;
-    }
-    return 0;
-  };
 
   const compareB = (a, b) => {
     if (a.participations < b.participations) {
@@ -52,14 +40,14 @@ const StatisticsStudents = () => {
   };
 
   const sortDefault = () => {
-    //  let sortedData = users.sort(compareA);
     setStudents(users);
+    setShowSortModalEvents(false);
   };
 
   const sortDescending = () => {
-    let sortedData = students.sort(compareB);
-    setStudents(sortedData);
-    console.log(sortedData);
+    let studentsToSort = [...students].sort(compareB);
+    setStudents(studentsToSort);
+    setShowSortModalEvents(false);
   };
 
   return (

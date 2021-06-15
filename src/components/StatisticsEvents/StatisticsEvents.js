@@ -19,10 +19,10 @@ import {
 
 import CommentList from '../CommentList/CommentList';
 import SortModal from '../../components/SortModal/SortModal';
-import { events } from '../../lib/mock/statistics';
-const StatisticsEvents = () => {
+const StatisticsEvents = (events) => {
   const [show, setShow] = useState(false);
-  const [event, setEvent] = useState(events);
+  const [event, setEvent] = useState(events.events);
+  const [initialEvents, setInitialEvents] = useState(event);
   const [showSortModalEvents, setShowSortModalEvents] = useState(
     'modal-one' | 'modal-two',
   );
@@ -44,6 +44,10 @@ const StatisticsEvents = () => {
   useEffect(() => {
     handleResize();
   });
+
+  useEffect(() => {
+    setEvent(events.events);
+  }, [events]);
 
   // sort
   const compareA = (a, b) => {
@@ -72,15 +76,53 @@ const StatisticsEvents = () => {
     return 0;
   };
 
+  const compareC = (a, b) => {
+    if (new Date(a.date) > new Date(b.date)) {
+      return 1;
+    }
+    if (new Date(a.date) < new Date(b.date)) {
+      return -1;
+    }
+    return 0;
+  };
+
+  const compareByGrade = (a, b) => {
+    if (a.avgGrade > b.avgGrade) {
+      return -1;
+    }
+    if (a.avgGrade < b.avgGrade) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const sortDefault = () => {
+    setEvent(initialEvents);
+    setShowSortModalEvents(false);
+  };
+
+  const sortByGrade = () => {
+    let dataToSort = [...event].sort(compareByGrade);
+    setEvent(dataToSort);
+    setShowSortModalEvents(false);
+  };
+
+  const sortChronologically = () => {
+    let dataToSort = [...event].sort(compareC);
+    setEvent(dataToSort);
+    setShowSortModalEvents(false);
+  };
+
   const sortDescending = () => {
-    let sortedData = events.sort(compareA);
-    setEvent(sortedData);
-    console.log(sortedData);
+    let dataToSort = [...event].sort(compareA);
+    setEvent(dataToSort);
+    setShowSortModalEvents(false);
   };
 
   const sortAscending = () => {
-    let sortedData = events.sort(compareB);
-    setEvent(sortedData);
+    let dataToSort = [...event].sort(compareB);
+    setEvent(dataToSort);
+    setShowSortModalEvents(false);
   };
 
   return (
@@ -90,6 +132,7 @@ const StatisticsEvents = () => {
         content2="Abecedno uzlazno"
         content3="Abecedno silazno"
         position="eventsAZ"
+        sortMethod1={() => sortChronologically()}
         sortMethod2={() => sortAscending()}
         sortMethod3={() => sortDescending()}
         showSortModalEvents={showSortModalEvents === 'modal-one'}
@@ -99,12 +142,12 @@ const StatisticsEvents = () => {
         content2="Po prosječnoj ocjeni"
         type="students"
         position="avgGrade"
-        sortMethod1={() => sortAscending()}
-        sortMethod2={() => sortDescending()}
+        sortMethod1={() => sortDefault()}
+        sortMethod2={() => sortByGrade()}
         showSortModalEvents={showSortModalEvents === 'modal-two'}
       />
       <CommentList handleClose={() => setShow(false)} show={show} />
-      {events.map((event) => (
+      {event.map((event) => (
         <MobileWrapper key={event.id}>
           <MobileTitle>Naziv događaja:</MobileTitle>
           <MobileText>{event.title}</MobileText>
@@ -139,7 +182,7 @@ const StatisticsEvents = () => {
             <Th>Komentari</Th>
           </Tr>
         </TableHead>
-        {events.map((event) => (
+        {event.map((event) => (
           <TableBody key={event.id}>
             <Tr>
               <Td>{event.title}</Td>
