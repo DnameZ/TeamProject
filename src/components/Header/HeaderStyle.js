@@ -154,6 +154,10 @@ export const Options = styled(NavLink)`
   &:hover {
     color: ${colors.blue};
   }
+
+  &.active {
+    color: ${colors.blue};
+  }
 `;
 
 export const NavItem = styled(NavLink)`
@@ -166,8 +170,26 @@ export const NavItem = styled(NavLink)`
   font-weight: bold;
   margin-right: 32px;
 
-  &.active {
-    border-bottom: 4px solid ${colors.darkBlue};
-    padding: 25px 0 23px;
+  &::after {
+    width: 0;
+    height: 4px;
+    background-color: ${colors.lightGrey};
+    content: '';
+    position: absolute;
+    top: 41.5px;
+    left: 50%;
+    z-index: 5;
+    transition: width 0.25s, left 0.25s;
+  }
+
+  &:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  &.active::after {
+    width: 100%;
+    left: 0;
+    background-color: ${colors.blue};
   }
 `;
