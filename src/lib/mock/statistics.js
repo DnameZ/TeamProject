@@ -3,7 +3,7 @@ export const events = [
     id: 1,
     title: 'Kreiraj svoju Pokedex aplikaciju uz ReactJS',
     avgGrade: 4.7,
-    date: '2021-06-12',
+    date: '2021-05-01',
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ export const events = [
     id: 5,
     title: 'Mogu li “ja” postati konzultant?',
     avgGrade: 4.9,
-    date: '2021-06-28',
+    date: '2021-05-02',
   },
   {
     id: 6,

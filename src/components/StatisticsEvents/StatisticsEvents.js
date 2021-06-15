@@ -109,18 +109,19 @@ const StatisticsEvents = (events) => {
 
   const sortChronologically = () => {
     let dataToSort = [...event].sort(compareC);
+    console.log(dataToSort);
     setEvent(dataToSort);
     setShowSortModalEvents(false);
   };
 
   const sortDescending = () => {
-    let dataToSort = [...event].sort(compareA);
+    let dataToSort = [...event].sort(compareB);
     setEvent(dataToSort);
     setShowSortModalEvents(false);
   };
 
   const sortAscending = () => {
-    let dataToSort = [...event].sort(compareB);
+    let dataToSort = [...event].sort(compareA);
     setEvent(dataToSort);
     setShowSortModalEvents(false);
   };
