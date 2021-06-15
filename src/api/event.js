@@ -55,7 +55,7 @@ export const rateEvent = (review, id, authToken) => {
       'auth-token': authToken,
     },
     body: JSON.stringify(review),
-  }).then((res) => res.json());
+  }).then((res) => res);
 };
 
 export const getUserEvents = (authToken) => {

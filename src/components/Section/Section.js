@@ -12,16 +12,22 @@ import {
 const Section = ({
   onOpenFilter,
   onOpenStatus,
+  onOpenSortModalLeft,
+  onOpenSortModalRight,
   sectionTitle,
   leftButton,
   rightButton,
   buttonsHidden,
   setAllEvents,
   setShowEvents,
+  type,
+  leftTitle,
+  rightTitle,
 }) => {
   const mojiDogadaji = rightButton;
   const sviDogadaji = leftButton;
   const [curEvent, setcurEvent] = useState(sviDogadaji);
+
   const ToggleDogađaj = (dogadaj) => {
     setcurEvent(dogadaj);
     if (setAllEvents) {
@@ -43,9 +49,17 @@ const Section = ({
       <HeadingWrapper>
         <BigHeading>{sectionTitle}</BigHeading>
         {curEvent === sviDogadaji ? (
-          <SmallHeading onClick={onOpenFilter}>Filtriraj</SmallHeading>
+          <SmallHeading
+            type={type}
+            onClick={onOpenFilter || onOpenSortModalLeft}>
+            {leftTitle}
+          </SmallHeading>
         ) : (
-          <SmallHeading onClick={onOpenStatus}>Status</SmallHeading>
+          <SmallHeading
+            type={type}
+            onClick={onOpenStatus || onOpenSortModalRight}>
+            {rightTitle}
+          </SmallHeading>
         )}
       </HeadingWrapper>
       {!buttonsHidden ? (

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // components
 import Modal from '../Modal/Modal';
 import { PrimaryButton } from '../../lib/styles/generalStyles';
+import { rateEvent } from '../../api/event';
 
 // style
 import {
@@ -12,24 +13,37 @@ import {
   RowParagraph,
   RowGrades,
   Grade,
+  ButtonWrapper,
 } from './RateEventModalStyle';
 
 import { TextArea } from '../../lib/styles/generalStyles';
 
 const RateEventModal = (props) => {
   const [selectedGrade, setSelectedGrade] = useState(0);
+  const [value, setValue] = useState('');
+  const review = { comment: value, rating: selectedGrade };
+  let id = props.id;
+  const SendData = () => {
+    const authToken = localStorage.getItem('authToken');
+    rateEvent(review, id, authToken);
+  };
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   return (
     <Modal title="Ocijeni događaj" handleModalClose={props.handleModalClose}>
+      {console.log(id)}
       <ContentWrapper>
         <ContentRow>
           <RowTitle>Ime događaja:</RowTitle>
-          <RowParagraph>{props.eventName}</RowParagraph>
+          <RowParagraph>{props.title}</RowParagraph>
         </ContentRow>
 
         <ContentRow>
           <RowTitle>Komentar:</RowTitle>
-          <TextArea></TextArea>
+          <TextArea value={value} onChange={handleChange}></TextArea>
         </ContentRow>
 
         <ContentRow>
@@ -62,7 +76,13 @@ const RateEventModal = (props) => {
             </Grade>
           </RowGrades>
         </ContentRow>
-        <PrimaryButton type="modal/card" text="Pošalji ocjenu" />
+        <ButtonWrapper>
+          <PrimaryButton
+            onClick={() => SendData()}
+            type="modal/card"
+            text="Pošalji ocjenu"
+          />
+        </ButtonWrapper>
       </ContentWrapper>
     </Modal>
   );

@@ -58,6 +58,9 @@ export const SmallHeading = styled.h3`
   font-size: 16px;
   align-self: center;
   line-height: 1.86;
+  @media screen and (${breakpoints.tablet}) {
+    ${(props) => props.type === 'statistics' && `display: none;`}
+  }
 
   @media screen and (${breakpoints.desktopLarge}) {
     display: none;

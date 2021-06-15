@@ -5,7 +5,7 @@ export const MobileWrapper = styled.div`
   display: block;
   border-radius: 4px;
   border: 2px solid ${colors.lightGrey};
-  padding: 20px 24px 16px 16px;
+  padding: 15px 24px 0px 16px;
   background-color: ${colors.white};
   margin: 10px 16px 16px 16px;
   @media screen and (${breakpoints.tablet}) {
@@ -24,7 +24,7 @@ export const MobileText = styled.p`
   font-size: 14px;
   line-height: 1.5;
   color: ${colors.darkGrey};
-  margin: 4px 0 16px;
+  margin: 4px 0 10px;
 `;
 
 export const TableWrapper = styled.table`
@@ -37,12 +37,8 @@ export const TableWrapper = styled.table`
     margin: 55px auto 15px;
     text-align: left;
   }
-  @media screen and (${breakpoints.desktop}) {
-    width: 1012px;
-    margin-top: 55px;
-  }
-
   @media screen and (${breakpoints.desktopLarge}) {
+    width: 1012px;
     margin-top: 100px;
   }
 `;
@@ -62,17 +58,17 @@ export const Th = styled.th`
     background-color: ${colors.blue};
     border-radius: 2px;
     &:nth-child(1) {
-      width: 236px;
+      width: 233px;
     }
     &:nth-child(2) {
       width: 219px;
     }
     &:nth-child(3) {
-      width: 227px;
+      width: 230px;
     }
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     &:nth-child(1) {
       width: 390px;
     }
@@ -80,7 +76,7 @@ export const Th = styled.th`
       width: 311px;
     }
     &:nth-child(3) {
-      width: 311px;
+      width: 312px;
     }
   }
 `;
@@ -106,7 +102,7 @@ export const Td = styled.td`
     }
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     &:nth-child(2) {
       text-align: left;
     }
@@ -125,7 +121,7 @@ export const SortIconStudents = styled.img`
     margin-left: 32px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopLarge}) {
     margin-left: 114px;
   }
 `;
