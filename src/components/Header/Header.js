@@ -90,7 +90,7 @@ const HamburgerMenu = () => {
     <>
       <HamMenu>
         <HamOptions>
-          <Options to="events">Događaji</Options>
+          {!isAdmin && <Options to="events">Događaji</Options>}
           {isAdmin && <Options to="/records">Evidencija</Options>}
           {isAdmin && <Options to="/statistics">Statistika</Options>}
         </HamOptions>
