@@ -26,6 +26,7 @@ const EventCard = ({
   location,
   date,
   time,
+  isOver,
   freeSpots,
   company,
   shortDescription,
