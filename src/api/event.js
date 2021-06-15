@@ -38,13 +38,13 @@ export const registerForEvent = (id, authToken) => {
   }).then((res) => res);
 };
 
-export const cancleEventRegistration = (id, authToken) => {
+export const cancelEventRegistration = (id, authToken) => {
   return fetch(`${apiOrigin}/api/event-user/${id}`, {
     method: 'DEL',
     headers: {
       'auth-token': authToken,
     },
-  }).then((res) => res.json());
+  }).then((res) => res);
 };
 
 export const rateEvent = (review, id, authToken) => {

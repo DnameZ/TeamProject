@@ -65,11 +65,19 @@ const Events = () => {
     toggleStatus();
   };
 
+  const removePastEvents = (events) => {
+    const now = new Date();
+    const filteredEvents = events.filter(
+      (event) => new Date(event.startTime) > now,
+    );
+    return filteredEvents;
+  };
+
   useEffect(() => {
     allEvents && getUserEvents(authToken).then((result) => setUsers(result));
     getAllEvents(authToken).then((result) =>
       setEvents(
-        result.filter(
+        removePastEvents(result).filter(
           (event) => !users.some((user) => event.id === user.event.id),
         ),
       ),
@@ -136,25 +144,21 @@ const Events = () => {
         />
       ) : null}
       {!filter && !status ? (
-        events.length !== 0 ? (
-          <MapEvents
-            Events={events}
-            Users={users}
-            allEvents={allEvents}
-            searchValue={searchValue}
-            handleSearch={handleSearch}
-            eventDate={eventDate}
-            setEventDate={setEventDate}
-            organizer={organizer}
-            setOrganizer={setOrganizer}
-            categories={categories}
-            handleCategoriesSearch={handleCategoriesSearch}
-            statusFilter={statusFilter}
-            setStatusFilter={setStatusFilter}
-          />
-        ) : (
-          <EmptyMsg>Nema prijavljenih događaja</EmptyMsg>
-        )
+        <MapEvents
+          Events={events}
+          Users={users}
+          allEvents={allEvents}
+          searchValue={searchValue}
+          handleSearch={handleSearch}
+          eventDate={eventDate}
+          setEventDate={setEventDate}
+          organizer={organizer}
+          setOrganizer={setOrganizer}
+          categories={categories}
+          handleCategoriesSearch={handleCategoriesSearch}
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+        />
       ) : null}
     </>
   );
@@ -175,11 +179,18 @@ const MapEvents = ({
   statusFilter,
   setStatusFilter,
 }) => {
-  const SetButtonText = () => {
+  const SetButtonText = (endDate) => {
     const PrijaviSe = 'Prijavi se';
-    const OdjaviSe = 'Ocijeni';
-    return allEvents === true ? PrijaviSe : OdjaviSe;
+    const OdjaviSe = 'Odjavi se';
+    const Ocijeni = 'Ocijeni';
+    return allEvents === true
+      ? PrijaviSe
+      : new Date() > new Date(endDate)
+      ? Ocijeni
+      : OdjaviSe;
   };
+
+  const setButtonTextForMyEvents = () => {};
 
   const parseDate = (rawDate) => {
     const options = {
@@ -232,22 +243,14 @@ const MapEvents = ({
           {allEvents
             ? Events.map(
                 (event) =>
-                  ((allEvents &&
-                    event.name?.toLowerCase().includes(searchValue) &&
-                    event.organizer?.includes(organizer) &&
-                    event.startTime?.includes(eventDate) &&
-                    (categories.every((category) =>
-                      event.category?.includes(category),
-                    ) ||
-                      categories.length === 0)) ||
-                    (!allEvents &&
-                      ((statusFilter === 'Nadolazeći' &&
-                        new Date(event.event.startTime?.toString()) >
-                          new Date()) ||
-                        (statusFilter === 'Završeni' &&
-                          new Date(event.event.endTime?.toString()) <
-                            new Date()) ||
-                        statusFilter === 'Svi'))) && (
+                  allEvents &&
+                  event.name?.toLowerCase().includes(searchValue) &&
+                  event.organizer?.includes(organizer) &&
+                  event.startTime?.includes(eventDate) &&
+                  (categories.every((category) =>
+                    event.category?.includes(category),
+                  ) ||
+                    categories.length === 0) && (
                     <EventCard
                       key={event.id}
                       id={event.id}
@@ -264,22 +267,12 @@ const MapEvents = ({
               )
             : Users.map(
                 (event) =>
-                  ((allEvents &&
-                    event.name?.toLowerCase().includes(searchValue) &&
-                    event.organizer?.includes(organizer) &&
-                    event.startTime?.includes(eventDate) &&
-                    (categories.every((category) =>
-                      event.category?.includes(category),
-                    ) ||
-                      categories.length === 0)) ||
-                    (!allEvents &&
-                      ((statusFilter === 'Nadolazeći' &&
-                        new Date(event.event.startTime?.toString()) >
-                          new Date()) ||
-                        (statusFilter === 'Završeni' &&
-                          new Date(event.event.endTime?.toString()) <
-                            new Date()) ||
-                        statusFilter === 'Svi'))) && (
+                  !allEvents &&
+                  ((statusFilter === 'Nadolazeći' &&
+                    new Date(event.event.startTime?.toString()) > new Date()) ||
+                    (statusFilter === 'Završeni' &&
+                      new Date(event.event.endTime?.toString()) < new Date()) ||
+                    statusFilter === 'Svi') && (
                     <EventCard
                       key={event.event.id}
                       id={event.event.id}
@@ -293,7 +286,7 @@ const MapEvents = ({
                       freeSpots={event.event.seats}
                       company={event.event.organizer}
                       shortDescription={event.event.description}
-                      buttonText={SetButtonText()}
+                      buttonText={SetButtonText(event.event.endTime)}
                     />
                   ),
               )}

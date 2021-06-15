@@ -22,7 +22,7 @@ import SortModal from '../../components/SortModal/SortModal';
 const StatisticsEvents = (events) => {
   const [show, setShow] = useState(false);
   const [event, setEvent] = useState(events.events);
-  const [initialEvents, setInitialEvents] = useState(event);
+  const [initialEvents] = useState(event);
   const [showSortModalEvents, setShowSortModalEvents] = useState(
     'modal-one' | 'modal-two',
   );
