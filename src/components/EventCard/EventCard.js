@@ -33,20 +33,26 @@ const EventCard = ({
   id,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
-  const authToken = localStorage.getItem('authToken');
   const [Modal, setModal] = useState(false);
+  const authToken = localStorage.getItem('authToken');
+  const Evidentiraj = 'Evidentiraj';
+  const Ocijeni = 'Ocijeni';
+  const PrijaviSe = 'Prijavi se';
 
   const OpenModal = () => {
     setModal((Modal) => !Modal);
   };
   const SetModal = (buttonText) => {
-    const Evidentiraj = 'Evidentiraj';
-    const Ocijeni = 'Ocijeni';
-    const PrijaviSe = 'Prijavi se';
-
     switch (buttonText) {
       case Evidentiraj:
-        return <StudentRecord handleModalClose={OpenModal} />;
+        return (
+          <StudentRecord
+            handleModalClose={OpenModal}
+            ID={id}
+            freeSPOTS={freeSpots}
+            title={title}
+          />
+        );
       case Ocijeni:
         return <Rate handleModalClose={OpenModal} />;
       case PrijaviSe:
@@ -116,13 +122,14 @@ const EventCard = ({
         </EventCardContent>
         <ButtonWrapper>
           <PrimaryButton
-            onClick={() => OpenModal(buttonText)}
             type="modal/card"
             text={buttonText}
+            onClick={() => OpenModal(buttonText)}
           />
         </ButtonWrapper>
       </EventCardWrapper>
     </>
   );
 };
+
 export default EventCard;
