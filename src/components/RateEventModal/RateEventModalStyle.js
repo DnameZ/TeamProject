@@ -63,3 +63,8 @@ export const Grade = styled.p`
     padding: 11px 0 13px 0;
   }
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;

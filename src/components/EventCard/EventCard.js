@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsChevronExpand, BsChevronContract } from 'react-icons/bs';
 import StudentRecord from '../StudentRecord/StudentRecord';
-import Rate from '../RateEventModal/RateEventModal';
+import RateEventModal from '../RateEventModal/RateEventModal';
 
 // style
 import {
@@ -55,7 +55,9 @@ const EventCard = ({
           />
         );
       case Ocijeni:
-        return <Rate handleModalClose={OpenModal} />;
+        return (
+          <RateEventModal handleModalClose={OpenModal} id={id} title={title} />
+        );
       case PrijaviSe:
         registerForEvent(id, authToken);
         break;
