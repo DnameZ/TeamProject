@@ -10,10 +10,11 @@ export const ModalBackground = styled.div`
   top: 0;
   left: 0;
   z-index: 5;
+  overflow: auto;
 `;
 
 export const ModalWrapper = styled.div`
-  margin: 160px 0 80px;
+  margin: 0 0 80px;
   width: 90%;
   border-radius: 10px;
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
@@ -24,13 +25,17 @@ export const ModalWrapper = styled.div`
   overflow: hidden;
   left: 50%;
   transform: translate(-50%);
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
 
   @media screen and (${breakpoints.tablet}) {
     width: 688px;
+    top: 120px;
   }
 
   @media screen and (${breakpoints.desktop}) {
     width: 648px;
+    top: 180px;
   }
 `;
 
