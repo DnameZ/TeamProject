@@ -86,10 +86,11 @@ const Events = () => {
   useEffect(() => {
     async function fetchData() {
       if (allEvents) {
-        setUsers(await getUserEvents(authToken));
+        const data = await getUserEvents(authToken);
+        setUsers(data);
         setEvents(
           removePastEvents(await getAllEvents(authToken)).filter(
-            (event) => !users.some((user) => event.id === user.event.id),
+            (event) => !data.some((user) => event.id === user.event.id),
           ),
         );
         return;
