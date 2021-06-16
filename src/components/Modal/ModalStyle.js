@@ -9,7 +9,7 @@ export const ModalBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 5;
 `;
 
 export const ModalWrapper = styled.div`
@@ -20,7 +20,7 @@ export const ModalWrapper = styled.div`
   background-color: ${colors.white};
   position: fixed;
   top: 70px;
-  z-index: 1;
+  z-index: 5;
   overflow: hidden;
   left: 50%;
   transform: translate(-50%);
