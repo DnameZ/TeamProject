@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { DummyItem, EmptyMsg } from './EventsStyle';
+import React, { useState, useEffect } from 'react';
 import { getAllEvents } from '../../api/event';
 import { getUserEvents } from '../../api/event';
 
@@ -15,7 +14,6 @@ import Filter from '../../components/Filter/Filter';
 import Status from '../../components/Status/Status';
 import FilterOverlay from '../../components/FilterOverlay/FilterOverlay';
 import StatusOverlay from '../../components/StatusOverlay/StatusOverlay';
-import { AuthContext } from '../../context/AuthContext';
 
 //Mock data
 
@@ -23,14 +21,14 @@ const Events = () => {
   const [filter, setFilter] = useState(false);
   const [status, setStatus] = useState(false);
   const [allEvents, setAllEvents] = useState(true);
-  let [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [organizer, setOrganizer] = useState('');
   const [categories, setCategories] = useState([]);
   const [statusFilter, setStatusFilter] = useState('Svi');
-  const { authToken } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
+  const authToken = localStorage.getItem('authToken');
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -65,18 +63,42 @@ const Events = () => {
     toggleStatus();
   };
 
-  useEffect(() => {
-    allEvents && getUserEvents(authToken).then((result) => setUsers(result));
-    getAllEvents(authToken).then((result) =>
-      setEvents(
-        result.filter(
-          (event) => !users.some((user) => event.id === user.event.id),
-        ),
-      ),
+  const removePastEvents = (events) => {
+    const now = new Date();
+    const filteredEvents = events.filter(
+      (event) => new Date(event.startTime) > now,
     );
+    return filteredEvents;
+  };
 
-    !allEvents && getUserEvents(authToken).then((result) => setUsers(result));
-  }, [allEvents, authToken, users]);
+  const removeUserEvent = (id) => {
+    const filteredUserEvents = users.filter(
+      (userEvent) => userEvent.event.id !== id,
+    );
+    setUsers(filteredUserEvents);
+  };
+
+  const removeEvent = (id) => {
+    const filteredEvents = events.filter((event) => event.id !== id);
+    setEvents(filteredEvents);
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      if (allEvents) {
+        setUsers(await getUserEvents(authToken));
+        setEvents(
+          removePastEvents(await getAllEvents(authToken)).filter(
+            (event) => !users.some((user) => event.id === user.event.id),
+          ),
+        );
+        return;
+      }
+
+      await getUserEvents(authToken).then((result) => setUsers(result));
+    }
+    fetchData();
+  }, [allEvents]);
 
   window.addEventListener('resize', handleResize);
 
@@ -136,25 +158,23 @@ const Events = () => {
         />
       ) : null}
       {!filter && !status ? (
-        events.length !== 0 ? (
-          <MapEvents
-            Events={events}
-            Users={users}
-            allEvents={allEvents}
-            searchValue={searchValue}
-            handleSearch={handleSearch}
-            eventDate={eventDate}
-            setEventDate={setEventDate}
-            organizer={organizer}
-            setOrganizer={setOrganizer}
-            categories={categories}
-            handleCategoriesSearch={handleCategoriesSearch}
-            statusFilter={statusFilter}
-            setStatusFilter={setStatusFilter}
-          />
-        ) : (
-          <EmptyMsg>Nema prijavljenih događaja</EmptyMsg>
-        )
+        <MapEvents
+          Events={events}
+          Users={users}
+          allEvents={allEvents}
+          searchValue={searchValue}
+          handleSearch={handleSearch}
+          eventDate={eventDate}
+          setEventDate={setEventDate}
+          organizer={organizer}
+          setOrganizer={setOrganizer}
+          categories={categories}
+          handleCategoriesSearch={handleCategoriesSearch}
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+          removeUserEvent={removeUserEvent}
+          removeEvent={removeEvent}
+        />
       ) : null}
     </>
   );
@@ -174,13 +194,9 @@ const MapEvents = ({
   handleCategoriesSearch,
   statusFilter,
   setStatusFilter,
+  removeUserEvent,
+  removeEvent,
 }) => {
-  const SetButtonText = () => {
-    const PrijaviSe = 'Prijavi se';
-    const OdjaviSe = 'Ocijeni';
-    return allEvents === true ? PrijaviSe : OdjaviSe;
-  };
-
   const parseDate = (rawDate) => {
     const options = {
       weekday: 'long',
@@ -232,22 +248,14 @@ const MapEvents = ({
           {allEvents
             ? Events.map(
                 (event) =>
-                  ((allEvents &&
-                    event.name?.toLowerCase().includes(searchValue) &&
-                    event.organizer?.includes(organizer) &&
-                    event.startTime?.includes(eventDate) &&
-                    (categories.every((category) =>
-                      event.category?.includes(category),
-                    ) ||
-                      categories.length === 0)) ||
-                    (!allEvents &&
-                      ((statusFilter === 'Nadolazeći' &&
-                        new Date(event.event.startTime?.toString()) >
-                          new Date()) ||
-                        (statusFilter === 'Završeni' &&
-                          new Date(event.event.endTime?.toString()) <
-                            new Date()) ||
-                        statusFilter === 'Svi'))) && (
+                  allEvents &&
+                  event.name?.toLowerCase().includes(searchValue) &&
+                  event.organizer?.includes(organizer) &&
+                  event.startTime?.includes(eventDate) &&
+                  (categories.some((category) =>
+                    event.category?.includes(category),
+                  ) ||
+                    categories.length === 0) && (
                     <EventCard
                       key={event.id}
                       id={event.id}
@@ -258,28 +266,19 @@ const MapEvents = ({
                       freeSpots={event.seats}
                       company={event.organizer}
                       shortDescription={event.description}
-                      buttonText={SetButtonText()}
+                      buttonText="Prijavi se"
+                      removeEvent={removeEvent}
                     />
                   ),
               )
             : Users.map(
                 (event) =>
-                  ((allEvents &&
-                    event.name?.toLowerCase().includes(searchValue) &&
-                    event.organizer?.includes(organizer) &&
-                    event.startTime?.includes(eventDate) &&
-                    (categories.every((category) =>
-                      event.category?.includes(category),
-                    ) ||
-                      categories.length === 0)) ||
-                    (!allEvents &&
-                      ((statusFilter === 'Nadolazeći' &&
-                        new Date(event.event.startTime?.toString()) >
-                          new Date()) ||
-                        (statusFilter === 'Završeni' &&
-                          new Date(event.event.endTime?.toString()) <
-                            new Date()) ||
-                        statusFilter === 'Svi'))) && (
+                  !allEvents &&
+                  ((statusFilter === 'Nadolazeći' &&
+                    new Date(event.event.startTime?.toString()) > new Date()) ||
+                    (statusFilter === 'Završeni' &&
+                      new Date(event.event.endTime?.toString()) < new Date()) ||
+                    statusFilter === 'Svi') && (
                     <EventCard
                       key={event.event.id}
                       id={event.event.id}
@@ -293,12 +292,18 @@ const MapEvents = ({
                       freeSpots={event.event.seats}
                       company={event.event.organizer}
                       shortDescription={event.event.description}
-                      buttonText={SetButtonText()}
+                      buttonText={
+                        allEvents === true
+                          ? 'Prijavi se'
+                          : new Date() > new Date(event.event.endTime)
+                          ? 'Ocijeni'
+                          : 'Odjavi se'
+                      }
+                      removeUserEvent={removeUserEvent}
                     />
                   ),
               )}
         </EventsWrapper>
-        <DummyItem />
       </SectionContent>
     </>
   );

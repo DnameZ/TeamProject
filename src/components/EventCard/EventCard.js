@@ -20,18 +20,20 @@ import {
 
 import { PrimaryButton } from '../../lib/styles/generalStyles';
 import { registerForEvent } from '../../api/event';
+import { cancelEventRegistration } from '../../api/event';
 
 const EventCard = ({
   title,
   location,
   date,
   time,
-  isOver,
   freeSpots,
   company,
   shortDescription,
   buttonText,
   id,
+  removeUserEvent,
+  removeEvent,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
   const [Modal, setModal] = useState(false);
@@ -39,6 +41,7 @@ const EventCard = ({
   const Evidentiraj = 'Evidentiraj';
   const Ocijeni = 'Ocijeni';
   const PrijaviSe = 'Prijavi se';
+  const OdjaviSe = 'Odjavi se';
 
   const OpenModal = () => {
     setModal((Modal) => !Modal);
@@ -60,9 +63,14 @@ const EventCard = ({
         );
       case PrijaviSe:
         registerForEvent(id, authToken);
+        removeEvent(id);
+        break;
+      case OdjaviSe:
+        cancelEventRegistration(id, authToken);
+        removeUserEvent(id);
         break;
       default:
-        console.log('Nothing');
+        break;
     }
   };
 

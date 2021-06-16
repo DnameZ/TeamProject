@@ -95,6 +95,8 @@ const Statistics = () => {
       case 'byParticipants':
         dataToSort = [...event].sort(compareByParticipants);
         break;
+      default:
+        break;
     }
     setShowSortModalEvents(false);
     setEvent(dataToSort);

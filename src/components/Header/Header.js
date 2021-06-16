@@ -90,7 +90,11 @@ const HamburgerMenu = ({ ToggleHamb }) => {
     <>
       <HamMenu>
         <HamOptions>
-          {!isAdmin && <Options to="events">Događaji</Options>}
+          {!isAdmin && (
+            <Options to="events" activeClassName="active" onClick={ToggleHamb}>
+              Događaji
+            </Options>
+          )}
           {isAdmin && (
             <Options
               to="/records"

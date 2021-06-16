@@ -59,8 +59,9 @@ const Records = () => {
     getAllEvents(authToken).then((result) => {
       setEvents(removeFutureEvents(result));
       setIsLoading(false);
+      console.clear();
     });
-  });
+  }, [authToken]);
 
   const parseDate = (rawDate) => {
     const options = {
@@ -165,7 +166,7 @@ const Records = () => {
                   event.name.toLowerCase().includes(searchValue) &&
                   event.organizer.includes(organizer) &&
                   event.startTime.includes(eventDate) &&
-                  (categories.every((category) =>
+                  (categories.some((category) =>
                     event.category.includes(category),
                   ) ||
                     categories.length === 0) && (

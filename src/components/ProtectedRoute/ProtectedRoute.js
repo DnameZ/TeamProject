@@ -11,6 +11,7 @@ export const ProtectedRoute = ({
 }) => {
   const { isLoggedIn, isAdmin } = useContext(AuthContext);
   const getPathName = () => {
+    if (isAdmin === null) return '/records';
     if (isLoggedIn) {
       if (isAdmin) {
         return '/records';

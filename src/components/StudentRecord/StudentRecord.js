@@ -168,7 +168,9 @@ const SignedIn = ({ users, confirmedUsers }) => {
     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
     return (
       <span>
-        {parts.map((part) => (part === highlight ? <b>{part}</b> : part))}
+        {parts.map((part, index) =>
+          part === highlight ? <b key={index}>{part}</b> : part,
+        )}
       </span>
     );
   };
