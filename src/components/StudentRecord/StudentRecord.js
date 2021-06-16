@@ -57,7 +57,7 @@ const StudentRecord = ({ handleModalClose, ID, freeSPOTS, title }) => {
     handleResize();
     window.addEventListener('resize', handleResize);
     getUsersRegisteredToEvent(id, authToken).then((result) => setUsers(result));
-  });
+  }, []);
 
   const ToggleRecord = (Record) => {
     setIsRecord(Record);
