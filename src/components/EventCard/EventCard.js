@@ -32,6 +32,8 @@ const EventCard = ({
   shortDescription,
   buttonText,
   id,
+  removeUserEvent,
+  removeEvent,
 }) => {
   const [showDescription, setShowDescrption] = useState(false);
   const [Modal, setModal] = useState(false);
@@ -61,9 +63,11 @@ const EventCard = ({
         );
       case PrijaviSe:
         registerForEvent(id, authToken);
+        removeEvent(id);
         break;
       case OdjaviSe:
-        // cancelEventRegistration(id, authToken);
+        cancelEventRegistration(id, authToken);
+        removeUserEvent(id);
         break;
       default:
         break;

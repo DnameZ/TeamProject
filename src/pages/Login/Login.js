@@ -33,7 +33,7 @@ const Login = () => {
     },
     validationSchema: Yup.object({
       email: Yup.string()
-        .email('Invalid email address!')
+        .email('Neispravna E-mail adresa!!')
         .required('Email adresa je obavezna!'),
       password: Yup.string()
         .min(8, 'Lozinka se mora sastojati od barem 8 znakova!')
@@ -53,12 +53,10 @@ const Login = () => {
         handleUserLogin(response.token, isAdmin);
         setIsSuccessMessage('Uspješna prijava!');
 
-        history.push(isAdmin ? '/records' : '/events');
+        history.push(isAdmin ? '/records' : '/records');
       } catch (error) {
         setIsError(true);
         setIsSuccessMessage('Prijava nije uspjela!');
-      } finally {
-        setIsRequestFinished(true);
       }
     },
   });

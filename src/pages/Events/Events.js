@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { DummyItem, EmptyMsg } from './EventsStyle';
+import React, { useState, useEffect } from 'react';
 import { getAllEvents } from '../../api/event';
 import { getUserEvents } from '../../api/event';
 
@@ -15,7 +14,6 @@ import Filter from '../../components/Filter/Filter';
 import Status from '../../components/Status/Status';
 import FilterOverlay from '../../components/FilterOverlay/FilterOverlay';
 import StatusOverlay from '../../components/StatusOverlay/StatusOverlay';
-import { AuthContext } from '../../context/AuthContext';
 
 //Mock data
 
@@ -23,14 +21,14 @@ const Events = () => {
   const [filter, setFilter] = useState(false);
   const [status, setStatus] = useState(false);
   const [allEvents, setAllEvents] = useState(true);
-  let [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [organizer, setOrganizer] = useState('');
   const [categories, setCategories] = useState([]);
   const [statusFilter, setStatusFilter] = useState('Svi');
-  const { authToken } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
+  const authToken = localStorage.getItem('authToken');
 
   const toggleFilter = () => {
     setFilter((prevFilter) => !prevFilter);
@@ -73,18 +71,34 @@ const Events = () => {
     return filteredEvents;
   };
 
-  useEffect(() => {
-    allEvents && getUserEvents(authToken).then((result) => setUsers(result));
-    getAllEvents(authToken).then((result) =>
-      setEvents(
-        removePastEvents(result).filter(
-          (event) => !users.some((user) => event.id === user.event.id),
-        ),
-      ),
+  const removeUserEvent = (id) => {
+    const filteredUserEvents = users.filter(
+      (userEvent) => userEvent.event.id !== id,
     );
+    setUsers(filteredUserEvents);
+  };
 
-    !allEvents && getUserEvents(authToken).then((result) => setUsers(result));
-  }, [allEvents, authToken, users]);
+  const removeEvent = (id) => {
+    const filteredEvents = events.filter((event) => event.id !== id);
+    setEvents(filteredEvents);
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      if (allEvents) {
+        setUsers(await getUserEvents(authToken));
+        setEvents(
+          removePastEvents(await getAllEvents(authToken)).filter(
+            (event) => !users.some((user) => event.id === user.event.id),
+          ),
+        );
+        return;
+      }
+
+      await getUserEvents(authToken).then((result) => setUsers(result));
+    }
+    fetchData();
+  }, [allEvents]);
 
   window.addEventListener('resize', handleResize);
 
@@ -158,6 +172,8 @@ const Events = () => {
           handleCategoriesSearch={handleCategoriesSearch}
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
+          removeUserEvent={removeUserEvent}
+          removeEvent={removeEvent}
         />
       ) : null}
     </>
@@ -178,20 +194,9 @@ const MapEvents = ({
   handleCategoriesSearch,
   statusFilter,
   setStatusFilter,
+  removeUserEvent,
+  removeEvent,
 }) => {
-  const SetButtonText = (endDate) => {
-    const PrijaviSe = 'Prijavi se';
-    const OdjaviSe = 'Odjavi se';
-    const Ocijeni = 'Ocijeni';
-    return allEvents === true
-      ? PrijaviSe
-      : new Date() > new Date(endDate)
-      ? Ocijeni
-      : OdjaviSe;
-  };
-
-  const setButtonTextForMyEvents = () => {};
-
   const parseDate = (rawDate) => {
     const options = {
       weekday: 'long',
@@ -247,7 +252,7 @@ const MapEvents = ({
                   event.name?.toLowerCase().includes(searchValue) &&
                   event.organizer?.includes(organizer) &&
                   event.startTime?.includes(eventDate) &&
-                  (categories.every((category) =>
+                  (categories.some((category) =>
                     event.category?.includes(category),
                   ) ||
                     categories.length === 0) && (
@@ -261,7 +266,8 @@ const MapEvents = ({
                       freeSpots={event.seats}
                       company={event.organizer}
                       shortDescription={event.description}
-                      buttonText={SetButtonText()}
+                      buttonText="Prijavi se"
+                      removeEvent={removeEvent}
                     />
                   ),
               )
@@ -286,12 +292,18 @@ const MapEvents = ({
                       freeSpots={event.event.seats}
                       company={event.event.organizer}
                       shortDescription={event.event.description}
-                      buttonText={SetButtonText(event.event.endTime)}
+                      buttonText={
+                        allEvents === true
+                          ? 'Prijavi se'
+                          : new Date() > new Date(event.event.endTime)
+                          ? 'Ocijeni'
+                          : 'Odjavi se'
+                      }
+                      removeUserEvent={removeUserEvent}
                     />
                   ),
               )}
         </EventsWrapper>
-        <DummyItem />
       </SectionContent>
     </>
   );

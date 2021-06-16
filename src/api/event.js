@@ -40,7 +40,7 @@ export const registerForEvent = (id, authToken) => {
 
 export const cancelEventRegistration = (id, authToken) => {
   return fetch(`${apiOrigin}/api/event-user/${id}`, {
-    method: 'DEL',
+    method: 'DELETE',
     headers: {
       'auth-token': authToken,
     },
