@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Marko Mrkonjić---
+
+Moja uloga je ovdje bila da kreiram header u CSS-u i da ga napravim responzivnim preko media querys, tako da kod manjih mobitela se prikaže hamb menu, na kojim će user na klik moći otići do nekih ruta ili se odjaviti.
+
+Također moja uloga je bila da kriram studentRecord u CSS, koji se mora otvarati na određen klik na poziciji gdje se kliknulo, te također da mu napravim određene funckcionalnosti kao što su npr dodaj studenta, i evidentiraj studenta za što se sve naravno koristi API request, i još na što sam ponosan a to je da se slova highlightaju kad se upisuje u tražilicu :D .
+
+I bila mi je zadaća da napravim funkcionalnost za ocijeni event da kad user stisne određenu ocjenu i napiše određeni komentar da se pomoću API requesta taj request posalje.
+
+I još moram spomenuti kad ste logirani kao student imate opciju svi događaji i moji događaji koju sam također radio kao i ove buttone i njihov izgled.
+
+Svaki dio koji sam radio također je morao biti i responzivam na sve scrennove do odprilike iphone5, kroz cijeli projekt smo radili na gitu gdje smo stavili glavnu aplikaciju na developu, te je svako radio svoje branchove tipa feature/---- i kasnije smo radili pull req kako bi to ako je feature oke i bez bugova mergali na develop taj feature i rijesavali konflikte tako da je git wrokflow održan.
+
 ## Team members
 - Čavlović Gabriel (Team lead & developer)
 - Fulir Tomislav (developer)
