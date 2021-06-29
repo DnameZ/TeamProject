@@ -183,7 +183,7 @@ const SignedIn = ({ users, confirmedUsers }) => {
   const filteredUsers = finalData.filter((user) => {
     if (text === '') {
       return user.fullName;
-    } else {
+    } else if (user.fullName.includes(text)) {
       return user.fullName;
     }
   });
