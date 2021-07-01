@@ -14,6 +14,16 @@ I još moram spomenuti kad ste logirani kao student imate opciju svi događaji i
 
 Svaki dio koji sam radio također je morao biti i responzivam na sve scrennove do odprilike iphone5, kroz cijeli projekt smo radili na gitu gdje smo stavili glavnu aplikaciju na developu, te je svako radio svoje branchove tipa feature/---- i kasnije smo radili pull req kako bi to ako je feature oke i bez bugova mergali na develop taj feature i rijesavali konflikte tako da je git wrokflow održan.
 
+Username
+
+mmmrkonjic@skola.hr
+
+pass
+12345678
+
+admin@admin.com
+12345678
+
 ## Team members
 - Čavlović Gabriel (Team lead & developer)
 - Fulir Tomislav (developer)
