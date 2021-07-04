@@ -16,12 +16,12 @@ Svaki dio koji sam radio također je morao biti i responzivam na sve scrennove d
 
 Username
 
-mmmrkonjic@skola.hr
+mmm@skola.hr
 
 pass
 12345678
 
-admin@admin.com
+admin@admin.skola.hr
 12345678
 
 ## Team members
